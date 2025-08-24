@@ -19,3 +19,9 @@ func Style(styleOptions ...StyleOptions) Options {
 		}
 	}
 }
+
+func OnClick(onClick func(this widget.Widget)) Options {
+	return func(div *Div) {
+		div.onClick = onClick
+	}
+}

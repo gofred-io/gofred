@@ -10,6 +10,9 @@ type Div struct {
 	widget.Widget
 	children []widget.Widget
 	style    style.Style
+
+	// events
+	onClick func(this widget.Widget)
 }
 
 func New(ctx *widget.WidgetContext, options ...Options) widget.Widget {
@@ -23,6 +26,7 @@ func New(ctx *widget.WidgetContext, options ...Options) widget.Widget {
 
 	div.SetID(uuid.New().String())
 	div.SetStyle(div.style.String())
+	div.SetOnClick(div.onClick)
 
 	for _, child := range div.children {
 		div.AppendChild(child)

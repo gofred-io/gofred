@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/man.go/mango/div"
 	"github.com/man.go/mango/style"
 	"github.com/man.go/mango/widget"
@@ -23,6 +25,9 @@ func main() {
 						div.Border(style.Border{Width: 1, Style: "solid", Color: "red"}),
 						div.Background(style.Background{Color: "blue"}),
 					),
+					div.OnClick(func(this widget.Widget) {
+						fmt.Println("clicked")
+					}),
 				),
 				div.New(
 					ctx,
@@ -35,4 +40,6 @@ func main() {
 			),
 		),
 	)
+
+	select {}
 }

@@ -18,6 +18,15 @@ func (w Widget) SetID(id string) {
 	w.Set("id", id)
 }
 
+func (w Widget) SetOnClick(onClick func(this Widget)) {
+	w.Set("onclick", js.FuncOf(func(this js.Value, args []js.Value) any {
+		if onClick != nil {
+			onClick(Widget(this))
+		}
+		return nil
+	}))
+}
+
 func (w Widget) SetStyle(style string) {
 	w.Set("style", style)
 }
