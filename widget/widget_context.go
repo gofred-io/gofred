@@ -29,6 +29,10 @@ func (c *WidgetContext) CreateElement(tag string) Widget {
 	return Widget(c.Doc.Call("createElement", tag))
 }
 
+func (c *WidgetContext) CreateElementNS(namespace string, tag string) Widget {
+	return Widget(c.Doc.Call("createElementNS", namespace, tag))
+}
+
 func (c *WidgetContext) GetElementByID(id string) *Widget {
 	element := c.Doc.Call("getElementById", id)
 	if element.IsNull() {

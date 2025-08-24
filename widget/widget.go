@@ -1,7 +1,11 @@
 package widget
 
 import (
+	"fmt"
+	"runtime/debug"
 	"syscall/js"
+
+	"github.com/man.go/mango/console"
 )
 
 type Widget js.Value
@@ -38,12 +42,27 @@ func (w Widget) Set(p string, v any) {
 	js.Value(w).Set(p, v)
 }
 
+func (w Widget) SetAttribute(p string, v any) {
+	js.Value(w).Call("setAttribute", p, v)
+}
+
+func (w Widget) SetAttributeNS(namespace string, p string, v any) {
+	js.Value(w).Call("setAttributeNS", namespace, p, v)
+}
+
 func (w Widget) SetID(id string) {
 	w.Set("id", id)
 }
 
 func (w Widget) SetOnClick(onClick func(this Widget)) {
 	_onClick := func(this Widget) any {
+		defer func() {
+			if r := recover(); r != nil {
+				stack := string(debug.Stack())
+				console.Error(fmt.Sprintf("%v\n%s", r, stack))
+			}
+		}()
+
 		if onClick != nil {
 			onClick(this)
 		}

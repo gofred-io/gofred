@@ -6,6 +6,7 @@ import (
 )
 
 type DisplayType string
+type FlexDirectionType string
 
 const (
 	DisplayTypeFlex DisplayType = "flex"
@@ -13,12 +14,17 @@ const (
 	DisplayTypeNone DisplayType = "none"
 )
 
+const (
+	FlexDirectionTypeRow    FlexDirectionType = "row"
+	FlexDirectionTypeColumn FlexDirectionType = "column"
+)
+
 type Display struct {
 	AlignContent   string
 	AlignItems     string
 	AlignSelf      string
 	Display        DisplayType
-	FlexDirection  string
+	FlexDirection  FlexDirectionType
 	Flex           int
 	FlexWrap       string
 	JustifyContent string
