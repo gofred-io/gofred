@@ -1,6 +1,8 @@
 package main
 
 import (
+	"log"
+
 	"github.com/man.go/mango/div"
 	"github.com/man.go/mango/icon"
 	"github.com/man.go/mango/icondata"
@@ -26,7 +28,8 @@ func main() {
 						div.Size(0, 56),
 					),
 					div.OnClick(func(this widget.Widget) {
-						ctx.GetElementByID("qwe0").SetAttribute("style", "background-color: red;")
+						log.Printf("clicked")
+						//ctx.GetElementByID("qwe0").SetAttribute("style", "background-color: red;")
 					}),
 					div.Children(
 						icon.New(
