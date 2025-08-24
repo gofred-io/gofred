@@ -12,6 +12,12 @@ func Children(children ...widget.Widget) Options {
 	}
 }
 
+func ID(id string) Options {
+	return func(div *Div) {
+		div.SetID(id)
+	}
+}
+
 func Style(styleOptions ...StyleOptions) Options {
 	return func(div *Div) {
 		for _, styleOption := range styleOptions {

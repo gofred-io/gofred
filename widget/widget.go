@@ -14,6 +14,26 @@ func (w Widget) Call(m string, args ...any) Widget {
 	return Widget(js.Value(w).Call(m, args...))
 }
 
+func (w Widget) ChildAt(index int) Widget {
+	return Widget(js.Value(w).Get("children").Index(index))
+}
+
+func (w Widget) Get(p string) js.Value {
+	return js.Value(w).Get(p)
+}
+
+func (w Widget) ID() string {
+	return w.Get("id").String()
+}
+
+func (w Widget) IsNull() bool {
+	return js.Value(w).IsNull()
+}
+
+func (w Widget) Parent() Widget {
+	return Widget(js.Value(w).Get("parentElement"))
+}
+
 func (w Widget) SetID(id string) {
 	w.Set("id", id)
 }

@@ -1,8 +1,6 @@
 package main
 
 import (
-	"fmt"
-
 	"github.com/man.go/mango/div"
 	"github.com/man.go/mango/style"
 	"github.com/man.go/mango/widget"
@@ -10,6 +8,8 @@ import (
 
 func main() {
 	ctx := widget.Context()
+	div2 := buildDiv2(ctx)
+
 	ctx.AppendChild(
 		div.New(
 			ctx,
@@ -26,20 +26,24 @@ func main() {
 						div.Background(style.Background{Color: "blue"}),
 					),
 					div.OnClick(func(this widget.Widget) {
-						fmt.Println("clicked")
 					}),
 				),
-				div.New(
-					ctx,
-					div.Style(
-						div.Size(32, 32),
-						div.Border(style.Border{Width: 1, Style: "solid", Color: "red"}),
-						div.Background(style.Background{Color: "green"}),
-					),
-				),
+				div2,
 			),
 		),
 	)
 
 	select {}
+}
+
+func buildDiv2(ctx *widget.WidgetContext) widget.Widget {
+	return div.New(
+		ctx,
+		div.ID("test"),
+		div.Style(
+			div.Size(32, 32),
+			div.Border(style.Border{Width: 1, Style: "solid", Color: "red"}),
+			div.Background(style.Background{Color: "green"}),
+		),
+	)
 }

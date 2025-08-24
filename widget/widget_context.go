@@ -28,3 +28,12 @@ func (c *WidgetContext) AppendChild(child Widget) {
 func (c *WidgetContext) CreateElement(tag string) Widget {
 	return Widget(c.Doc.Call("createElement", tag))
 }
+
+func (c *WidgetContext) GetElementByID(id string) *Widget {
+	element := c.Doc.Call("getElementById", id)
+	if element.IsNull() {
+		return nil
+	}
+	w := Widget(element)
+	return &w
+}

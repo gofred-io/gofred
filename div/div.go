@@ -1,7 +1,6 @@
 package div
 
 import (
-	"github.com/google/uuid"
 	"github.com/man.go/mango/style"
 	"github.com/man.go/mango/widget"
 )
@@ -24,7 +23,6 @@ func New(ctx *widget.WidgetContext, options ...Options) widget.Widget {
 		option(div)
 	}
 
-	div.SetID(uuid.New().String())
 	div.SetStyle(div.style.String())
 	div.SetOnClick(div.onClick)
 
