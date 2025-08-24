@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/man.go/mango/center"
+	"github.com/man.go/mango/console"
 	"github.com/man.go/mango/div"
 	"github.com/man.go/mango/style"
 	"github.com/man.go/mango/text"
@@ -26,7 +27,9 @@ func main() {
 						div.Background(style.Background{Color: "blue"}),
 					),
 					div.OnClick(func(this widget.Widget) {
-						ctx.GetElementByID("hello").SetText("Hello, again!")
+						if ctx.GetElementByID("hello2") == nil {
+							console.Error("hello2 not found")
+						}
 					}),
 				),
 				div.New(

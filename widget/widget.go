@@ -43,11 +43,16 @@ func (w Widget) SetID(id string) {
 }
 
 func (w Widget) SetOnClick(onClick func(this Widget)) {
-	w.Set("onclick", js.FuncOf(func(this js.Value, args []js.Value) any {
+	_onClick := func(this Widget) any {
 		if onClick != nil {
-			onClick(Widget(this))
+			onClick(this)
 		}
+
 		return nil
+	}
+
+	w.Set("onclick", js.FuncOf(func(this js.Value, args []js.Value) any {
+		return _onClick(Widget(this))
 	}))
 }
 
