@@ -8,6 +8,7 @@ type Style struct {
 	Background *Background
 	Border     *Border
 	Display    *Display
+	Font       *Font
 	Size       *Size
 }
 
@@ -26,6 +27,10 @@ func (s *Style) String() string {
 
 	if s.Display != nil {
 		style.WriteString(s.Display.String())
+	}
+
+	if s.Font != nil {
+		style.WriteString(s.Font.String())
 	}
 
 	if s.Size != nil {

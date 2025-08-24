@@ -34,6 +34,10 @@ func (w Widget) Parent() Widget {
 	return Widget(js.Value(w).Get("parentElement"))
 }
 
+func (w Widget) Set(p string, v any) {
+	js.Value(w).Set(p, v)
+}
+
 func (w Widget) SetID(id string) {
 	w.Set("id", id)
 }
@@ -51,6 +55,6 @@ func (w Widget) SetStyle(style string) {
 	w.Set("style", style)
 }
 
-func (w Widget) Set(p string, v any) {
-	js.Value(w).Set(p, v)
+func (w Widget) SetText(text string) {
+	w.Set("textContent", text)
 }
