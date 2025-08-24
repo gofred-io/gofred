@@ -1,6 +1,9 @@
 package style
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 type Size struct {
 	Width  int
@@ -8,5 +11,17 @@ type Size struct {
 }
 
 func (s *Size) String() string {
-	return fmt.Sprintf("width: %dpx; height: %dpx;", s.Width, s.Height)
+	var (
+		style = strings.Builder{}
+	)
+
+	if s.Width > 0 {
+		style.WriteString(fmt.Sprintf("width: %dpx;", s.Width))
+	}
+
+	if s.Height > 0 {
+		style.WriteString(fmt.Sprintf("height: %dpx;", s.Height))
+	}
+
+	return style.String()
 }

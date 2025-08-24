@@ -16,6 +16,7 @@ const (
 type Display struct {
 	Display       DisplayType
 	FlexDirection string
+	Flex          int
 	FlexWrap      string
 }
 
@@ -30,6 +31,10 @@ func (d *Display) String() string {
 
 	if d.FlexDirection != "" {
 		style.WriteString(fmt.Sprintf("flex-direction: %s;", d.FlexDirection))
+	}
+
+	if d.Flex > 0 {
+		style.WriteString(fmt.Sprintf("flex: %d;", d.Flex))
 	}
 
 	if d.FlexWrap != "" {

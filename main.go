@@ -9,20 +9,18 @@ import (
 
 func main() {
 	ctx := widget.Context()
-	div2 := buildDiv2(ctx)
 
 	ctx.AppendChild(
 		div.New(
 			ctx,
 			div.Style(
-				div.Size(100, 100),
-				div.Display(style.Display{Display: style.DisplayTypeFlex, FlexDirection: "row"}),
+				div.Display(style.Display{Display: style.DisplayTypeFlex, FlexDirection: "row", Flex: 1}),
 			),
 			div.Children(
 				div.New(
 					ctx,
 					div.Style(
-						div.Size(32, 32),
+						div.Display(style.Display{Flex: 1}),
 						div.Border(style.Border{Width: 1, Style: "solid", Color: "red"}),
 						div.Background(style.Background{Color: "blue"}),
 					),
@@ -30,37 +28,42 @@ func main() {
 						ctx.GetElementByID("hello").SetText("Hello, again!")
 					}),
 				),
-				div2,
-			),
-		),
-	)
-
-	select {}
-}
-
-func buildDiv2(ctx *widget.WidgetContext) widget.Widget {
-	return div.New(
-		ctx,
-		div.ID("test"),
-		div.Style(
-			div.Size(32, 32),
-			div.Border(style.Border{Width: 1, Style: "solid", Color: "red"}),
-			div.Background(style.Background{Color: "green"}),
-		),
-		div.Children(
-			text.New(
-				ctx,
-				text.ID("hello"),
-				text.Text("Hello, World!"),
-				text.Style(
-					text.Font(
-						text.Color("white"),
-						text.Family("Arial"),
-						text.Size(12),
-						text.Weight("lighter"),
+				div.New(
+					ctx,
+					div.ID("test"),
+					div.Style(
+						div.Display(style.Display{Flex: 1}),
+						div.Border(style.Border{Width: 1, Style: "solid", Color: "red"}),
+						div.Background(style.Background{Color: "green"}),
+					),
+					div.Children(
+						text.New(
+							ctx,
+							text.ID("hello"),
+							text.Text("Hello, World!"),
+							text.Style(
+								text.Font(
+									text.Color("white"),
+									text.Family("Arial"),
+									text.Size(12),
+									text.Weight("lighter"),
+								),
+							),
+						),
 					),
 				),
 			),
 		),
 	)
+
+	ctx.AppendChild(
+		div.New(
+			ctx,
+			div.Style(
+				div.Display(style.Display{Flex: 1}),
+			),
+		),
+	)
+
+	select {}
 }
