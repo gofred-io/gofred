@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/man.go/mango/center"
 	"github.com/man.go/mango/div"
 	"github.com/man.go/mango/style"
 	"github.com/man.go/mango/text"
@@ -30,23 +31,28 @@ func main() {
 				),
 				div.New(
 					ctx,
-					div.ID("test"),
 					div.Style(
-						div.Display(style.Display{Flex: 1}),
+						div.Display(style.Display{Display: style.DisplayTypeFlex, FlexDirection: "column", Flex: 1}),
 						div.Border(style.Border{Width: 1, Style: "solid", Color: "red"}),
 						div.Background(style.Background{Color: "green"}),
 					),
 					div.Children(
-						text.New(
+						center.New(
 							ctx,
-							text.ID("hello"),
-							text.Text("Hello, World!"),
-							text.Style(
-								text.Font(
-									text.Color("white"),
-									text.Family("Arial"),
-									text.Size(12),
-									text.Weight("lighter"),
+							div.ID("test"),
+							div.Children(
+								text.New(
+									ctx,
+									text.ID("hello"),
+									text.Text("Hello, World!"),
+									text.Style(
+										text.Font(
+											text.Color("white"),
+											text.Family("Arial"),
+											text.Size(12),
+											text.Weight("lighter"),
+										),
+									),
 								),
 							),
 						),

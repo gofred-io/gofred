@@ -5,7 +5,7 @@ import (
 	"github.com/man.go/mango/widget"
 )
 
-type div struct {
+type Div struct {
 	widget.Widget
 	children []widget.Widget
 	style    style.Style
@@ -15,7 +15,7 @@ type div struct {
 }
 
 func New(ctx *widget.WidgetContext, options ...Options) widget.Widget {
-	div := &div{
+	div := &Div{
 		Widget: ctx.CreateElement("div"),
 	}
 
