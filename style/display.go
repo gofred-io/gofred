@@ -7,6 +7,13 @@ import (
 
 type DisplayType string
 type FlexDirectionType string
+type AlignItemsType string
+type AlignSelfType string
+type AlignContent string
+type JustifyContentType string
+type JustifyItemsType string
+type JustifySelfType string
+type FlexWrapType string
 
 const (
 	DisplayTypeFlex DisplayType = "flex"
@@ -19,17 +26,71 @@ const (
 	FlexDirectionTypeColumn FlexDirectionType = "column"
 )
 
+const (
+	AlignItemsTypeCenter   AlignItemsType = "center"
+	AlignItemsTypeStart    AlignItemsType = "start"
+	AlignItemsTypeEnd      AlignItemsType = "end"
+	AlignItemsTypeStretch  AlignItemsType = "stretch"
+	AlignItemsTypeBaseline AlignItemsType = "baseline"
+)
+
+const (
+	AlignSelfTypeCenter   AlignSelfType = "center"
+	AlignSelfTypeStart    AlignSelfType = "start"
+	AlignSelfTypeEnd      AlignSelfType = "end"
+	AlignSelfTypeStretch  AlignSelfType = "stretch"
+	AlignSelfTypeBaseline AlignSelfType = "baseline"
+)
+
+const (
+	AlignContentTypeCenter   AlignContent = "center"
+	AlignContentTypeStart    AlignContent = "start"
+	AlignContentTypeEnd      AlignContent = "end"
+	AlignContentTypeStretch  AlignContent = "stretch"
+	AlignContentTypeBaseline AlignContent = "baseline"
+)
+
+const (
+	JustifyContentTypeCenter   JustifyContentType = "center"
+	JustifyContentTypeStart    JustifyContentType = "start"
+	JustifyContentTypeEnd      JustifyContentType = "end"
+	JustifyContentTypeStretch  JustifyContentType = "stretch"
+	JustifyContentTypeBaseline JustifyContentType = "baseline"
+)
+
+const (
+	JustifyItemsTypeCenter   JustifyItemsType = "center"
+	JustifyItemsTypeStart    JustifyItemsType = "start"
+	JustifyItemsTypeEnd      JustifyItemsType = "end"
+	JustifyItemsTypeStretch  JustifyItemsType = "stretch"
+	JustifyItemsTypeBaseline JustifyItemsType = "baseline"
+)
+
+const (
+	JustifySelfTypeCenter   JustifySelfType = "center"
+	JustifySelfTypeStart    JustifySelfType = "start"
+	JustifySelfTypeEnd      JustifySelfType = "end"
+	JustifySelfTypeStretch  JustifySelfType = "stretch"
+	JustifySelfTypeBaseline JustifySelfType = "baseline"
+)
+
+const (
+	FlexWrapTypeNowrap      FlexWrapType = "nowrap"
+	FlexWrapTypeWrap        FlexWrapType = "wrap"
+	FlexWrapTypeWrapReverse FlexWrapType = "wrap-reverse"
+)
+
 type Display struct {
-	AlignContent   string
-	AlignItems     string
-	AlignSelf      string
+	AlignContent   AlignContent
+	AlignItems     AlignItemsType
+	AlignSelf      AlignSelfType
 	Display        DisplayType
 	FlexDirection  FlexDirectionType
 	Flex           int
-	FlexWrap       string
-	JustifyContent string
-	JustifyItems   string
-	JustifySelf    string
+	FlexWrap       FlexWrapType
+	JustifyContent JustifyContentType
+	JustifyItems   JustifyItemsType
+	JustifySelf    JustifySelfType
 }
 
 func (d *Display) String() string {

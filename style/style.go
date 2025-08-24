@@ -9,6 +9,7 @@ type Style struct {
 	Border     *Border
 	Display    *Display
 	Font       *Font
+	Padding    *Padding
 	Size       *Size
 }
 
@@ -31,6 +32,10 @@ func (s *Style) String() string {
 
 	if s.Font != nil {
 		style.WriteString(s.Font.String())
+	}
+
+	if s.Padding != nil {
+		style.WriteString(s.Padding.String())
 	}
 
 	if s.Size != nil {

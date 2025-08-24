@@ -22,6 +22,12 @@ func Display(display style.Display) StyleOptions {
 	}
 }
 
+func Padding(padding style.Padding) StyleOptions {
+	return func(style *style.Style) {
+		style.Padding = &padding
+	}
+}
+
 func Size(width, height int) StyleOptions {
 	return func(_style *style.Style) {
 		_style.Size = &style.Size{
