@@ -1,6 +1,7 @@
 package div
 
 import (
+	"github.com/gofred-io/gofred/style"
 	"github.com/gofred-io/gofred/widget"
 )
 
@@ -17,6 +18,12 @@ func Style(styleOptions ...StyleOptions) Options {
 		for _, styleOption := range styleOptions {
 			styleOption(&div.style)
 		}
+	}
+}
+
+func StyleFrom(style *style.Style) Options {
+	return func(div *Div) {
+		div.style = *style
 	}
 }
 

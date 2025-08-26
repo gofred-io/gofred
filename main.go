@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/gofred-io/gofred/container"
 	"github.com/gofred-io/gofred/div"
 	"github.com/gofred-io/gofred/icon"
 	"github.com/gofred-io/gofred/icondata"
@@ -12,30 +13,28 @@ import (
 
 func main() {
 	widget.Context().AppendChild(
-		div.New(
-			[]widget.Widget{
-				div.New(
-					[]widget.Widget{
-						icon.New(
-							icon.Data(icondata.HamburgerMenu),
-						),
-						youtubeIcon(),
-					},
-					div.Style(
-						div.Display(style.Display{
-							Display:       style.DisplayTypeFlex,
-							FlexDirection: style.FlexDirectionTypeRow,
-							Flex:          1,
-							AlignItems:    style.AlignItemsTypeCenter,
-						}),
-						div.Size(0, 56),
-						div.Padding(style.Padding{
-							Right: 16,
-							Left:  16,
-						}),
+		container.New(
+			div.New(
+				[]widget.Widget{
+					icon.New(
+						icon.Data(icondata.HamburgerMenu),
 					),
+					youtubeIcon(),
+				},
+				div.Style(
+					div.Display(style.Display{
+						Display:       style.DisplayTypeFlex,
+						FlexDirection: style.FlexDirectionTypeRow,
+						Flex:          1,
+						AlignItems:    style.AlignItemsTypeCenter,
+					}),
+					div.Size(0, 56),
+					div.Padding(style.Padding{
+						Right: 16,
+						Left:  16,
+					}),
 				),
-			},
+			),
 		),
 	)
 

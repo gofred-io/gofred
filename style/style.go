@@ -9,6 +9,7 @@ type Style struct {
 	Border     *Border
 	Display    *Display
 	Font       *Font
+	Margin     *Margin
 	Padding    *Padding
 	Size       *Size
 }
