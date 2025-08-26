@@ -2,10 +2,10 @@ package main
 
 import (
 	"github.com/gofred-io/gofred/container"
-	"github.com/gofred-io/gofred/div"
 	"github.com/gofred-io/gofred/icon"
 	"github.com/gofred-io/gofred/icondata"
 	"github.com/gofred-io/gofred/path"
+	"github.com/gofred-io/gofred/row"
 	"github.com/gofred-io/gofred/style"
 	"github.com/gofred-io/gofred/svg"
 	"github.com/gofred-io/gofred/widget"
@@ -14,26 +14,22 @@ import (
 func main() {
 	widget.Context().AppendChild(
 		container.New(
-			div.New(
+			row.New(
 				[]widget.Widget{
 					icon.New(
 						icon.Data(icondata.HamburgerMenu),
 					),
 					youtubeIcon(),
 				},
-				div.Style(
-					div.Display(style.Display{
-						Display:       style.DisplayTypeFlex,
-						FlexDirection: style.FlexDirectionTypeRow,
-						Flex:          1,
-						AlignItems:    style.AlignItemsTypeCenter,
-					}),
-					div.Size(0, 56),
-					div.Padding(style.Padding{
-						Right: 16,
-						Left:  16,
-					}),
-				),
+				row.MainAxisAlignment(style.JustifyContentTypeStart),
+				row.CrossAxisAlignment(style.AlignItemsTypeCenter),
+			),
+			container.Style(
+				container.Padding(style.Padding{
+					Right: 16,
+					Left:  16,
+				}),
+				container.Height(56),
 			),
 		),
 	)
@@ -53,7 +49,9 @@ func youtubeIcon() widget.Widget {
 				path.Fill("#FFFFFF"),
 			),
 		},
-		svg.Height(20),
-		svg.Width(32),
+		svg.Style(
+			svg.Height(20),
+			svg.Width(32),
+		),
 	)
 }

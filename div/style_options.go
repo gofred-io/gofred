@@ -22,6 +22,12 @@ func Display(display style.Display) StyleOptions {
 	}
 }
 
+func Height(height int) StyleOptions {
+	return func(style *style.Style) {
+		style.Size.Height = &height
+	}
+}
+
 func Margin(margin style.Margin) StyleOptions {
 	return func(style *style.Style) {
 		style.Margin = &margin
@@ -34,11 +40,8 @@ func Padding(padding style.Padding) StyleOptions {
 	}
 }
 
-func Size(width, height int) StyleOptions {
-	return func(_style *style.Style) {
-		_style.Size = &style.Size{
-			Width:  width,
-			Height: height,
-		}
+func Width(width int) StyleOptions {
+	return func(style *style.Style) {
+		style.Size.Width = &width
 	}
 }

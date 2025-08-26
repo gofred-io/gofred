@@ -1,10 +1,14 @@
 package svg
 
-import "github.com/gofred-io/gofred/widget"
+import (
+	"github.com/gofred-io/gofred/style"
+	"github.com/gofred-io/gofred/widget"
+)
 
 type Svg struct {
 	widget.Widget
 	element widget.Widget
+	style   style.Style
 }
 
 func New(children []widget.Widget, options ...Options) widget.Widget {

@@ -6,8 +6,8 @@ import (
 )
 
 type Size struct {
-	Width  int
-	Height int
+	Width  *int
+	Height *int
 }
 
 func (s *Size) String() string {
@@ -15,12 +15,12 @@ func (s *Size) String() string {
 		style = strings.Builder{}
 	)
 
-	if s.Width > 0 {
-		style.WriteString(fmt.Sprintf("width: %dpx;", s.Width))
+	if s.Width != nil {
+		style.WriteString(fmt.Sprintf("width: %dpx;", *s.Width))
 	}
 
-	if s.Height > 0 {
-		style.WriteString(fmt.Sprintf("height: %dpx;", s.Height))
+	if s.Height != nil {
+		style.WriteString(fmt.Sprintf("height: %dpx;", *s.Height))
 	}
 
 	return style.String()
