@@ -6,12 +6,6 @@ import (
 
 type Options func(div *Div)
 
-func Children(children ...widget.Widget) Options {
-	return func(div *Div) {
-		div.children = children
-	}
-}
-
 func ID(id string) Options {
 	return func(div *Div) {
 		div.SetID(id)

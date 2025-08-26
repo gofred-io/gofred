@@ -10,9 +10,9 @@ type Icon struct {
 	Data icondata.IconData
 }
 
-func New(ctx *widget.WidgetContext, options ...Options) widget.Widget {
+func New(options ...Options) widget.Widget {
 	icon := &Icon{
-		Widget: ctx.CreateElement("span"),
+		Widget: widget.Context().CreateElement("span"),
 	}
 
 	for _, option := range options {
@@ -21,7 +21,7 @@ func New(ctx *widget.WidgetContext, options ...Options) widget.Widget {
 
 	icon.SetStyle("display: inline-block; width: 24px; height: 24px;")
 
-	svgEl := ctx.CreateElementNS("http://www.w3.org/2000/svg", "svg")
+	svgEl := widget.Context().CreateElementNS("http://www.w3.org/2000/svg", "svg")
 	svgEl.SetAttribute("xmlns", "http://www.w3.org/2000/svg")
 	svgEl.SetAttribute("viewBox", "0 0 24 24")
 	svgEl.SetAttribute("width", "24")
@@ -30,7 +30,7 @@ func New(ctx *widget.WidgetContext, options ...Options) widget.Widget {
 	svgEl.SetAttribute("aria-hidden", "true")
 	svgEl.SetStyle("pointer-events: none; display: inherit; width: 100%; height: 100%;")
 
-	pathEl := ctx.CreateElementNS("http://www.w3.org/2000/svg", "path")
+	pathEl := widget.Context().CreateElementNS("http://www.w3.org/2000/svg", "path")
 	pathEl.SetAttribute("d", string(icon.Data))
 	svgEl.AppendChild(pathEl)
 

@@ -10,9 +10,9 @@ type text struct {
 	style style.Style
 }
 
-func New(ctx *widget.WidgetContext, options ...Options) widget.Widget {
+func New(options ...Options) widget.Widget {
 	text := &text{
-		Widget: ctx.CreateElement("span"),
+		Widget: widget.Context().CreateElement("span"),
 	}
 
 	for _, option := range options {

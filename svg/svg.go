@@ -4,16 +4,15 @@ import "github.com/gofred-io/gofred/widget"
 
 type Svg struct {
 	widget.Widget
-	element  widget.Widget
-	children []widget.Widget
+	element widget.Widget
 }
 
-func New(ctx *widget.WidgetContext, options ...Options) widget.Widget {
+func New(children []widget.Widget, options ...Options) widget.Widget {
 	svg := &Svg{
-		Widget: ctx.CreateElement("span"),
+		Widget: widget.Context().CreateElement("span"),
 	}
 
-	svg.element = ctx.CreateElementNS("http://www.w3.org/2000/svg", "svg")
+	svg.element = widget.Context().CreateElementNS("http://www.w3.org/2000/svg", "svg")
 
 	for _, option := range options {
 		option(svg)
@@ -27,7 +26,7 @@ func New(ctx *widget.WidgetContext, options ...Options) widget.Widget {
 
 	svg.AppendChild(svg.element)
 
-	for _, child := range svg.children {
+	for _, child := range children {
 		svg.element.AppendChild(child)
 	}
 

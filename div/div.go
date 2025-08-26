@@ -7,16 +7,15 @@ import (
 
 type Div struct {
 	widget.Widget
-	children []widget.Widget
-	style    style.Style
+	style style.Style
 
 	// events
 	onClick func(this widget.Widget)
 }
 
-func New(ctx *widget.WidgetContext, options ...Options) widget.Widget {
+func New(children []widget.Widget, options ...Options) widget.Widget {
 	div := &Div{
-		Widget: ctx.CreateElement("div"),
+		Widget: widget.Context().CreateElement("div"),
 	}
 
 	for _, option := range options {
@@ -26,7 +25,7 @@ func New(ctx *widget.WidgetContext, options ...Options) widget.Widget {
 	div.SetStyle(div.style.String())
 	div.SetOnClick(div.onClick)
 
-	for _, child := range div.children {
+	for _, child := range children {
 		div.AppendChild(child)
 	}
 

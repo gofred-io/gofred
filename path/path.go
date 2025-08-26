@@ -6,9 +6,9 @@ type Path struct {
 	widget.Widget
 }
 
-func New(ctx *widget.WidgetContext, options ...Options) widget.Widget {
+func New(options ...Options) widget.Widget {
 	path := &Path{
-		Widget: ctx.CreateElementNS("http://www.w3.org/2000/svg", "path"),
+		Widget: widget.Context().CreateElementNS("http://www.w3.org/2000/svg", "path"),
 	}
 
 	for _, option := range options {

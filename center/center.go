@@ -10,7 +10,7 @@ type Center struct {
 	div.Div
 }
 
-func New(ctx *widget.WidgetContext, options ...div.Options) widget.Widget {
+func New(child widget.Widget, options ...div.Options) widget.Widget {
 	options = append(options, div.Style(
 		div.Display(style.Display{
 			Display:        style.DisplayTypeFlex,
@@ -21,7 +21,7 @@ func New(ctx *widget.WidgetContext, options ...div.Options) widget.Widget {
 	))
 
 	return div.New(
-		ctx,
+		[]widget.Widget{child},
 		options...,
 	)
 }

@@ -10,7 +10,11 @@ type WidgetContext struct {
 	Root    js.Value
 }
 
-func Context() *WidgetContext {
+var (
+	context *WidgetContext
+)
+
+func NewContext() *WidgetContext {
 	doc := js.Global().Get("document")
 	root := doc.Call("getElementById", "root")
 
@@ -19,6 +23,13 @@ func Context() *WidgetContext {
 		Doc:     doc,
 		Root:    root,
 	}
+}
+
+func Context() *WidgetContext {
+	if context == nil {
+		context = NewContext()
+	}
+	return context
 }
 
 func (c *WidgetContext) AppendChild(child Widget) {
