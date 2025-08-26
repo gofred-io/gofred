@@ -3,7 +3,7 @@ package svg
 import (
 	"strconv"
 
-	"github.com/man.go/mango/widget"
+	"github.com/gofred-io/gofred/widget"
 )
 
 type Options func(svg *Svg)

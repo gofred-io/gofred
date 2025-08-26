@@ -1,8 +1,8 @@
 package div
 
 import (
-	"github.com/man.go/mango/style"
-	"github.com/man.go/mango/widget"
+	"github.com/gofred-io/gofred/style"
+	"github.com/gofred-io/gofred/widget"
 )
 
 type Div struct {

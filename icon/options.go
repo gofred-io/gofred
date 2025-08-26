@@ -1,6 +1,6 @@
 package icon
 
-import "github.com/man.go/mango/icondata"
+import "github.com/gofred-io/gofred/icondata"
 
 type Options func(icon *Icon)
 

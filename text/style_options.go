@@ -1,7 +1,7 @@
 package text
 
 import (
-	"github.com/man.go/mango/style"
+	"github.com/gofred-io/gofred/style"
 )
 
 type StyleOptions func(style *style.Style)

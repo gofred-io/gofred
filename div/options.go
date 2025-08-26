@@ -1,7 +1,7 @@
 package div
 
 import (
-	"github.com/man.go/mango/widget"
+	"github.com/gofred-io/gofred/widget"
 )
 
 type Options func(div *Div)

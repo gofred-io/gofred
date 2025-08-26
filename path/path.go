@@ -1,6 +1,6 @@
 package path
 
-import "github.com/man.go/mango/widget"
+import "github.com/gofred-io/gofred/widget"
 
 type Path struct {
 	widget.Widget

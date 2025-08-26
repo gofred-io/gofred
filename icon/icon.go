@@ -1,8 +1,8 @@
 package icon
 
 import (
-	"github.com/man.go/mango/icondata"
-	"github.com/man.go/mango/widget"
+	"github.com/gofred-io/gofred/icondata"
+	"github.com/gofred-io/gofred/widget"
 )
 
 type Icon struct {

@@ -1,6 +1,6 @@
 package svg
 
-import "github.com/man.go/mango/widget"
+import "github.com/gofred-io/gofred/widget"
 
 type Svg struct {
 	widget.Widget

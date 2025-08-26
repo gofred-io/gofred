@@ -1,4 +1,4 @@
-module github.com/man.go/mango
+module github.com/gofred-io/gofred
 
 go 1.25.0
 

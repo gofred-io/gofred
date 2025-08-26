@@ -1,13 +1,13 @@
 package main
 
 import (
-	"github.com/man.go/mango/div"
-	"github.com/man.go/mango/icon"
-	"github.com/man.go/mango/icondata"
-	"github.com/man.go/mango/path"
-	"github.com/man.go/mango/style"
-	"github.com/man.go/mango/svg"
-	"github.com/man.go/mango/widget"
+	"github.com/gofred-io/gofred/div"
+	"github.com/gofred-io/gofred/icon"
+	"github.com/gofred-io/gofred/icondata"
+	"github.com/gofred-io/gofred/path"
+	"github.com/gofred-io/gofred/style"
+	"github.com/gofred-io/gofred/svg"
+	"github.com/gofred-io/gofred/widget"
 )
 
 func main() {

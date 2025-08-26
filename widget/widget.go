@@ -5,7 +5,7 @@ import (
 	"runtime/debug"
 	"syscall/js"
 
-	"github.com/man.go/mango/console"
+	"github.com/gofred-io/gofred/console"
 )
 
 type Widget js.Value

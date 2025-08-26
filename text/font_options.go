@@ -1,6 +1,6 @@
 package text
 
-import "github.com/man.go/mango/style"
+import "github.com/gofred-io/gofred/style"
 
 type FontOptions func(font *style.Font)
 
