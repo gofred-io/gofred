@@ -38,6 +38,10 @@ func (w Widget) Parent() Widget {
 	return Widget(js.Value(w).Get("parentElement"))
 }
 
+func (w Widget) ReplaceWith(widget Widget) {
+	w.Call("replaceWith", js.Value(widget))
+}
+
 func (w Widget) Set(p string, v any) {
 	js.Value(w).Set(p, v)
 }

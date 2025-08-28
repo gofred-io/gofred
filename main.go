@@ -4,14 +4,20 @@ import (
 	"fmt"
 
 	"github.com/gofred-io/gofred/container"
+	"github.com/gofred-io/gofred/hooks"
 	"github.com/gofred-io/gofred/icon"
 	"github.com/gofred-io/gofred/icondata"
+	"github.com/gofred-io/gofred/listenable"
 	"github.com/gofred-io/gofred/path"
 	"github.com/gofred-io/gofred/row"
 	"github.com/gofred-io/gofred/style"
 	"github.com/gofred-io/gofred/svg"
 	"github.com/gofred-io/gofred/text"
 	"github.com/gofred-io/gofred/widget"
+)
+
+var (
+	counter, setCounter = hooks.UseState(3)
 )
 
 func main() {
@@ -23,7 +29,7 @@ func main() {
 						icon.Data(icondata.HamburgerMenu),
 					),
 					youtubeIcon(),
-					counter(),
+					counterWidget(),
 				},
 				row.MainAxisAlignment(style.JustifyContentTypeStart),
 				row.CrossAxisAlignment(style.AlignItemsTypeCenter),
@@ -36,7 +42,7 @@ func main() {
 				container.Height(56),
 			),
 			container.OnClick(func(widget widget.Widget) {
-				fmt.Println("clicked")
+				setCounter(counter.Value() + 1)
 			}),
 		),
 	)
@@ -63,11 +69,13 @@ func youtubeIcon() widget.Widget {
 	)
 }
 
-func counter() widget.Widget {
-	return text.New(
-		text.Text("0"),
-		text.Style(
-			text.Font(text.Size(16), text.Color("#000000")),
-		),
-	)
+func counterWidget() widget.Widget {
+	return listenable.Builder(counter, func() widget.Widget {
+		return text.New(
+			text.Text(fmt.Sprintf("%d", counter.Value())),
+			text.Style(
+				text.Font(text.Size(16), text.Color("#000000")),
+			),
+		)
+	})
 }
