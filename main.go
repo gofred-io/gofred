@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/gofred-io/gofred/container"
 	"github.com/gofred-io/gofred/icon"
 	"github.com/gofred-io/gofred/icondata"
@@ -8,6 +10,7 @@ import (
 	"github.com/gofred-io/gofred/row"
 	"github.com/gofred-io/gofred/style"
 	"github.com/gofred-io/gofred/svg"
+	"github.com/gofred-io/gofred/text"
 	"github.com/gofred-io/gofred/widget"
 )
 
@@ -20,6 +23,7 @@ func main() {
 						icon.Data(icondata.HamburgerMenu),
 					),
 					youtubeIcon(),
+					counter(),
 				},
 				row.MainAxisAlignment(style.JustifyContentTypeStart),
 				row.CrossAxisAlignment(style.AlignItemsTypeCenter),
@@ -31,6 +35,9 @@ func main() {
 				}),
 				container.Height(56),
 			),
+			container.OnClick(func(widget widget.Widget) {
+				fmt.Println("clicked")
+			}),
 		),
 	)
 
@@ -52,6 +59,15 @@ func youtubeIcon() widget.Widget {
 		svg.Style(
 			svg.Height(20),
 			svg.Width(32),
+		),
+	)
+}
+
+func counter() widget.Widget {
+	return text.New(
+		text.Text("0"),
+		text.Style(
+			text.Font(text.Size(16), text.Color("#000000")),
 		),
 	)
 }

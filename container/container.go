@@ -8,7 +8,8 @@ import (
 
 type Container struct {
 	div.Div
-	style style.Style
+	style   style.Style
+	onClick func(widget widget.Widget)
 }
 
 func New(child widget.Widget, options ...Options) widget.Widget {
@@ -24,8 +25,14 @@ func New(child widget.Widget, options ...Options) widget.Widget {
 		option(container)
 	}
 
-	return div.New(
+	container.Widget = div.New(
 		[]widget.Widget{child},
 		div.StyleFrom(&container.style),
 	)
+
+	container.SetOnClick(func(widget widget.Widget) {
+		container.onClick(widget)
+	})
+
+	return container.Widget
 }
