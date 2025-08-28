@@ -10,16 +10,17 @@ type text struct {
 	style style.Style
 }
 
-func New(options ...Options) widget.Widget {
-	text := &text{
+func New(innerText string, options ...Options) widget.Widget {
+	_text := &text{
 		Widget: widget.Context().CreateElement("span"),
 	}
 
 	for _, option := range options {
-		option(text)
+		option(_text)
 	}
 
-	text.SetStyle(text.style.String())
+	_text.SetText(innerText)
+	_text.SetStyle(_text.style.String())
 
-	return text.Widget
+	return _text.Widget
 }

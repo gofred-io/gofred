@@ -52,6 +52,10 @@ func (w Widget) SetAttributeNS(namespace string, p string, v any) {
 	js.Value(w).Call("setAttributeNS", namespace, p, v)
 }
 
+func (w Widget) SetClass(class string) {
+	w.Set("className", class)
+}
+
 func (w Widget) SetID(id string) {
 	w.Set("id", id)
 }

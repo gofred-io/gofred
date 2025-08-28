@@ -84,6 +84,7 @@ type Display struct {
 	AlignContent   AlignContent
 	AlignItems     AlignItemsType
 	AlignSelf      AlignSelfType
+	ColumnGap      int
 	Display        DisplayType
 	FlexDirection  FlexDirectionType
 	Flex           int
@@ -91,6 +92,7 @@ type Display struct {
 	JustifyContent JustifyContentType
 	JustifyItems   JustifyItemsType
 	JustifySelf    JustifySelfType
+	RowGap         int
 }
 
 func (d *Display) String() string {
@@ -108,6 +110,10 @@ func (d *Display) String() string {
 
 	if d.AlignSelf != "" {
 		style.WriteString(fmt.Sprintf("align-self: %s;", d.AlignSelf))
+	}
+
+	if d.ColumnGap > 0 {
+		style.WriteString(fmt.Sprintf("column-gap: %dpx;", d.ColumnGap))
 	}
 
 	if d.Display != "" {
@@ -136,6 +142,10 @@ func (d *Display) String() string {
 
 	if d.JustifySelf != "" {
 		style.WriteString(fmt.Sprintf("justify-self: %s;", d.JustifySelf))
+	}
+
+	if d.RowGap > 0 {
+		style.WriteString(fmt.Sprintf("row-gap: %dpx;", d.RowGap))
 	}
 
 	return style.String()

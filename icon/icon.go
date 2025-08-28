@@ -10,8 +10,9 @@ type Icon struct {
 	Data icondata.IconData
 }
 
-func New(options ...Options) widget.Widget {
+func New(data icondata.IconData, options ...Options) widget.Widget {
 	icon := &Icon{
+		Data:   data,
 		Widget: widget.Context().CreateElement("span"),
 	}
 

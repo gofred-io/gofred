@@ -29,3 +29,9 @@ func MainAxisAlignment(mainAxisAlignment style.JustifyContentType) Options {
 		column.style.Display.JustifyContent = mainAxisAlignment
 	}
 }
+
+func Gap(columnGap int) Options {
+	return func(column *Column) {
+		column.style.Display.RowGap = columnGap
+	}
+}

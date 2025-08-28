@@ -7,7 +7,7 @@ import (
 type WidgetContext struct {
 	Current js.Value
 	Doc     js.Value
-	Root    js.Value
+	Root    Widget
 }
 
 var (
@@ -21,7 +21,7 @@ func NewContext() *WidgetContext {
 	return &WidgetContext{
 		Current: root,
 		Doc:     doc,
-		Root:    root,
+		Root:    Widget(root),
 	}
 }
 

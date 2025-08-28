@@ -4,9 +4,9 @@ import "github.com/gofred-io/gofred/style"
 
 type StyleOptions func(style *style.Style)
 
-func Margin(margin style.Margin) StyleOptions {
+func Background(background style.Background) StyleOptions {
 	return func(style *style.Style) {
-		style.Margin = &margin
+		style.Background = &background
 	}
 }
 
@@ -17,6 +17,12 @@ func Height(height int) StyleOptions {
 		}
 
 		_style.Size.Height = &height
+	}
+}
+
+func Margin(margin style.Margin) StyleOptions {
+	return func(style *style.Style) {
+		style.Margin = &margin
 	}
 }
 

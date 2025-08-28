@@ -16,9 +16,3 @@ func Style(styleOptions ...StyleOptions) Options {
 		t.SetStyle(t.style.String())
 	}
 }
-
-func Text(_text string) Options {
-	return func(t *text) {
-		t.SetText(_text)
-	}
-}

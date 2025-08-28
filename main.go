@@ -26,7 +26,7 @@ func main() {
 			row.New(
 				[]widget.Widget{
 					icon.New(
-						icon.Data(icondata.HamburgerMenu),
+						icondata.HamburgerMenu,
 					),
 					youtubeIcon(),
 					counterWidget(),
@@ -72,7 +72,7 @@ func youtubeIcon() widget.Widget {
 func counterWidget() widget.Widget {
 	return listenable.Builder(counter, func() widget.Widget {
 		return text.New(
-			text.Text(fmt.Sprintf("%d", counter.Value())),
+			fmt.Sprintf("%d", counter.Value()),
 			text.Style(
 				text.Font(text.Size(16), text.Color("#000000")),
 			),
