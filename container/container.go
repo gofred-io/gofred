@@ -31,7 +31,9 @@ func New(child widget.Widget, options ...Options) widget.Widget {
 	)
 
 	container.SetOnClick(func(widget widget.Widget) {
-		container.onClick(widget)
+		if container.onClick != nil {
+			container.onClick(widget)
+		}
 	})
 
 	return container.Widget

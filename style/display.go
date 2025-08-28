@@ -14,6 +14,7 @@ type JustifyContentType string
 type JustifyItemsType string
 type JustifySelfType string
 type FlexWrapType string
+type UserSelectType string
 
 const (
 	DisplayTypeFlex DisplayType = "flex"
@@ -80,6 +81,13 @@ const (
 	FlexWrapTypeWrapReverse FlexWrapType = "wrap-reverse"
 )
 
+const (
+	UserSelectTypeAll     UserSelectType = "all"
+	UserSelectTypeText    UserSelectType = "text"
+	UserSelectTypeNone    UserSelectType = "none"
+	UserSelectTypeContain UserSelectType = "contain"
+)
+
 type Display struct {
 	AlignContent   AlignContent
 	AlignItems     AlignItemsType
@@ -93,6 +101,7 @@ type Display struct {
 	JustifyItems   JustifyItemsType
 	JustifySelf    JustifySelfType
 	RowGap         int
+	UserSelect     UserSelectType
 }
 
 func (d *Display) String() string {
@@ -146,6 +155,10 @@ func (d *Display) String() string {
 
 	if d.RowGap > 0 {
 		style.WriteString(fmt.Sprintf("row-gap: %dpx;", d.RowGap))
+	}
+
+	if d.UserSelect != "" {
+		style.WriteString(fmt.Sprintf("user-select: %s;", d.UserSelect))
 	}
 
 	return style.String()

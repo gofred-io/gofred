@@ -1,7 +1,7 @@
 package icon
 
 import (
-	"github.com/gofred-io/gofred/icondata"
+	icondata "github.com/gofred-io/gofred/icon_data"
 	"github.com/gofred-io/gofred/widget"
 )
 

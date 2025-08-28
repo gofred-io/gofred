@@ -15,3 +15,12 @@ func Font(fontOptions ...FontOptions) StyleOptions {
 		_style.Font = font
 	}
 }
+
+func UserSelect(userSelect style.UserSelectType) StyleOptions {
+	return func(_style *style.Style) {
+		if _style.Display == nil {
+			_style.Display = &style.Display{}
+		}
+		_style.Display.UserSelect = userSelect
+	}
+}

@@ -6,7 +6,7 @@ import (
 	"github.com/gofred-io/gofred/container"
 	"github.com/gofred-io/gofred/hooks"
 	"github.com/gofred-io/gofred/icon"
-	"github.com/gofred-io/gofred/icondata"
+	icondata "github.com/gofred-io/gofred/icon_data"
 	"github.com/gofred-io/gofred/listenable"
 	"github.com/gofred-io/gofred/path"
 	"github.com/gofred-io/gofred/row"
