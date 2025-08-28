@@ -17,7 +17,7 @@ import (
 )
 
 var (
-	counter, setCounter = hooks.UseState(3)
+	counter, setCounter = hooks.UseState(0)
 )
 
 func main() {

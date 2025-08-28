@@ -1,11 +1,9 @@
 package widget
 
 import (
-	"fmt"
-	"runtime/debug"
 	"syscall/js"
 
-	"github.com/gofred-io/gofred/console"
+	"github.com/gofred-io/gofred/utils"
 )
 
 type Widget js.Value
@@ -59,23 +57,13 @@ func (w Widget) SetID(id string) {
 }
 
 func (w Widget) SetOnClick(onClick func(this Widget)) {
-	_onClick := func(this Widget) any {
-		defer func() {
-			if r := recover(); r != nil {
-				stack := string(debug.Stack())
-				console.Error(fmt.Sprintf("%v\n%s", r, stack))
-			}
-		}()
-
-		if onClick != nil {
-			onClick(this)
-		}
-
-		return nil
-	}
-
 	w.Set("onclick", js.FuncOf(func(this js.Value, args []js.Value) any {
-		return _onClick(Widget(this))
+		if onClick != nil {
+			utils.SafeGo(func() {
+				onClick(Widget(this))
+			})
+		}
+		return nil
 	}))
 }
 
