@@ -52,6 +52,26 @@ func Margin(margin style.Margin) StyleOptions {
 	}
 }
 
+func MaxHeight(maxHeight int) StyleOptions {
+	return func(_style *style.Style) {
+		if _style.Size == nil {
+			_style.Size = &style.Size{}
+		}
+
+		_style.Size.MaxHeight = &maxHeight
+	}
+}
+
+func MaxWidth(maxWidth int) StyleOptions {
+	return func(_style *style.Style) {
+		if _style.Size == nil {
+			_style.Size = &style.Size{}
+		}
+
+		_style.Size.MaxWidth = &maxWidth
+	}
+}
+
 func Padding(padding style.Padding) StyleOptions {
 	return func(style *style.Style) {
 		style.Padding = &padding

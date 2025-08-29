@@ -62,7 +62,7 @@ func (c *WidgetContext) GetElementByID(id string) *Widget {
 }
 
 func (c *WidgetContext) Navigate(path string) {
-	js.Global().Get("window").Call("location.href", path)
+	js.Global().Get("location").Set("href", path)
 }
 
 func (c *WidgetContext) OpenLink(href string) {

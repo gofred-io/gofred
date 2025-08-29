@@ -6,10 +6,12 @@ import (
 )
 
 type Size struct {
-	Height  *int
-	HeightP *float32
-	Width   *int
-	WidthP  *float32
+	Height    *int
+	HeightP   *float32
+	MaxHeight *int
+	MaxWidth  *int
+	Width     *int
+	WidthP    *float32
 }
 
 func (s *Size) String() string {
@@ -27,6 +29,14 @@ func (s *Size) String() string {
 		style.WriteString(fmt.Sprintf("height: %dpx;", *s.Height))
 	} else if s.HeightP != nil {
 		style.WriteString(fmt.Sprintf("height: %f%%;", *s.HeightP*100))
+	}
+
+	if s.MaxWidth != nil {
+		style.WriteString(fmt.Sprintf("max-width: %dpx;", *s.MaxWidth))
+	}
+
+	if s.MaxHeight != nil {
+		style.WriteString(fmt.Sprintf("max-height: %dpx;", *s.MaxHeight))
 	}
 
 	return style.String()
