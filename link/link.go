@@ -4,8 +4,9 @@ import "github.com/gofred-io/gofred/widget"
 
 type Link struct {
 	widget.Widget
-	href   string
-	newTab bool
+	href    string
+	newTab  bool
+	tooltip string
 
 	onClick func(widget widget.Widget)
 }
@@ -24,6 +25,10 @@ func New(child widget.Widget, options ...Options) widget.Widget {
 	link.SetAttribute("href", link.href)
 	if link.newTab {
 		link.SetAttribute("target", "_blank")
+	}
+
+	if link.tooltip != "" {
+		link.SetAttribute("title", link.tooltip)
 	}
 
 	link.SetOnClick(func(widget widget.Widget) {

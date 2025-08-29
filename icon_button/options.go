@@ -17,3 +17,9 @@ func Style(styleOptions ...StyleOptions) Options {
 		}
 	}
 }
+
+func Tooltip(tooltip string) Options {
+	return func(iconButton *IconButton) {
+		iconButton.tooltip = tooltip
+	}
+}

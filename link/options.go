@@ -21,3 +21,9 @@ func OnClick(callback func(widget widget.Widget)) Options {
 		link.onClick = callback
 	}
 }
+
+func Tooltip(tooltip string) Options {
+	return func(link *Link) {
+		link.tooltip = tooltip
+	}
+}

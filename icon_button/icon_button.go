@@ -9,7 +9,8 @@ import (
 
 type IconButton struct {
 	widget.Widget
-	style style.Style
+	style   style.Style
+	tooltip string
 }
 
 func New(iconData icondata.IconData, options ...Options) widget.Widget {
@@ -19,6 +20,10 @@ func New(iconData icondata.IconData, options ...Options) widget.Widget {
 
 	for _, option := range options {
 		option(iconButton)
+	}
+
+	if iconButton.tooltip != "" {
+		iconButton.SetAttribute("title", iconButton.tooltip)
 	}
 
 	iconButton.SetClass("gf-icon-button")
