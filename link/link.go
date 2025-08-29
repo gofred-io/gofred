@@ -4,22 +4,26 @@ import "github.com/gofred-io/gofred/widget"
 
 type Link struct {
 	widget.Widget
+	href   string
+	newTab bool
 
 	onClick func(widget widget.Widget)
 }
 
 func New(child widget.Widget, options ...Options) widget.Widget {
 	link := &Link{
-		Widget: widget.Context().CreateElement("span"),
+		Widget: widget.Context().CreateElement("a"),
 	}
 
-	link.SetStyle("cursor: pointer;")
-	defaultColor := link.Get("style").Get("color").String()
-	link.SetAttribute("onmouseover", "this.style.color = '#0000EE';")
-	link.SetAttribute("onmouseout", "this.style.color = '"+defaultColor+"';")
+	link.SetClass("gf-link")
 
 	for _, option := range options {
 		option(link)
+	}
+
+	link.SetAttribute("href", link.href)
+	if link.newTab {
+		link.SetAttribute("target", "_blank")
 	}
 
 	link.SetOnClick(func(widget widget.Widget) {

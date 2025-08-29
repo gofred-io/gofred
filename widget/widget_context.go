@@ -52,3 +52,11 @@ func (c *WidgetContext) GetElementByID(id string) *Widget {
 	w := Widget(element)
 	return &w
 }
+
+func (c *WidgetContext) Navigate(path string) {
+	js.Global().Get("window").Call("location.href", path)
+}
+
+func (c *WidgetContext) OpenLink(href string) {
+	js.Global().Get("window").Call("open", href, "_blank")
+}
