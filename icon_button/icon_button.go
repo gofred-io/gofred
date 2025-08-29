@@ -3,11 +3,13 @@ package iconbutton
 import (
 	"github.com/gofred-io/gofred/icon"
 	icondata "github.com/gofred-io/gofred/icon_data"
+	"github.com/gofred-io/gofred/style"
 	"github.com/gofred-io/gofred/widget"
 )
 
 type IconButton struct {
 	widget.Widget
+	style style.Style
 }
 
 func New(iconData icondata.IconData, options ...Options) widget.Widget {
@@ -15,15 +17,12 @@ func New(iconData icondata.IconData, options ...Options) widget.Widget {
 		Widget: widget.Context().CreateElement("button"),
 	}
 
-	iconButton.SetStyle("background-color: transparent; border: none; cursor: pointer; border-radius: 50%; padding: 8px; margin: 0;")
-	iconButton.SetAttribute("onmouseover", "this.style.backgroundColor = '#F0F0F0';")
-	iconButton.SetAttribute("onmouseout", "this.style.backgroundColor = 'transparent';")
-	iconButton.SetAttribute("onmousedown", "this.style.backgroundColor = '#E8E8E8';")
-	iconButton.SetAttribute("onmouseup", "this.style.backgroundColor = '#F0F0F0';")
-
 	for _, option := range options {
 		option(iconButton)
 	}
+
+	iconButton.SetClass("gf-icon-button")
+	iconButton.SetStyle(iconButton.style.String())
 
 	iconElement := icon.New(iconData)
 	iconButton.AppendChild(iconElement)

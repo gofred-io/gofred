@@ -1,6 +1,7 @@
 package style
 
 import (
+	"fmt"
 	"strings"
 )
 
@@ -8,6 +9,7 @@ type Style struct {
 	Background *Background
 	Border     *Border
 	Display    *Display
+	Fill       string
 	Font       *Font
 	Margin     *Margin
 	Padding    *Padding
@@ -29,6 +31,10 @@ func (s *Style) String() string {
 
 	if s.Display != nil {
 		style.WriteString(s.Display.String())
+	}
+
+	if s.Fill != "" {
+		style.WriteString(fmt.Sprintf("fill: %s;", s.Fill))
 	}
 
 	if s.Font != nil {

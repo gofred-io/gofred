@@ -9,3 +9,11 @@ func OnClick(onClick func(this widget.Widget)) Options {
 		iconButton.SetOnClick(onClick)
 	}
 }
+
+func Style(styleOptions ...StyleOptions) Options {
+	return func(iconButton *IconButton) {
+		for _, styleOption := range styleOptions {
+			styleOption(&iconButton.style)
+		}
+	}
+}

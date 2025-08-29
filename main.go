@@ -26,7 +26,7 @@ func main() {
 			row.New(
 				[]widget.Widget{
 					icon.New(
-						icondata.HamburgerMenu,
+						icondata.Menu,
 					),
 					youtubeIcon(),
 					counterWidget(),
