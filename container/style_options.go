@@ -10,6 +10,16 @@ func Background(background style.Background) StyleOptions {
 	}
 }
 
+func Flex(flex int) StyleOptions {
+	return func(_style *style.Style) {
+		if _style.Display == nil {
+			_style.Display = &style.Display{}
+		}
+
+		_style.Display.Flex = flex
+	}
+}
+
 func Height(height int) StyleOptions {
 	return func(_style *style.Style) {
 		if _style.Size == nil {

@@ -6,6 +6,10 @@ import (
 	"github.com/gofred-io/gofred/utils"
 )
 
+var (
+	Nil = Widget(js.Value{})
+)
+
 type Widget js.Value
 
 func (w Widget) AppendChild(child Widget) {
@@ -18,6 +22,10 @@ func (w Widget) Call(m string, args ...any) Widget {
 
 func (w Widget) ChildAt(index int) Widget {
 	return Widget(js.Value(w).Get("children").Index(index))
+}
+
+func (w Widget) Equal(other Widget) bool {
+	return js.Value(w).Equal(js.Value(other))
 }
 
 func (w Widget) Get(p string) js.Value {

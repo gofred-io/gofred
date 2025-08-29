@@ -13,20 +13,27 @@ type Container struct {
 }
 
 func New(child widget.Widget, options ...Options) widget.Widget {
-	container := &Container{
-		style: style.Style{
-			Display: &style.Display{
-				Display: style.DisplayTypeFlex,
+	var (
+		children  = []widget.Widget{}
+		container = &Container{
+			style: style.Style{
+				Display: &style.Display{
+					Display: style.DisplayTypeFlex,
+				},
 			},
-		},
-	}
+		}
+	)
 
 	for _, option := range options {
 		option(container)
 	}
 
+	if !child.Equal(widget.Nil) {
+		children = append(children, child)
+	}
+
 	container.Widget = div.New(
-		[]widget.Widget{child},
+		children,
 		div.StyleFrom(&container.style),
 	)
 
