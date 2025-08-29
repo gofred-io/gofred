@@ -1,28 +1,18 @@
-package container
+package button
 
 import "github.com/gofred-io/gofred/style"
 
 type StyleOptions func(style *style.Style)
 
 func Background(background style.Background) StyleOptions {
-	return func(style *style.Style) {
-		style.Background = &background
-	}
-}
-
-func Border(border style.Border) StyleOptions {
-	return func(style *style.Style) {
-		style.Border = &border
-	}
-}
-
-func Flex(flex int) StyleOptions {
 	return func(_style *style.Style) {
-		if _style.Display == nil {
-			_style.Display = &style.Display{}
-		}
+		_style.Background = &background
+	}
+}
 
-		_style.Display.Flex = flex
+func Fill(fill string) StyleOptions {
+	return func(_style *style.Style) {
+		_style.Fill = fill
 	}
 }
 
@@ -33,16 +23,6 @@ func Height(height int) StyleOptions {
 		}
 
 		_style.Size.Height = &height
-	}
-}
-
-func HeightP(height float32) StyleOptions {
-	return func(_style *style.Style) {
-		if _style.Size == nil {
-			_style.Size = &style.Size{}
-		}
-
-		_style.Size.HeightP = &height
 	}
 }
 
@@ -65,15 +45,5 @@ func Width(width int) StyleOptions {
 		}
 
 		_style.Size.Width = &width
-	}
-}
-
-func WidthP(width float32) StyleOptions {
-	return func(_style *style.Style) {
-		if _style.Size == nil {
-			_style.Size = &style.Size{}
-		}
-
-		_style.Size.WidthP = &width
 	}
 }

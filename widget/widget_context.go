@@ -36,6 +36,14 @@ func (c *WidgetContext) AppendChild(child Widget) {
 	c.Current.Call("appendChild", js.Value(child))
 }
 
+func (c *WidgetContext) ClientHeight() int {
+	return c.Doc.Get("documentElement").Get("clientHeight").Int()
+}
+
+func (c *WidgetContext) ClientWidth() int {
+	return c.Doc.Get("documentElement").Get("clientWidth").Int()
+}
+
 func (c *WidgetContext) CreateElement(tag string) Widget {
 	return Widget(c.Doc.Call("createElement", tag))
 }

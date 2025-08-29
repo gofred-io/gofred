@@ -20,6 +20,18 @@ func CrossAxisAlignment(crossAxisAlignment style.AlignItemsType) Options {
 	}
 }
 
+func Flex(flex int) Options {
+	return func(row *Row) {
+		row.style.Display.Flex = flex
+	}
+}
+
+func Gap(columnGap int) Options {
+	return func(row *Row) {
+		row.style.Display.ColumnGap = columnGap
+	}
+}
+
 func MainAxisAlignment(mainAxisAlignment style.JustifyContentType) Options {
 	return func(row *Row) {
 		if row.style.Display == nil {
@@ -27,11 +39,5 @@ func MainAxisAlignment(mainAxisAlignment style.JustifyContentType) Options {
 		}
 
 		row.style.Display.JustifyContent = mainAxisAlignment
-	}
-}
-
-func Gap(columnGap int) Options {
-	return func(row *Row) {
-		row.style.Display.ColumnGap = columnGap
 	}
 }
