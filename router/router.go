@@ -9,7 +9,8 @@ import (
 
 type Router struct {
 	widget.Widget
-	routes map[string]RouteBuilder
+	routes          map[string]RouteBuilder
+	notFoundBuilder RouteBuilder
 }
 
 func New(options ...Options) widget.Widget {
@@ -29,16 +30,21 @@ func New(options ...Options) widget.Widget {
 func (r *Router) createListeners() {
 	navigate := hooks.UseNavigate()
 	callback := func(path string) {
-		routeBuilder := r.routes[path]
+		var (
+			newWidget    widget.Widget
+			routeBuilder = r.routes[path]
+		)
+
 		if routeBuilder != nil {
-			widget := routeBuilder()
-			r.Widget.ReplaceWith(widget)
-			r.Widget = widget
+			newWidget = routeBuilder()
+		} else if r.notFoundBuilder != nil {
+			newWidget = r.notFoundBuilder()
 		} else {
-			widget := container.New(widget.Nil)
-			r.Widget.ReplaceWith(widget)
-			r.Widget = widget
+			newWidget = container.New(widget.Nil)
 		}
+
+		r.Widget.ReplaceWith(newWidget)
+		r.Widget = newWidget
 	}
 
 	listener := listenable.NewListener(callback)

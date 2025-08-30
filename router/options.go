@@ -10,3 +10,9 @@ func Route(path string, routeBuilder RouteBuilder) Options {
 		router.routes[path] = routeBuilder
 	}
 }
+
+func NotFound(routeBuilder RouteBuilder) Options {
+	return func(router *Router) {
+		router.notFoundBuilder = routeBuilder
+	}
+}
