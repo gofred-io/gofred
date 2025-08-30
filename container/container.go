@@ -1,6 +1,8 @@
 package container
 
 import (
+	"fmt"
+
 	"github.com/gofred-io/gofred/div"
 	"github.com/gofred-io/gofred/hooks"
 	"github.com/gofred-io/gofred/listenable"
@@ -13,6 +15,7 @@ type Container struct {
 	div.Div
 	style   style.Style
 	visible *breakpoint.BreakpointValue[bool]
+	width   *breakpoint.BreakpointValue[float64]
 
 	onClick func(widget widget.Widget)
 }
@@ -47,9 +50,14 @@ func New(child widget.Widget, options ...Options) widget.Widget {
 			container.onClick(widget)
 		}
 	})
-	container.visibleListener()
+	container.createListeners()
 
 	return container.Widget
+}
+
+func (c *Container) createListeners() {
+	c.visibleListener()
+	c.widthListener()
 }
 
 func (c *Container) visibleListener() {
@@ -65,6 +73,24 @@ func (c *Container) visibleListener() {
 		} else {
 			c.AddClass("gf-hidden")
 		}
+	}
+
+	listener := listenable.NewListener(callback)
+	breakPointValue.AddListener(listener)
+
+	currentBreakpoint := breakpoint.GetCurrent()
+	callback(currentBreakpoint)
+}
+
+func (c *Container) widthListener() {
+	breakPointValue := hooks.UseBreakpoint()
+	callback := func(breakPoint breakpoint.BreakPoint) {
+		if c.width == nil {
+			return
+		}
+
+		width := c.width.Get(breakPoint)
+		c.Get("style").Set("width", fmt.Sprintf("%f%%", width*100))
 	}
 
 	listener := listenable.NewListener(callback)

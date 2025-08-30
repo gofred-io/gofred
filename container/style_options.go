@@ -87,13 +87,3 @@ func Width(width int) StyleOptions {
 		_style.Size.Width = &width
 	}
 }
-
-func WidthP(width float32) StyleOptions {
-	return func(_style *style.Style) {
-		if _style.Size == nil {
-			_style.Size = &style.Size{}
-		}
-
-		_style.Size.WidthP = &width
-	}
-}

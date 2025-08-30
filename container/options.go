@@ -38,3 +38,15 @@ func Visible(options ...breakpoint.BreakpointOptions[bool]) Options {
 		}
 	}
 }
+
+func WidthP(options ...breakpoint.BreakpointOptions[float64]) Options {
+	return func(container *Container) {
+		if container.width == nil {
+			container.width = &breakpoint.BreakpointValue[float64]{}
+		}
+
+		for _, widthOption := range options {
+			widthOption(container.width)
+		}
+	}
+}
