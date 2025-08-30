@@ -1,6 +1,8 @@
 package widget
 
 import (
+	"fmt"
+	"net/url"
 	"syscall/js"
 
 	"github.com/gofred-io/gofred/utils"
@@ -58,6 +60,10 @@ func (c *WidgetContext) CreateElementNS(namespace string, tag string) Widget {
 	return Widget(c.Doc.Call("createElementNS", namespace, tag))
 }
 
+func (c *WidgetContext) CurrentPath() string {
+	return js.Global().Get("window").Get("location").Get("pathname").String()
+}
+
 func (c *WidgetContext) GetElementByID(id string) *Widget {
 	element := c.Doc.Call("getElementById", id)
 	if element.IsNull() {
@@ -69,6 +75,23 @@ func (c *WidgetContext) GetElementByID(id string) *Widget {
 
 func (c *WidgetContext) Navigate(path string) {
 	js.Global().Get("window").Get("history").Call("pushState", nil, "", path)
+}
+
+func (c *WidgetContext) OnNavigate(callback func(path string)) {
+	js.Global().Get("navigation").Call("addEventListener", "navigate", js.FuncOf(func(this js.Value, args []js.Value) any {
+		if callback != nil {
+			utils.SafeGo(func() {
+				arg := args[0]
+				destinationUrl, err := url.Parse(arg.Get("destination").Get("url").String())
+				if err != nil {
+					fmt.Println("error parsing destination url", err)
+					return
+				}
+				callback(destinationUrl.Path)
+			})
+		}
+		return nil
+	}))
 }
 
 func (c *WidgetContext) OpenLink(href string) {
