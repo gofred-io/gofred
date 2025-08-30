@@ -2,6 +2,8 @@ package widget
 
 import (
 	"syscall/js"
+
+	"github.com/gofred-io/gofred/utils"
 )
 
 type WidgetContext struct {
@@ -67,4 +69,15 @@ func (c *WidgetContext) Navigate(path string) {
 
 func (c *WidgetContext) OpenLink(href string) {
 	js.Global().Get("window").Call("open", href, "_blank")
+}
+
+func (c *WidgetContext) OnResize(callback func()) {
+	js.Global().Get("window").Set("onresize", js.FuncOf(func(this js.Value, args []js.Value) any {
+		if callback != nil {
+			utils.SafeGo(func() {
+				callback()
+			})
+		}
+		return nil
+	}))
 }

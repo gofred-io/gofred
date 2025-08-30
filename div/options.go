@@ -16,14 +16,14 @@ func ID(id string) Options {
 func Style(styleOptions ...StyleOptions) Options {
 	return func(div *Div) {
 		for _, styleOption := range styleOptions {
-			styleOption(&div.style)
+			styleOption(div.style)
 		}
 	}
 }
 
 func StyleFrom(style *style.Style) Options {
 	return func(div *Div) {
-		div.style = *style
+		div.style = style
 	}
 }
 

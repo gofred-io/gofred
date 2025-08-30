@@ -87,6 +87,10 @@ func (w Widget) SetStyle(style string) {
 	w.Set("style", style)
 }
 
+func (w Widget) UpdateStyleProperty(property string, value string) {
+	w.Get("style").Set(property, value)
+}
+
 func (w Widget) SetText(text string) {
 	w.Set("textContent", text)
 }

@@ -7,7 +7,7 @@ import (
 
 type Div struct {
 	widget.Widget
-	style style.Style
+	style *style.Style
 
 	// events
 	onClick func(this widget.Widget)
@@ -16,6 +16,7 @@ type Div struct {
 func New(children []widget.Widget, options ...Options) widget.Widget {
 	div := &Div{
 		Widget: widget.Context().CreateElement("div"),
+		style:  &style.Style{},
 	}
 
 	for _, option := range options {
