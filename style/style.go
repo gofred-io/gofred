@@ -9,8 +9,9 @@ type Style struct {
 	Background *Background
 	Border     *Border
 	Display    *Display
-	Fill       string
+	Fill       *string
 	Font       *Font
+	LineHeight *float64
 	Margin     *Margin
 	Padding    *Padding
 	Size       *Size
@@ -33,12 +34,16 @@ func (s *Style) String() string {
 		style.WriteString(s.Display.String())
 	}
 
-	if s.Fill != "" {
-		style.WriteString(fmt.Sprintf("fill: %s;", s.Fill))
+	if s.Fill != nil {
+		style.WriteString(fmt.Sprintf("fill: %s;", *s.Fill))
 	}
 
 	if s.Font != nil {
 		style.WriteString(s.Font.String())
+	}
+
+	if s.LineHeight != nil {
+		style.WriteString(fmt.Sprintf("line-height: %f;", *s.LineHeight))
 	}
 
 	if s.Padding != nil {

@@ -16,6 +16,12 @@ func Font(fontOptions ...FontOptions) StyleOptions {
 	}
 }
 
+func LineHeight(lineHeight float64) StyleOptions {
+	return func(_style *style.Style) {
+		_style.LineHeight = &lineHeight
+	}
+}
+
 func UserSelect(userSelect style.UserSelectType) StyleOptions {
 	return func(_style *style.Style) {
 		if _style.Display == nil {

@@ -12,7 +12,7 @@ func Background(background style.Background) StyleOptions {
 
 func Fill(fill string) StyleOptions {
 	return func(_style *style.Style) {
-		_style.Fill = fill
+		_style.Fill = &fill
 	}
 }
 

@@ -6,7 +6,7 @@ type StyleOptions func(style *style.Style)
 
 func Fill(fill string) StyleOptions {
 	return func(_style *style.Style) {
-		_style.Fill = fill
+		_style.Fill = &fill
 	}
 }
 
