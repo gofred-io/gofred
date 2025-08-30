@@ -11,11 +11,9 @@ import (
 	"github.com/gofred-io/gofred/widget"
 )
 
-type GridColumnCount []int
-
 type Grid struct {
 	div.Div
-	columnCount *GridColumnCount
+	columnCount *breakpoint.BreakpointValue[int]
 	columnGap   int
 	rowGap      int
 
@@ -67,11 +65,10 @@ func New(children []widget.Widget, options ...Options) widget.Widget {
 }
 
 func (g *Grid) GetColumnCount(breakPoint breakpoint.BreakPoint) *int {
-	for i := int(breakPoint); i >= 0; i-- {
-		if (*g.columnCount)[i] > 0 {
-			return &(*g.columnCount)[i]
-		}
+	columnCount := g.columnCount.Get(breakPoint)
+	if columnCount == 0 {
+		return nil
 	}
 
-	return nil
+	return &columnCount
 }

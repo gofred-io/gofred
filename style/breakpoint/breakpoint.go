@@ -5,23 +5,23 @@ import "github.com/gofred-io/gofred/widget"
 type BreakPoint int
 
 const (
-	XS BreakPoint = iota
-	SM
-	MD
-	LG
-	XL
-	XXL
+	xs BreakPoint = iota
+	sm
+	md
+	lg
+	xl
+	xxl
 )
 
 var (
-	BreakPoints      = []BreakPoint{XS, SM, MD, LG, XL, XXL}
+	BreakPoints      = []BreakPoint{xs, sm, md, lg, xl, xxl}
 	breakPointWidths = map[BreakPoint]int{
-		XS:  0,
-		SM:  480,
-		MD:  768,
-		LG:  1280,
-		XL:  1536,
-		XXL: 1920,
+		xs:  0,
+		sm:  480,
+		md:  768,
+		lg:  1280,
+		xl:  1536,
+		xxl: 1920,
 	}
 )
 
@@ -37,5 +37,5 @@ func GetFromWidth(width int) BreakPoint {
 		}
 	}
 
-	return XS
+	return xs
 }
