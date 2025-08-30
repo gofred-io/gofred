@@ -14,7 +14,6 @@ const (
 )
 
 var (
-	BreakPoints      = []BreakPoint{xs, sm, md, lg, xl, xxl}
 	breakPointWidths = map[BreakPoint]int{
 		xs:  0,
 		sm:  480,
@@ -23,6 +22,7 @@ var (
 		xl:  1536,
 		xxl: 1920,
 	}
+	BreakPoints = []BreakPoint{xs, sm, md, lg, xl, xxl}
 )
 
 func GetCurrent() BreakPoint {

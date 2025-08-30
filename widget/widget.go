@@ -48,6 +48,10 @@ func (w Widget) Parent() Widget {
 	return Widget(js.Value(w).Get("parentElement"))
 }
 
+func (w Widget) RemoveClass(class string) {
+	w.Get("classList").Call("remove", class)
+}
+
 func (w Widget) ReplaceWith(widget Widget) {
 	w.Call("replaceWith", js.Value(widget))
 }

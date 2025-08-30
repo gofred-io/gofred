@@ -1,6 +1,7 @@
 package container
 
 import (
+	"github.com/gofred-io/gofred/style/breakpoint"
 	"github.com/gofred-io/gofred/widget"
 )
 
@@ -23,5 +24,17 @@ func Style(styleOptions ...StyleOptions) Options {
 func OnClick(callback func(widget widget.Widget)) Options {
 	return func(container *Container) {
 		container.onClick = callback
+	}
+}
+
+func Visible(options ...breakpoint.BreakpointOptions[bool]) Options {
+	return func(container *Container) {
+		if container.visible == nil {
+			container.visible = &breakpoint.BreakpointValue[bool]{}
+		}
+
+		for _, visibleOption := range options {
+			visibleOption(container.visible)
+		}
 	}
 }

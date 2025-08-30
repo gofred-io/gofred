@@ -47,6 +47,17 @@ func XXL[T any](value T) BreakpointOptions[T] {
 	}
 }
 
+func All[T any](value T) BreakpointOptions[T] {
+	return func(breakpointValue *BreakpointValue[T]) {
+		breakpointValue.xs = value
+		breakpointValue.sm = value
+		breakpointValue.md = value
+		breakpointValue.lg = value
+		breakpointValue.xl = value
+		breakpointValue.xxl = value
+	}
+}
+
 func (b *BreakpointValue[T]) Get(breakpoint BreakPoint) T {
 	switch breakpoint {
 	case xs:

@@ -11,6 +11,10 @@ import (
 	"github.com/gofred-io/gofred/widget"
 )
 
+var (
+	breakpointValue *BreakpointValue
+)
+
 type BreakpointValue struct {
 	listeners []listenable.Listener[breakpoint.BreakPoint]
 	mutex     sync.RWMutex
@@ -18,7 +22,11 @@ type BreakpointValue struct {
 }
 
 func UseBreakpoint() *BreakpointValue {
-	breakpointValue := &BreakpointValue{
+	if breakpointValue != nil {
+		return breakpointValue
+	}
+
+	breakpointValue = &BreakpointValue{
 		listeners: make([]listenable.Listener[breakpoint.BreakPoint], 0),
 		mutex:     sync.RWMutex{},
 		current:   breakpoint.GetCurrent(),

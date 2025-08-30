@@ -16,9 +16,6 @@ type Grid struct {
 	columnCount *breakpoint.BreakpointValue[int]
 	columnGap   int
 	rowGap      int
-
-	// listeners
-	breakPointUpdatedListener *hooks.BreakpointValue
 }
 
 func New(children []widget.Widget, options ...Options) widget.Widget {
@@ -52,14 +49,14 @@ func New(children []widget.Widget, options ...Options) widget.Widget {
 		),
 	)
 
-	grid.breakPointUpdatedListener = hooks.UseBreakpoint()
+	breakPointValue := hooks.UseBreakpoint()
 	listener := listenable.NewListener(func(breakPoint breakpoint.BreakPoint) {
 		currentColumnCount := grid.GetColumnCount(breakPoint)
 		if currentColumnCount != nil {
 			grid.Get("style").Set("gridTemplateColumns", fmt.Sprintf("repeat(%d, auto)", *currentColumnCount))
 		}
 	})
-	grid.breakPointUpdatedListener.AddListener(listener)
+	breakPointValue.AddListener(listener)
 
 	return grid.Widget
 }
