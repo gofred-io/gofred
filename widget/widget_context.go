@@ -50,6 +50,10 @@ func (c *WidgetContext) CreateElement(tag string) Widget {
 	return Widget(c.Doc.Call("createElement", tag))
 }
 
+func (c *WidgetContext) CreateElementWithOptions(tag string, options map[string]any) Widget {
+	return Widget(c.Doc.Call("createElement", tag, options))
+}
+
 func (c *WidgetContext) CreateElementNS(namespace string, tag string) Widget {
 	return Widget(c.Doc.Call("createElementNS", namespace, tag))
 }
@@ -64,7 +68,7 @@ func (c *WidgetContext) GetElementByID(id string) *Widget {
 }
 
 func (c *WidgetContext) Navigate(path string) {
-	js.Global().Get("location").Set("href", path)
+	js.Global().Get("window").Get("history").Call("pushState", nil, "", path)
 }
 
 func (c *WidgetContext) OpenLink(href string) {

@@ -1,6 +1,8 @@
 package link
 
-import "github.com/gofred-io/gofred/widget"
+import (
+	"github.com/gofred-io/gofred/widget"
+)
 
 type Link struct {
 	widget.Widget
@@ -13,7 +15,9 @@ type Link struct {
 
 func New(child widget.Widget, options ...Options) widget.Widget {
 	link := &Link{
-		Widget: widget.Context().CreateElement("a"),
+		Widget: widget.Context().CreateElementWithOptions("a", map[string]any{
+			"is": "pushstate-anchor",
+		}),
 	}
 
 	link.SetClass("gf-link")
