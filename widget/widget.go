@@ -12,6 +12,10 @@ var (
 
 type Widget js.Value
 
+func (w Widget) AddClass(class string) {
+	w.Get("classList").Call("add", class)
+}
+
 func (w Widget) AppendChild(child Widget) {
 	w.Call("appendChild", js.Value(child))
 }

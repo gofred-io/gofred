@@ -18,6 +18,8 @@ func New(iconData icondata.IconData, options ...Options) widget.Widget {
 		Widget: widget.Context().CreateElement("button"),
 	}
 
+	iconButton.AddClass("gf-icon-button")
+
 	for _, option := range options {
 		option(iconButton)
 	}
@@ -26,7 +28,6 @@ func New(iconData icondata.IconData, options ...Options) widget.Widget {
 		iconButton.SetAttribute("title", iconButton.tooltip)
 	}
 
-	iconButton.SetClass("gf-icon-button")
 	iconButton.SetStyle(iconButton.style.String())
 
 	iconElement := icon.New(iconData)

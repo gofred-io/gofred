@@ -4,6 +4,12 @@ import "github.com/gofred-io/gofred/widget"
 
 type Options func(iconButton *IconButton)
 
+func Class(class string) Options {
+	return func(iconButton *IconButton) {
+		iconButton.AddClass(class)
+	}
+}
+
 func OnClick(onClick func(this widget.Widget)) Options {
 	return func(iconButton *IconButton) {
 		iconButton.SetOnClick(onClick)

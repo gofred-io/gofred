@@ -16,6 +16,12 @@ func Border(border style.Border) StyleOptions {
 	}
 }
 
+func ColumnCount(columnCount int) StyleOptions {
+	return func(style *style.Style) {
+		style.Display.ColumnCount = columnCount
+	}
+}
+
 func Display(display style.Display) StyleOptions {
 	return func(style *style.Style) {
 		style.Display = &display

@@ -92,6 +92,7 @@ type Display struct {
 	AlignContent   AlignContent
 	AlignItems     AlignItemsType
 	AlignSelf      AlignSelfType
+	ColumnCount    int
 	ColumnGap      int
 	Display        DisplayType
 	FlexDirection  FlexDirectionType
@@ -119,6 +120,10 @@ func (d *Display) String() string {
 
 	if d.AlignSelf != "" {
 		style.WriteString(fmt.Sprintf("align-self: %s;", d.AlignSelf))
+	}
+
+	if d.ColumnCount > 0 {
+		style.WriteString(fmt.Sprintf("grid-template-columns: repeat(%d, auto);", d.ColumnCount))
 	}
 
 	if d.ColumnGap > 0 {
