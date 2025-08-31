@@ -32,7 +32,7 @@ func main() {
 						text.New(
 							"Count",
 						),
-						button.OnClick(func(widget widget.BaseWidget) {
+						button.OnClick(func(widget widget.BaseWidget, e widget.Event) {
 							setCounter(counter.Value() + 1)
 						}),
 					),

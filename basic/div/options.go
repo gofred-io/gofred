@@ -253,6 +253,12 @@ func Tooltip(tooltip string) Option {
 	}
 }
 
+func Transition(transition float64) Option {
+	return func() options.Option {
+		return options.Transition(transition)
+	}
+}
+
 func UserSelect(userSelect options.UserSelectType) Option {
 	return func() options.Option {
 		return options.UserSelect(userSelect)

@@ -12,7 +12,7 @@ import (
 
 type Option func(widget widget.BaseWidget)
 type OptionWrapper func() Option
-type OnClickHandler func(this widget.BaseWidget)
+type OnClickHandler func(this widget.BaseWidget, e widget.Event)
 
 func AlignItems(alignItems AxisAlignmentType) Option {
 	return func(widget widget.BaseWidget) {
@@ -368,6 +368,16 @@ func Tooltip(tooltip string) Option {
 	}
 }
 
+func Transition(seconds float64) Option {
+	return func(widget widget.BaseWidget) {
+		if seconds < 0 {
+			seconds = 0.3
+		}
+
+		widget.UpdateStyleProperty("transition", fmt.Sprintf("%.1fs", seconds))
+	}
+}
+
 func UserSelect(userSelect UserSelectType) Option {
 	return func(widget widget.BaseWidget) {
 		widget.UpdateStyleProperty("user-select", string(userSelect))
@@ -415,7 +425,7 @@ func WidthP(options ...breakpoint.BreakpointOptions[float64]) Option {
 }
 
 func listenBreakpointOption[T any](breakpointValue *breakpoint.BreakpointValue[T], callback func(value T)) {
-	breakPointValue := hooks.UseBreakpoint()
+	breakpointHook := hooks.UseBreakpoint()
 	innerCallback := func(breakPoint breakpoint.BreakPoint) {
 		if breakpointValue == nil {
 			return
@@ -426,7 +436,7 @@ func listenBreakpointOption[T any](breakpointValue *breakpoint.BreakpointValue[T
 	}
 
 	listener := listenable.NewListener(innerCallback)
-	breakPointValue.AddListener(listener)
+	breakpointHook.AddListener(listener)
 
 	currentBreakpoint := breakpoint.GetCurrent()
 	innerCallback(currentBreakpoint)

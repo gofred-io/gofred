@@ -52,6 +52,10 @@ func (w Widget) Parent() Widget {
 	return Widget(js.Value(w).Get("parentElement"))
 }
 
+func (w Widget) Remove() {
+	w.Call("remove")
+}
+
 func (w Widget) RemoveClass(class string) {
 	w.Get("classList").Call("remove", class)
 }
@@ -80,11 +84,12 @@ func (w Widget) SetID(id string) {
 	w.Set("id", id)
 }
 
-func (w Widget) SetOnClick(onClick func(this BaseWidget)) {
+func (w Widget) SetOnClick(onClick func(this BaseWidget, e Event)) {
 	w.Set("onclick", js.FuncOf(func(this js.Value, args []js.Value) any {
 		if onClick != nil {
 			utils.SafeGo(func() {
-				onClick(BaseWidget{Widget: Widget(this)})
+				e := args[0]
+				onClick(BaseWidget{Widget: Widget(this)}, Event(e))
 			})
 		}
 		return nil
