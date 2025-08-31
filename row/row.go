@@ -19,7 +19,6 @@ func New(children []widget.BaseWidget, opts ...Options) widget.BaseWidget {
 		divOptions,
 		options.Display(options.DisplayTypeFlex),
 		options.FlexDirection(options.FlexDirectionTypeRow),
-		options.Flex(1),
 	)
 
 	return div.New(
