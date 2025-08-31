@@ -1,9 +1,9 @@
 package iconbutton
 
 import (
-	"github.com/gofred-io/gofred/button"
-	"github.com/gofred-io/gofred/icon"
-	icondata "github.com/gofred-io/gofred/icon_data"
+	"github.com/gofred-io/gofred/basic/button"
+	"github.com/gofred-io/gofred/foundation/icon"
+	icondata "github.com/gofred-io/gofred/foundation/icon/icon_data"
 	"github.com/gofred-io/gofred/widget"
 )
 

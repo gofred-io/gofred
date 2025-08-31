@@ -3,7 +3,7 @@ package icon
 import (
 	"github.com/gofred-io/gofred/basic/path"
 	"github.com/gofred-io/gofred/basic/svg"
-	icondata "github.com/gofred-io/gofred/icon_data"
+	icondata "github.com/gofred-io/gofred/foundation/icon/icon_data"
 	"github.com/gofred-io/gofred/widget"
 )
 

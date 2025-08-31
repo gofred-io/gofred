@@ -1,9 +1,9 @@
 package iconbutton
 
 import (
+	"github.com/gofred-io/gofred/basic/button"
 	"github.com/gofred-io/gofred/breakpoint"
-	"github.com/gofred-io/gofred/button"
-	"github.com/gofred-io/gofred/icon"
+	"github.com/gofred-io/gofred/foundation/icon"
 	"github.com/gofred-io/gofred/options"
 )
 

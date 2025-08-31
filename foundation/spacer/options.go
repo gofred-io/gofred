@@ -1,8 +1,8 @@
 package spacer
 
 import (
+	"github.com/gofred-io/gofred/basic/div"
 	"github.com/gofred-io/gofred/breakpoint"
-	"github.com/gofred-io/gofred/div"
 )
 
 type Option func(spacer *spacer)

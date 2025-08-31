@@ -1,7 +1,7 @@
 package grid
 
 import (
-	"github.com/gofred-io/gofred/div"
+	"github.com/gofred-io/gofred/basic/div"
 	"github.com/gofred-io/gofred/options"
 	"github.com/gofred-io/gofred/widget"
 )
