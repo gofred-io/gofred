@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 
+	"github.com/gofred-io/gofred/breakpoint"
 	"github.com/gofred-io/gofred/container"
 	"github.com/gofred-io/gofred/hooks"
 	"github.com/gofred-io/gofred/icon"
@@ -11,7 +12,6 @@ import (
 	"github.com/gofred-io/gofred/options"
 	"github.com/gofred-io/gofred/path"
 	"github.com/gofred-io/gofred/row"
-	"github.com/gofred-io/gofred/style/breakpoint"
 	"github.com/gofred-io/gofred/svg"
 	"github.com/gofred-io/gofred/text"
 	"github.com/gofred-io/gofred/widget"

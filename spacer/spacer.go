@@ -6,13 +6,21 @@ import (
 	"github.com/gofred-io/gofred/widget"
 )
 
-func New(opts ...options.Options) widget.BaseWidget {
+func New(opts ...Options) widget.BaseWidget {
+	var (
+		containerOptions = []options.Options{}
+	)
+
 	if len(opts) == 0 {
-		opts = append(opts, options.Flex(1))
+		opts = append(opts, flex(1))
+	}
+
+	for _, option := range opts {
+		containerOptions = append(containerOptions, option())
 	}
 
 	return container.New(
 		widget.Nil,
-		opts...,
+		containerOptions...,
 	)
 }

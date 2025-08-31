@@ -1,6 +1,6 @@
 package widget
 
-import "github.com/gofred-io/gofred/style/breakpoint"
+import "github.com/gofred-io/gofred/breakpoint"
 
 type BaseWidget struct {
 	Widget
@@ -10,6 +10,7 @@ type BaseWidget struct {
 	Padding     *breakpoint.BreakpointValue[int]
 	Visible     *breakpoint.BreakpointValue[bool]
 	Width       *breakpoint.BreakpointValue[int]
+	WidthP      *breakpoint.BreakpointValue[float64]
 }
 
 func newBaseWidget(widget Widget) BaseWidget {
@@ -21,6 +22,7 @@ func newBaseWidget(widget Widget) BaseWidget {
 		Padding:     &breakpoint.BreakpointValue[int]{},
 		Visible:     &breakpoint.BreakpointValue[bool]{},
 		Width:       &breakpoint.BreakpointValue[int]{},
+		WidthP:      &breakpoint.BreakpointValue[float64]{},
 	}
 }
 

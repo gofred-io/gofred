@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"strconv"
 
+	"github.com/gofred-io/gofred/breakpoint"
 	"github.com/gofred-io/gofred/hooks"
 	"github.com/gofred-io/gofred/listenable"
-	"github.com/gofred-io/gofred/style/breakpoint"
 	"github.com/gofred-io/gofred/widget"
 )
 
@@ -34,6 +34,18 @@ func AlignSelf(alignSelf AlignSelfType) Options {
 func Alt(alt string) Options {
 	return func(widget widget.BaseWidget) {
 		widget.SetAttribute("alt", alt)
+	}
+}
+
+func BackgroundColor(color string) Options {
+	return func(widget widget.BaseWidget) {
+		widget.UpdateStyleProperty("background-color", color)
+	}
+}
+
+func BorderRadius(borderRadius int) Options {
+	return func(widget widget.BaseWidget) {
+		widget.UpdateStyleProperty("border-radius", fmt.Sprintf("%dpx", borderRadius))
 	}
 }
 
@@ -205,6 +217,19 @@ func MarginB(options ...breakpoint.BreakpointOptions[int]) Options {
 	}
 }
 
+func MarginH(options ...breakpoint.BreakpointOptions[int]) Options {
+	return func(widget widget.BaseWidget) {
+		for _, option := range options {
+			option(widget.Margin)
+		}
+
+		listenBreakpointOption(widget.Margin, func(margin int) {
+			widget.UpdateStyleProperty("margin-left", fmt.Sprintf("%dpx", margin))
+			widget.UpdateStyleProperty("margin-right", fmt.Sprintf("%dpx", margin))
+		})
+	}
+}
+
 func MarginL(options ...breakpoint.BreakpointOptions[int]) Options {
 	return func(widget widget.BaseWidget) {
 		for _, option := range options {
@@ -238,6 +263,25 @@ func MarginT(options ...breakpoint.BreakpointOptions[int]) Options {
 		listenBreakpointOption(widget.Margin, func(margin int) {
 			widget.UpdateStyleProperty("margin-top", fmt.Sprintf("%dpx", margin))
 		})
+	}
+}
+
+func MarginV(options ...breakpoint.BreakpointOptions[int]) Options {
+	return func(widget widget.BaseWidget) {
+		for _, option := range options {
+			option(widget.Margin)
+		}
+
+		listenBreakpointOption(widget.Margin, func(margin int) {
+			widget.UpdateStyleProperty("margin-top", fmt.Sprintf("%dpx", margin))
+			widget.UpdateStyleProperty("margin-bottom", fmt.Sprintf("%dpx", margin))
+		})
+	}
+}
+
+func MaxWidth(maxWidth int) Options {
+	return func(widget widget.BaseWidget) {
+		widget.UpdateStyleProperty("max-width", fmt.Sprintf("%dpx", maxWidth))
 	}
 }
 
@@ -279,6 +323,19 @@ func PaddingB(options ...breakpoint.BreakpointOptions[int]) Options {
 	}
 }
 
+func PaddingH(options ...breakpoint.BreakpointOptions[int]) Options {
+	return func(widget widget.BaseWidget) {
+		for _, option := range options {
+			option(widget.Padding)
+		}
+
+		listenBreakpointOption(widget.Padding, func(padding int) {
+			widget.UpdateStyleProperty("padding-left", fmt.Sprintf("%dpx", padding))
+			widget.UpdateStyleProperty("padding-right", fmt.Sprintf("%dpx", padding))
+		})
+	}
+}
+
 func PaddingL(options ...breakpoint.BreakpointOptions[int]) Options {
 	return func(widget widget.BaseWidget) {
 		for _, option := range options {
@@ -311,6 +368,19 @@ func PaddingT(options ...breakpoint.BreakpointOptions[int]) Options {
 
 		listenBreakpointOption(widget.Padding, func(padding int) {
 			widget.UpdateStyleProperty("padding-top", fmt.Sprintf("%dpx", padding))
+		})
+	}
+}
+
+func PaddingV(options ...breakpoint.BreakpointOptions[int]) Options {
+	return func(widget widget.BaseWidget) {
+		for _, option := range options {
+			option(widget.Padding)
+		}
+
+		listenBreakpointOption(widget.Padding, func(padding int) {
+			widget.UpdateStyleProperty("padding-top", fmt.Sprintf("%dpx", padding))
+			widget.UpdateStyleProperty("padding-bottom", fmt.Sprintf("%dpx", padding))
 		})
 	}
 }
@@ -357,6 +427,18 @@ func Width(options ...breakpoint.BreakpointOptions[int]) Options {
 
 		listenBreakpointOption(widget.Width, func(width int) {
 			widget.UpdateStyleProperty("width", fmt.Sprintf("%dpx", width))
+		})
+	}
+}
+
+func WidthP(options ...breakpoint.BreakpointOptions[float64]) Options {
+	return func(widget widget.BaseWidget) {
+		for _, option := range options {
+			option(widget.WidthP)
+		}
+
+		listenBreakpointOption(widget.WidthP, func(width float64) {
+			widget.UpdateStyleProperty("width", fmt.Sprintf("%f%%", width*100))
 		})
 	}
 }

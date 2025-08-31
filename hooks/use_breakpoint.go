@@ -5,8 +5,8 @@ import (
 	"sync"
 	"time"
 
+	"github.com/gofred-io/gofred/breakpoint"
 	"github.com/gofred-io/gofred/listenable"
-	"github.com/gofred-io/gofred/style/breakpoint"
 	"github.com/gofred-io/gofred/utils"
 	"github.com/gofred-io/gofred/widget"
 )
