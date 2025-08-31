@@ -17,7 +17,6 @@ func New(child widget.BaseWidget, options ...Option) widget.BaseWidget {
 		opt()(button.BaseWidget)
 	}
 
-	button.AddClass("gf-button")
 	button.AppendChild(child.Widget)
 
 	return button.BaseWidget
