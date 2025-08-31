@@ -42,6 +42,12 @@ func ID(id string) Option {
 	}
 }
 
+func LineHeight(lineHeight float64) Option {
+	return func() options.Option {
+		return options.LineHeight(lineHeight)
+	}
+}
+
 func UserSelect(userSelect options.UserSelectType) Option {
 	return func() options.Option {
 		return options.UserSelect(userSelect)

@@ -7,6 +7,12 @@ import (
 
 type Option options.OptionWrapper
 
+func BackgroundColor(backgroundColor string) Option {
+	return func() options.Option {
+		return options.BackgroundColor(backgroundColor)
+	}
+}
+
 func BorderRadius(borderRadius int) Option {
 	return func() options.Option {
 		return options.BorderRadius(borderRadius)

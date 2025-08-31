@@ -32,6 +32,12 @@ func Class(class string) Option {
 	}
 }
 
+func Flex(flex int) Option {
+	return func(container *container) {
+		container.opts = append(container.opts, div.Flex(flex))
+	}
+}
+
 func Height(opts ...breakpoint.BreakpointOptions[int]) Option {
 	return func(container *container) {
 		container.opts = append(container.opts, div.Height(opts...))
