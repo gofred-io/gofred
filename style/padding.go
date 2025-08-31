@@ -5,14 +5,14 @@ import (
 	"strings"
 )
 
-type Padding struct {
+type PaddingEx struct {
 	Top    int
 	Right  int
 	Bottom int
 	Left   int
 }
 
-func (p *Padding) String() string {
+func (p *PaddingEx) String() string {
 	var (
 		style = strings.Builder{}
 	)

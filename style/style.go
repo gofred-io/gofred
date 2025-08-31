@@ -8,12 +8,12 @@ import (
 type Style struct {
 	Background *Background
 	Border     *Border
-	Display    *Display
+	Display    *ExDisplay
 	Fill       *string
-	Font       *Font
+	Font       *FontEx
 	LineHeight *float64
-	Margin     *Margin
-	Padding    *Padding
+	Margin     *MarginEx
+	Padding    *PaddingEx
 	Size       *Size
 }
 

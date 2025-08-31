@@ -2,7 +2,7 @@ package router
 
 import "github.com/gofred-io/gofred/widget"
 
-type RouteBuilder func() widget.Widget
+type RouteBuilder func() widget.BaseWidget
 type Options func(router *Router)
 
 func Route(path string, routeBuilder RouteBuilder) Options {

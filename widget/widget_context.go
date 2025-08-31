@@ -36,8 +36,8 @@ func Context() *WidgetContext {
 	return context
 }
 
-func (c *WidgetContext) AppendChild(child Widget) {
-	c.Current.Call("appendChild", js.Value(child))
+func (c *WidgetContext) AppendChild(child BaseWidget) {
+	c.Current.Call("appendChild", js.Value(child.Widget))
 }
 
 func (c *WidgetContext) ClientHeight() int {

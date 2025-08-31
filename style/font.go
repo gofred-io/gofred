@@ -5,14 +5,14 @@ import (
 	"strings"
 )
 
-type Font struct {
+type FontEx struct {
 	Color  string
 	Family string
 	Size   int
 	Weight string
 }
 
-func (f *Font) String() string {
+func (f *FontEx) String() string {
 	var (
 		style = strings.Builder{}
 	)

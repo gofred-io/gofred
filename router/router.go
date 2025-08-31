@@ -8,30 +8,30 @@ import (
 )
 
 type Router struct {
-	widget.Widget
+	widget.BaseWidget
 	routes          map[string]RouteBuilder
 	notFoundBuilder RouteBuilder
 }
 
-func New(options ...Options) widget.Widget {
+func New(opts ...Options) widget.BaseWidget {
 	router := &Router{
-		Widget: widget.Context().CreateElement("div"),
-		routes: make(map[string]RouteBuilder),
+		BaseWidget: widget.New("div"),
+		routes:     make(map[string]RouteBuilder),
 	}
 
-	for _, option := range options {
+	for _, option := range opts {
 		option(router)
 	}
 	router.createListeners()
 
-	return router.Widget
+	return router.BaseWidget
 }
 
 func (r *Router) createListeners() {
 	navigate := hooks.UseNavigate()
 	callback := func(path string) {
 		var (
-			newWidget    widget.Widget
+			newWidget    widget.BaseWidget
 			routeBuilder = r.routes[path]
 		)
 
@@ -43,8 +43,8 @@ func (r *Router) createListeners() {
 			newWidget = container.New(widget.Nil)
 		}
 
-		r.Widget.ReplaceWith(newWidget)
-		r.Widget = newWidget
+		r.Widget.ReplaceWith(newWidget.Widget)
+		r.Widget = newWidget.Widget
 	}
 
 	listener := listenable.NewListener(callback)

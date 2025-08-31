@@ -1,6 +1,6 @@
 package breakpoint
 
-import "github.com/gofred-io/gofred/widget"
+import "syscall/js"
 
 type BreakPoint int
 
@@ -26,7 +26,7 @@ var (
 )
 
 func GetCurrent() BreakPoint {
-	clientWidth := widget.Context().ClientWidth()
+	clientWidth := js.Global().Get("document").Get("documentElement").Get("clientWidth").Int()
 	return GetFromWidth(clientWidth)
 }
 

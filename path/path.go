@@ -1,19 +1,22 @@
 package path
 
-import "github.com/gofred-io/gofred/widget"
+import (
+	"github.com/gofred-io/gofred/options"
+	"github.com/gofred-io/gofred/widget"
+)
 
 type Path struct {
-	widget.Widget
+	widget.BaseWidget
 }
 
-func New(options ...Options) widget.Widget {
+func New(opts ...options.Options) widget.BaseWidget {
 	path := &Path{
-		Widget: widget.Context().CreateElementNS("http://www.w3.org/2000/svg", "path"),
+		BaseWidget: widget.NewNS("http://www.w3.org/2000/svg", "path"),
 	}
 
-	for _, option := range options {
-		option(path)
+	for _, option := range opts {
+		option(path.BaseWidget)
 	}
 
-	return path.Widget
+	return path.BaseWidget
 }

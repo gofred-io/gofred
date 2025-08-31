@@ -2,26 +2,25 @@ package center
 
 import (
 	"github.com/gofred-io/gofred/div"
-	"github.com/gofred-io/gofred/style"
+	"github.com/gofred-io/gofred/options"
 	"github.com/gofred-io/gofred/widget"
 )
 
 type Center struct {
-	div.Div
+	widget.BaseWidget
 }
 
-func New(child widget.Widget, options ...div.Options) widget.Widget {
-	options = append(options, div.Style(
-		div.Display(style.Display{
-			Display:        style.DisplayTypeFlex,
-			Flex:           1,
-			AlignItems:     "center",
-			JustifyContent: "center",
-		}),
-	))
+func New(child widget.BaseWidget, opts ...options.Options) widget.BaseWidget {
+	opts = append(
+		opts,
+		options.Display(options.DisplayTypeFlex),
+		options.Flex(1),
+		options.AlignItems(options.AlignItemsTypeCenter),
+		options.JustifyContent(options.JustifyContentTypeCenter),
+	)
 
 	return div.New(
-		[]widget.Widget{child},
-		options...,
+		[]widget.BaseWidget{child},
+		opts...,
 	)
 }

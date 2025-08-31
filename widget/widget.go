@@ -7,7 +7,7 @@ import (
 )
 
 var (
-	Nil = Widget(js.Value{})
+	Nil = BaseWidget{Widget: Widget(js.Value{})}
 )
 
 type Widget js.Value
@@ -28,8 +28,8 @@ func (w Widget) ChildAt(index int) Widget {
 	return Widget(js.Value(w).Get("children").Index(index))
 }
 
-func (w Widget) Equal(other Widget) bool {
-	return js.Value(w).Equal(js.Value(other))
+func (w Widget) Equal(other BaseWidget) bool {
+	return js.Value(w).Equal(js.Value(other.Widget))
 }
 
 func (w Widget) Get(p string) js.Value {
@@ -76,11 +76,11 @@ func (w Widget) SetID(id string) {
 	w.Set("id", id)
 }
 
-func (w Widget) SetOnClick(onClick func(this Widget)) {
+func (w Widget) SetOnClick(onClick func(this BaseWidget)) {
 	w.Set("onclick", js.FuncOf(func(this js.Value, args []js.Value) any {
 		if onClick != nil {
 			utils.SafeGo(func() {
-				onClick(Widget(this))
+				onClick(BaseWidget{Widget: Widget(this)})
 			})
 		}
 		return nil

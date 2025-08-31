@@ -2,32 +2,20 @@ package column
 
 import (
 	"github.com/gofred-io/gofred/div"
-	"github.com/gofred-io/gofred/style"
+	"github.com/gofred-io/gofred/options"
 	"github.com/gofred-io/gofred/widget"
 )
 
-type Column struct {
-	div.Div
-	style style.Style
-}
-
-func New(children []widget.Widget, options ...Options) widget.Widget {
-	column := &Column{
-		style: style.Style{
-			Display: &style.Display{
-				Display:       style.DisplayTypeFlex,
-				FlexDirection: style.FlexDirectionTypeColumn,
-				Flex:          1,
-			},
-		},
-	}
-
-	for _, option := range options {
-		option(column)
-	}
+func New(children []widget.BaseWidget, opts ...options.Options) widget.BaseWidget {
+	opts = append(
+		opts,
+		options.Display(options.DisplayTypeFlex),
+		options.FlexDirection(options.FlexDirectionTypeColumn),
+		options.Flex(1),
+	)
 
 	return div.New(
 		children,
-		div.StyleFrom(&column.style),
+		opts...,
 	)
 }

@@ -1,32 +1,25 @@
 package button
 
 import (
-	"github.com/gofred-io/gofred/style"
+	"github.com/gofred-io/gofred/options"
 	"github.com/gofred-io/gofred/widget"
 )
 
 type Button struct {
-	widget.Widget
-	style   style.Style
-	tooltip string
+	widget.BaseWidget
 }
 
-func New(child widget.Widget, options ...Options) widget.Widget {
+func New(child widget.BaseWidget, options ...options.Options) widget.BaseWidget {
 	button := &Button{
-		Widget: widget.Context().CreateElement("button"),
+		BaseWidget: widget.New("button"),
 	}
 
 	for _, option := range options {
-		option(button)
+		option(button.BaseWidget)
 	}
 
-	if button.tooltip != "" {
-		button.SetAttribute("title", button.tooltip)
-	}
+	button.AddClass("gf-button")
+	button.AppendChild(child.Widget)
 
-	button.SetClass("gf-button")
-	button.SetStyle(button.style.String())
-	button.AppendChild(child)
-
-	return button.Widget
+	return button.BaseWidget
 }

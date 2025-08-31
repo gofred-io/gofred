@@ -5,14 +5,14 @@ import (
 	"strings"
 )
 
-type Margin struct {
+type MarginEx struct {
 	Top    int
 	Right  int
 	Bottom int
 	Left   int
 }
 
-func (m *Margin) String() string {
+func (m *MarginEx) String() string {
 	var (
 		style = strings.Builder{}
 	)

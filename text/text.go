@@ -1,26 +1,24 @@
 package text
 
 import (
-	"github.com/gofred-io/gofred/style"
+	"github.com/gofred-io/gofred/options"
 	"github.com/gofred-io/gofred/widget"
 )
 
 type text struct {
-	widget.Widget
-	style style.Style
+	widget.BaseWidget
 }
 
-func New(innerText string, options ...Options) widget.Widget {
+func New(innerText string, options ...options.Options) widget.BaseWidget {
 	_text := &text{
-		Widget: widget.Context().CreateElement("span"),
+		BaseWidget: widget.New("span"),
 	}
 
 	for _, option := range options {
-		option(_text)
+		option(_text.BaseWidget)
 	}
 
 	_text.SetText(innerText)
-	_text.SetStyle(_text.style.String())
 
-	return _text.Widget
+	return _text.BaseWidget
 }
