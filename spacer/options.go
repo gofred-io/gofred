@@ -5,7 +5,7 @@ import (
 	"github.com/gofred-io/gofred/options"
 )
 
-type Options func() options.Options
+type Options options.OptionsWrapper
 
 func flex(flex int) Options {
 	return func() options.Options {

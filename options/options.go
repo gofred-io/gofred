@@ -11,25 +11,8 @@ import (
 )
 
 type Options func(widget widget.BaseWidget)
+type OptionsWrapper func() Options
 type OnClickHandler func(this widget.BaseWidget)
-
-func AlignContent(alignContent AlignContentType) Options {
-	return func(widget widget.BaseWidget) {
-		widget.UpdateStyleProperty("align-content", string(alignContent))
-	}
-}
-
-func AlignItems(alignItems AlignItemsType) Options {
-	return func(widget widget.BaseWidget) {
-		widget.UpdateStyleProperty("align-items", string(alignItems))
-	}
-}
-
-func AlignSelf(alignSelf AlignSelfType) Options {
-	return func(widget widget.BaseWidget) {
-		widget.UpdateStyleProperty("align-self", string(alignSelf))
-	}
-}
 
 func Alt(alt string) Options {
 	return func(widget widget.BaseWidget) {
@@ -76,12 +59,6 @@ func ColumnCount(columnCount ...breakpoint.BreakpointOptions[int]) Options {
 func ColumnGap(columnGap int) Options {
 	return func(widget widget.BaseWidget) {
 		widget.UpdateStyleProperty("column-gap", fmt.Sprintf("%dpx", columnGap))
-	}
-}
-
-func CrossAxisAlignment(crossAxisAlignment AxisAlignmentType) Options {
-	return func(widget widget.BaseWidget) {
-		widget.UpdateStyleProperty("justify-content", string(crossAxisAlignment))
 	}
 }
 
@@ -163,33 +140,9 @@ func ID(id string) Options {
 	}
 }
 
-func JustifyContent(justifyContent JustifyContentType) Options {
-	return func(widget widget.BaseWidget) {
-		widget.UpdateStyleProperty("justify-content", string(justifyContent))
-	}
-}
-
-func JustifyItems(justifyItems JustifyItemsType) Options {
-	return func(widget widget.BaseWidget) {
-		widget.UpdateStyleProperty("justify-items", string(justifyItems))
-	}
-}
-
-func JustifySelf(justifySelf JustifySelfType) Options {
-	return func(widget widget.BaseWidget) {
-		widget.UpdateStyleProperty("justify-self", string(justifySelf))
-	}
-}
-
 func LineHeight(lineHeight float64) Options {
 	return func(widget widget.BaseWidget) {
 		widget.UpdateStyleProperty("line-height", fmt.Sprintf("%f", lineHeight))
-	}
-}
-
-func MainAxisAlignment(mainAxisAlignment AxisAlignmentType) Options {
-	return func(widget widget.BaseWidget) {
-		widget.UpdateStyleProperty("justify-content", string(mainAxisAlignment))
 	}
 }
 

@@ -6,9 +6,17 @@ import (
 	"github.com/gofred-io/gofred/widget"
 )
 
-func New(children []widget.BaseWidget, opts ...options.Options) widget.BaseWidget {
-	opts = append(
-		opts,
+func New(children []widget.BaseWidget, opts ...Options) widget.BaseWidget {
+	var (
+		divOptions = []options.Options{}
+	)
+
+	for _, option := range opts {
+		divOptions = append(divOptions, option())
+	}
+
+	divOptions = append(
+		divOptions,
 		options.Display(options.DisplayTypeFlex),
 		options.FlexDirection(options.FlexDirectionTypeColumn),
 		options.Flex(1),
@@ -16,6 +24,6 @@ func New(children []widget.BaseWidget, opts ...options.Options) widget.BaseWidge
 
 	return div.New(
 		children,
-		opts...,
+		divOptions...,
 	)
 }

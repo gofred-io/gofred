@@ -15,8 +15,8 @@ func New(child widget.BaseWidget, opts ...options.Options) widget.BaseWidget {
 		opts,
 		options.Display(options.DisplayTypeFlex),
 		options.Flex(1),
-		options.AlignItems(options.AlignItemsTypeCenter),
-		options.JustifyContent(options.JustifyContentTypeCenter),
+		alignItems(options.AxisAlignmentTypeCenter),
+		justifyContent(options.AxisAlignmentTypeCenter),
 	)
 
 	return div.New(
