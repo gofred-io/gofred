@@ -4,12 +4,12 @@ import (
 	"github.com/gofred-io/gofred/widget"
 )
 
-type Div struct {
+type div struct {
 	widget.BaseWidget
 }
 
 func New(children []widget.BaseWidget, opts ...Option) widget.BaseWidget {
-	div := &Div{
+	div := &div{
 		BaseWidget: widget.New("div"),
 	}
 

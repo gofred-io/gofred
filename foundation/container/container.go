@@ -1,7 +1,7 @@
 package container
 
 import (
-	"github.com/gofred-io/gofred/div"
+	"github.com/gofred-io/gofred/basic/div"
 	"github.com/gofred-io/gofred/options"
 	"github.com/gofred-io/gofred/widget"
 )
@@ -12,8 +12,7 @@ type container struct {
 
 func New(child widget.BaseWidget, opts ...Option) widget.BaseWidget {
 	var (
-		c        = &container{}
-		children = []widget.BaseWidget{}
+		c = &container{}
 	)
 
 	opts = append(
@@ -25,12 +24,8 @@ func New(child widget.BaseWidget, opts ...Option) widget.BaseWidget {
 		option(c)
 	}
 
-	if !child.Equal(widget.Nil) {
-		children = append(children, child)
-	}
-
 	return div.New(
-		children,
+		[]widget.BaseWidget{child},
 		c.opts...,
 	)
 }

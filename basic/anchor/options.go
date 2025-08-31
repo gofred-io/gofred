@@ -1,8 +1,6 @@
-package link
+package anchor
 
-import (
-	"github.com/gofred-io/gofred/options"
-)
+import "github.com/gofred-io/gofred/options"
 
 type Option options.OptionWrapper
 

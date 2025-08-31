@@ -356,6 +356,12 @@ func RowGap(rowGap int) Option {
 	}
 }
 
+func SetText(text string) Option {
+	return func(widget widget.BaseWidget) {
+		widget.SetText(text)
+	}
+}
+
 func Tooltip(tooltip string) Option {
 	return func(widget widget.BaseWidget) {
 		widget.SetAttribute("title", tooltip)

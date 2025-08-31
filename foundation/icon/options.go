@@ -1,9 +1,9 @@
 package icon
 
 import (
+	"github.com/gofred-io/gofred/basic/svg"
 	"github.com/gofred-io/gofred/breakpoint"
 	"github.com/gofred-io/gofred/options"
-	"github.com/gofred-io/gofred/svg"
 )
 
 type Option func(icon *icon)

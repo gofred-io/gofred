@@ -1,7 +1,7 @@
 package router
 
 import (
-	"github.com/gofred-io/gofred/container"
+	"github.com/gofred-io/gofred/foundation/container"
 	"github.com/gofred-io/gofred/hooks"
 	"github.com/gofred-io/gofred/listenable"
 	"github.com/gofred-io/gofred/widget"

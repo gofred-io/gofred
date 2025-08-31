@@ -17,6 +17,10 @@ func (w Widget) AddClass(class string) {
 }
 
 func (w Widget) AppendChild(child Widget) {
+	if child.IsNull() || child.Equal(Nil) {
+		return
+	}
+
 	w.Call("appendChild", js.Value(child))
 }
 
