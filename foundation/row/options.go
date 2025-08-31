@@ -45,7 +45,7 @@ func Flex(flex int) Option {
 
 func Gap(gap int) Option {
 	return func(row *row) {
-		row.opts = append(row.opts, div.RowGap(gap))
+		row.opts = append(row.opts, div.ColumnGap(gap))
 	}
 }
 
