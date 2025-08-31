@@ -1,43 +1,56 @@
 package column
 
 import (
-	"fmt"
-	"strconv"
-
+	"github.com/gofred-io/gofred/div"
 	"github.com/gofred-io/gofred/options"
-	"github.com/gofred-io/gofred/widget"
 )
 
-type Options options.OptionsWrapper
+type Option func(center *column)
 
-func CrossAxisAlignment(crossAxisAlignment options.AxisAlignmentType) Options {
-	return func() options.Options {
-		return func(widget widget.BaseWidget) {
-			widget.UpdateStyleProperty("justify-content", string(crossAxisAlignment))
-		}
+func display(display options.DisplayType) Option {
+	return func(column *column) {
+		column.opts = append(column.opts, div.Display(display))
 	}
 }
 
-func Flex(flex int) Options {
-	return func() options.Options {
-		return func(widget widget.BaseWidget) {
-			widget.UpdateStyleProperty("flex", strconv.Itoa(flex))
-		}
+func flexDirection(flexDirection options.FlexDirectionType) Option {
+	return func(column *column) {
+		column.opts = append(column.opts, div.FlexDirection(flexDirection))
 	}
 }
 
-func Gap(gap int) Options {
-	return func() options.Options {
-		return func(widget widget.BaseWidget) {
-			widget.UpdateStyleProperty("row-gap", fmt.Sprintf("%dpx", gap))
-		}
+func Class(class string) Option {
+	return func(column *column) {
+		column.opts = append(column.opts, div.Class(class))
 	}
 }
 
-func MainAxisAlignment(mainAxisAlignment options.AxisAlignmentType) Options {
-	return func() options.Options {
-		return func(widget widget.BaseWidget) {
-			widget.UpdateStyleProperty("align-items", string(mainAxisAlignment))
-		}
+func ID(id string) Option {
+	return func(column *column) {
+		column.opts = append(column.opts, div.ID(id))
+	}
+}
+
+func CrossAxisAlignment(crossAxisAlignment options.AxisAlignmentType) Option {
+	return func(column *column) {
+		column.opts = append(column.opts, div.JustifyContent(crossAxisAlignment))
+	}
+}
+
+func Flex(flex int) Option {
+	return func(column *column) {
+		column.opts = append(column.opts, div.Flex(flex))
+	}
+}
+
+func Gap(gap int) Option {
+	return func(column *column) {
+		column.opts = append(column.opts, div.RowGap(gap))
+	}
+}
+
+func MainAxisAlignment(mainAxisAlignment options.AxisAlignmentType) Option {
+	return func(column *column) {
+		column.opts = append(column.opts, div.AlignItems(mainAxisAlignment))
 	}
 }

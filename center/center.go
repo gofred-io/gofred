@@ -6,21 +6,27 @@ import (
 	"github.com/gofred-io/gofred/widget"
 )
 
-type Center struct {
-	widget.BaseWidget
+type center struct {
+	opts []div.Option
 }
 
-func New(child widget.BaseWidget, opts ...options.Options) widget.BaseWidget {
+func New(child widget.BaseWidget, opts ...Option) widget.BaseWidget {
+	c := &center{}
+
 	opts = append(
 		opts,
-		options.Display(options.DisplayTypeFlex),
-		options.Flex(1),
+		display(options.DisplayTypeFlex),
+		flex(1),
 		alignItems(options.AxisAlignmentTypeCenter),
 		justifyContent(options.AxisAlignmentTypeCenter),
 	)
 
+	for _, option := range opts {
+		option(c)
+	}
+
 	return div.New(
 		[]widget.BaseWidget{child},
-		opts...,
+		c.opts...,
 	)
 }

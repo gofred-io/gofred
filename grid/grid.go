@@ -6,14 +6,24 @@ import (
 	"github.com/gofred-io/gofred/widget"
 )
 
-func New(children []widget.BaseWidget, opts ...options.Options) widget.BaseWidget {
+type grid struct {
+	opts []div.Option
+}
+
+func New(children []widget.BaseWidget, opts ...Option) widget.BaseWidget {
+	g := &grid{}
+
 	opts = append(
 		opts,
-		options.Display(options.DisplayTypeGrid),
+		display(options.DisplayTypeGrid),
 	)
+
+	for _, option := range opts {
+		option(g)
+	}
 
 	return div.New(
 		children,
-		opts...,
+		g.opts...,
 	)
 }

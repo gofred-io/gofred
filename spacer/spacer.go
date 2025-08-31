@@ -1,26 +1,27 @@
 package spacer
 
 import (
-	"github.com/gofred-io/gofred/container"
-	"github.com/gofred-io/gofred/options"
+	"github.com/gofred-io/gofred/div"
 	"github.com/gofred-io/gofred/widget"
 )
 
-func New(opts ...Options) widget.BaseWidget {
-	var (
-		containerOptions = []options.Options{}
-	)
+type spacer struct {
+	opts []div.Option
+}
+
+func New(opts ...Option) widget.BaseWidget {
+	s := &spacer{}
 
 	if len(opts) == 0 {
 		opts = append(opts, flex(1))
 	}
 
 	for _, option := range opts {
-		containerOptions = append(containerOptions, option())
+		option(s)
 	}
 
-	return container.New(
-		widget.Nil,
-		containerOptions...,
+	return div.New(
+		[]widget.BaseWidget{},
+		s.opts...,
 	)
 }

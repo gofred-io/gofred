@@ -2,24 +2,33 @@ package icon
 
 import (
 	icondata "github.com/gofred-io/gofred/icon_data"
-	"github.com/gofred-io/gofred/options"
 	"github.com/gofred-io/gofred/path"
 	"github.com/gofred-io/gofred/svg"
 	"github.com/gofred-io/gofred/widget"
 )
 
-func New(data icondata.IconData, opts ...options.Options) widget.BaseWidget {
+type icon struct {
+	opts []svg.Option
+}
+
+func New(data icondata.IconData, opts ...Option) widget.BaseWidget {
+	i := &icon{}
+
 	opts = append(
 		opts,
-		options.Class("gf-icon"),
+		Class("gf-icon"),
 	)
+
+	for _, option := range opts {
+		option(i)
+	}
 
 	return svg.New(
 		[]widget.BaseWidget{
 			path.New(
-				options.D(string(data)),
+				string(data),
 			),
 		},
-		opts...,
+		i.opts...,
 	)
 }

@@ -6,15 +6,24 @@ import (
 	"github.com/gofred-io/gofred/widget"
 )
 
-func New(child widget.BaseWidget, opts ...options.Options) widget.BaseWidget {
+type container struct {
+	opts []div.Option
+}
+
+func New(child widget.BaseWidget, opts ...Option) widget.BaseWidget {
 	var (
+		c        = &container{}
 		children = []widget.BaseWidget{}
 	)
 
 	opts = append(
 		opts,
-		options.Display(options.DisplayTypeFlex),
+		display(options.DisplayTypeFlex),
 	)
+
+	for _, option := range opts {
+		option(c)
+	}
 
 	if !child.Equal(widget.Nil) {
 		children = append(children, child)
@@ -22,6 +31,6 @@ func New(child widget.BaseWidget, opts ...options.Options) widget.BaseWidget {
 
 	return div.New(
 		children,
-		opts...,
+		c.opts...,
 	)
 }
