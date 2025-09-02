@@ -1,6 +1,7 @@
 package options
 
 type AxisAlignmentType string
+type AxisSizeType string
 type BorderStyleType string
 type DisplayType string
 type FlexDirectionType string
@@ -13,6 +14,11 @@ const (
 	AxisAlignmentTypeEnd      AxisAlignmentType = "end"
 	AxisAlignmentTypeStretch  AxisAlignmentType = "stretch"
 	AxisAlignmentTypeBaseline AxisAlignmentType = "baseline"
+)
+
+const (
+	AxisSizeTypeMax AxisSizeType = "stretch"
+	AxisSizeTypeMin AxisSizeType = "start"
 )
 
 const (

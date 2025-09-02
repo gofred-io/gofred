@@ -14,6 +14,12 @@ func AlignItems(alignItems options.AxisAlignmentType) Option {
 	}
 }
 
+func AlignSelf(alignSelf options.AxisSizeType) Option {
+	return func() options.Option {
+		return options.AlignSelf(alignSelf)
+	}
+}
+
 func Alt(alt string) Option {
 	return func() options.Option {
 		return options.Alt(alt)

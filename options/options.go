@@ -21,6 +21,12 @@ func AlignItems(alignItems AxisAlignmentType) Option {
 	}
 }
 
+func AlignSelf(alignSelf AxisSizeType) Option {
+	return func(widget widget.BaseWidget) {
+		widget.UpdateStyleProperty("align-self", string(alignSelf))
+	}
+}
+
 func Alt(alt string) Option {
 	return func(widget widget.BaseWidget) {
 		widget.SetAttribute("alt", alt)

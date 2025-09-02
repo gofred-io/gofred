@@ -54,3 +54,9 @@ func MainAxisAlignment(mainAxisAlignment options.AxisAlignmentType) Option {
 		column.opts = append(column.opts, div.AlignItems(mainAxisAlignment))
 	}
 }
+
+func MainAxisSize(mainAxisSize options.AxisSizeType) Option {
+	return func(column *column) {
+		column.opts = append(column.opts, div.AlignSelf(mainAxisSize))
+	}
+}
