@@ -36,7 +36,6 @@ func New(child widget.BaseWidget, opts ...Option) *Drawer {
 	})
 
 	d.menu.SetOnClick(func(this widget.BaseWidget, e widget.Event) {
-		e.PreventDefault()
 		e.StopPropagation()
 	})
 
