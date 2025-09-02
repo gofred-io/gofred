@@ -4,6 +4,7 @@ import (
 	"github.com/gofred-io/gofred/basic/div"
 	"github.com/gofred-io/gofred/breakpoint"
 	"github.com/gofred-io/gofred/options"
+	"github.com/gofred-io/gofred/options/spacing"
 )
 
 type Option func(container *container)
@@ -20,9 +21,33 @@ func BackgroundColor(color string) Option {
 	}
 }
 
+func BorderColor(color string) Option {
+	return func(container *container) {
+		container.opts = append(container.opts, div.BorderColor(color))
+	}
+}
+
+func BorderStyle(style options.BorderStyleType) Option {
+	return func(container *container) {
+		container.opts = append(container.opts, div.BorderStyle(style))
+	}
+}
+
+func BorderWidth(top int, right int, bottom int, left int) Option {
+	return func(container *container) {
+		container.opts = append(container.opts, div.BorderWidth(top, right, bottom, left))
+	}
+}
+
 func BorderRadius(borderRadius int) Option {
 	return func(container *container) {
 		container.opts = append(container.opts, div.BorderRadius(borderRadius))
+	}
+}
+
+func BoxShadow(shadow string) Option {
+	return func(container *container) {
+		container.opts = append(container.opts, div.BoxShadow(shadow))
 	}
 }
 
@@ -50,45 +75,9 @@ func ID(id string) Option {
 	}
 }
 
-func Margin(opts ...breakpoint.BreakpointOptions[int]) Option {
+func Margin(opts ...breakpoint.BreakpointOptions[spacing.Spacing]) Option {
 	return func(container *container) {
 		container.opts = append(container.opts, div.Margin(opts...))
-	}
-}
-
-func MarginB(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func(container *container) {
-		container.opts = append(container.opts, div.MarginB(opts...))
-	}
-}
-
-func MarginH(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func(container *container) {
-		container.opts = append(container.opts, div.MarginH(opts...))
-	}
-}
-
-func MarginL(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func(container *container) {
-		container.opts = append(container.opts, div.MarginL(opts...))
-	}
-}
-
-func MarginR(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func(container *container) {
-		container.opts = append(container.opts, div.MarginR(opts...))
-	}
-}
-
-func MarginT(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func(container *container) {
-		container.opts = append(container.opts, div.MarginT(opts...))
-	}
-}
-
-func MarginV(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func(container *container) {
-		container.opts = append(container.opts, div.MarginV(opts...))
 	}
 }
 
@@ -98,45 +87,9 @@ func MaxWidth(maxWidth int) Option {
 	}
 }
 
-func Padding(opts ...breakpoint.BreakpointOptions[int]) Option {
+func Padding(opts ...breakpoint.BreakpointOptions[spacing.Spacing]) Option {
 	return func(container *container) {
 		container.opts = append(container.opts, div.Padding(opts...))
-	}
-}
-
-func PaddingB(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func(container *container) {
-		container.opts = append(container.opts, div.PaddingB(opts...))
-	}
-}
-
-func PaddingH(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func(container *container) {
-		container.opts = append(container.opts, div.PaddingH(opts...))
-	}
-}
-
-func PaddingL(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func(container *container) {
-		container.opts = append(container.opts, div.PaddingL(opts...))
-	}
-}
-
-func PaddingR(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func(container *container) {
-		container.opts = append(container.opts, div.PaddingR(opts...))
-	}
-}
-
-func PaddingT(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func(container *container) {
-		container.opts = append(container.opts, div.PaddingT(opts...))
-	}
-}
-
-func PaddingV(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func(container *container) {
-		container.opts = append(container.opts, div.PaddingV(opts...))
 	}
 }
 

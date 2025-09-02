@@ -1,13 +1,16 @@
 package widget
 
-import "github.com/gofred-io/gofred/breakpoint"
+import (
+	"github.com/gofred-io/gofred/breakpoint"
+	"github.com/gofred-io/gofred/options/spacing"
+)
 
 type BaseWidget struct {
 	Widget
 	ColumnCount *breakpoint.BreakpointValue[int]
 	Height      *breakpoint.BreakpointValue[int]
-	Margin      *breakpoint.BreakpointValue[int]
-	Padding     *breakpoint.BreakpointValue[int]
+	Margin      *breakpoint.BreakpointValue[spacing.Spacing]
+	Padding     *breakpoint.BreakpointValue[spacing.Spacing]
 	Visible     *breakpoint.BreakpointValue[bool]
 	Width       *breakpoint.BreakpointValue[int]
 	WidthP      *breakpoint.BreakpointValue[float64]
@@ -18,8 +21,8 @@ func newBaseWidget(widget Widget) BaseWidget {
 		Widget:      widget,
 		ColumnCount: &breakpoint.BreakpointValue[int]{},
 		Height:      &breakpoint.BreakpointValue[int]{},
-		Margin:      &breakpoint.BreakpointValue[int]{},
-		Padding:     &breakpoint.BreakpointValue[int]{},
+		Margin:      &breakpoint.BreakpointValue[spacing.Spacing]{},
+		Padding:     &breakpoint.BreakpointValue[spacing.Spacing]{},
 		Visible:     &breakpoint.BreakpointValue[bool]{},
 		Width:       &breakpoint.BreakpointValue[int]{},
 		WidthP:      &breakpoint.BreakpointValue[float64]{},

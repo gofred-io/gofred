@@ -17,7 +17,7 @@ type Drawer struct {
 	transition float64
 }
 
-func New(opts ...Option) *Drawer {
+func New(child widget.BaseWidget, opts ...Option) *Drawer {
 	d := &Drawer{
 		BaseWidget: widget.New("div"),
 		menu:       div.New(nil, div.Class("gf-drawer-menu")),
@@ -41,6 +41,7 @@ func New(opts ...Option) *Drawer {
 	})
 
 	d.menu.UpdateStyleProperty("width", "0")
+	d.menu.AppendChild(child.Widget)
 
 	d.Widget.AppendChild(d.menu.Widget)
 	d.Widget.AppendChild(d.barrier.Widget)

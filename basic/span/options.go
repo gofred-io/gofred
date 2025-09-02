@@ -3,6 +3,7 @@ package span
 import (
 	"github.com/gofred-io/gofred/breakpoint"
 	"github.com/gofred-io/gofred/options"
+	"github.com/gofred-io/gofred/options/spacing"
 )
 
 type Option options.OptionWrapper
@@ -139,45 +140,9 @@ func LineHeight(lineHeight float64) Option {
 	}
 }
 
-func Margin(opts ...breakpoint.BreakpointOptions[int]) Option {
+func Margin(opts ...breakpoint.BreakpointOptions[spacing.Spacing]) Option {
 	return func() options.Option {
 		return options.Margin(opts...)
-	}
-}
-
-func MarginB(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func() options.Option {
-		return options.MarginB(opts...)
-	}
-}
-
-func MarginH(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func() options.Option {
-		return options.MarginH(opts...)
-	}
-}
-
-func MarginL(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func() options.Option {
-		return options.MarginL(opts...)
-	}
-}
-
-func MarginR(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func() options.Option {
-		return options.MarginR(opts...)
-	}
-}
-
-func MarginT(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func() options.Option {
-		return options.MarginT(opts...)
-	}
-}
-
-func MarginV(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func() options.Option {
-		return options.MarginV(opts...)
 	}
 }
 
@@ -199,45 +164,9 @@ func NewTab(newTab bool) Option {
 	}
 }
 
-func Padding(opts ...breakpoint.BreakpointOptions[int]) Option {
+func Padding(opts ...breakpoint.BreakpointOptions[spacing.Spacing]) Option {
 	return func() options.Option {
 		return options.Padding(opts...)
-	}
-}
-
-func PaddingB(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func() options.Option {
-		return options.PaddingB(opts...)
-	}
-}
-
-func PaddingH(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func() options.Option {
-		return options.PaddingH(opts...)
-	}
-}
-
-func PaddingL(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func() options.Option {
-		return options.PaddingL(opts...)
-	}
-}
-
-func PaddingR(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func() options.Option {
-		return options.PaddingR(opts...)
-	}
-}
-
-func PaddingT(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func() options.Option {
-		return options.PaddingT(opts...)
-	}
-}
-
-func PaddingV(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func() options.Option {
-		return options.PaddingV(opts...)
 	}
 }
 

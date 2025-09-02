@@ -13,6 +13,7 @@ import (
 	"github.com/gofred-io/gofred/hooks"
 	"github.com/gofred-io/gofred/listenable"
 	"github.com/gofred-io/gofred/options"
+	"github.com/gofred-io/gofred/options/spacing"
 	"github.com/gofred-io/gofred/widget"
 )
 
@@ -41,7 +42,7 @@ func main() {
 				row.MainAxisAlignment(options.AxisAlignmentTypeStart),
 				row.CrossAxisAlignment(options.AxisAlignmentTypeCenter),
 			),
-			container.Padding(breakpoint.All(16)),
+			container.Padding(breakpoint.All(spacing.All(16))),
 			container.Height(breakpoint.All(56)),
 		),
 	)

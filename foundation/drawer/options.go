@@ -17,7 +17,7 @@ func Class(class string) Option {
 func Transition(transition float64) Option {
 	return func(drawer *Drawer) {
 		drawer.transition = transition
-		drawer.menu.UpdateStyleProperty("transition", fmt.Sprintf("%.1fs", transition))
+		drawer.menu.UpdateStyleProperty("transition", fmt.Sprintf("all %.1fs", transition))
 	}
 }
 

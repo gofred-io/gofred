@@ -1,6 +1,7 @@
 package options
 
 type AxisAlignmentType string
+type BorderStyleType string
 type DisplayType string
 type FlexDirectionType string
 type FlexWrapType string
@@ -12,6 +13,15 @@ const (
 	AxisAlignmentTypeEnd      AxisAlignmentType = "end"
 	AxisAlignmentTypeStretch  AxisAlignmentType = "stretch"
 	AxisAlignmentTypeBaseline AxisAlignmentType = "baseline"
+)
+
+const (
+	BorderStyleTypeSolid  BorderStyleType = "solid"
+	BorderStyleTypeDashed BorderStyleType = "dashed"
+	BorderStyleTypeDotted BorderStyleType = "dotted"
+	BorderStyleTypeDouble BorderStyleType = "double"
+	BorderStyleTypeGroove BorderStyleType = "groove"
+	BorderStyleTypeRidge  BorderStyleType = "ridge"
 )
 
 const (

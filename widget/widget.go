@@ -100,6 +100,10 @@ func (w Widget) SetStyle(style string) {
 	w.Set("style", style)
 }
 
+func (w Widget) ToggleClass(class string) {
+	w.Get("classList").Call("toggle", class)
+}
+
 func (w Widget) UpdateStyleProperty(property string, value string) {
 	w.Get("style").Set(property, value)
 }
