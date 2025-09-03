@@ -13,6 +13,12 @@ func setText(_text string) Option {
 	}
 }
 
+func Align(textAlign options.TextAlignType) Option {
+	return func(text *text) {
+		text.opts = append(text.opts, span.TextAlign(textAlign))
+	}
+}
+
 func Class(class string) Option {
 	return func(text *text) {
 		text.opts = append(text.opts, span.Class(class))

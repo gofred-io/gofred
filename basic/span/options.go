@@ -182,6 +182,12 @@ func SetText(text string) Option {
 	}
 }
 
+func TextAlign(textAlign options.TextAlignType) Option {
+	return func() options.Option {
+		return options.TextAlign(textAlign)
+	}
+}
+
 func Tooltip(tooltip string) Option {
 	return func() options.Option {
 		return options.Tooltip(tooltip)

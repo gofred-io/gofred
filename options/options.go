@@ -251,6 +251,12 @@ func SetText(text string) Option {
 	}
 }
 
+func TextAlign(textAlign TextAlignType) Option {
+	return func(widget widget.BaseWidget) {
+		widget.UpdateStyleProperty("text-align", string(textAlign))
+	}
+}
+
 func Tooltip(tooltip string) Option {
 	return func(widget widget.BaseWidget) {
 		widget.SetAttribute("title", tooltip)

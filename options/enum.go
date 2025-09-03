@@ -6,6 +6,7 @@ type BorderStyleType string
 type DisplayType string
 type FlexDirectionType string
 type FlexWrapType string
+type TextAlignType string
 type UserSelectType string
 
 const (
@@ -45,6 +46,13 @@ const (
 	FlexWrapTypeNowrap      FlexWrapType = "nowrap"
 	FlexWrapTypeWrap        FlexWrapType = "wrap"
 	FlexWrapTypeWrapReverse FlexWrapType = "wrap-reverse"
+)
+
+const (
+	TextAlignTypeLeft    TextAlignType = "left"
+	TextAlignTypeCenter  TextAlignType = "center"
+	TextAlignTypeRight   TextAlignType = "right"
+	TextAlignTypeJustify TextAlignType = "justify"
 )
 
 const (
