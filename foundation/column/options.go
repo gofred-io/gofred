@@ -33,7 +33,7 @@ func ID(id string) Option {
 
 func CrossAxisAlignment(crossAxisAlignment options.AxisAlignmentType) Option {
 	return func(column *column) {
-		column.opts = append(column.opts, div.JustifyContent(crossAxisAlignment))
+		column.opts = append(column.opts, div.AlignItems(crossAxisAlignment))
 	}
 }
 
@@ -51,7 +51,7 @@ func Gap(gap int) Option {
 
 func MainAxisAlignment(mainAxisAlignment options.AxisAlignmentType) Option {
 	return func(column *column) {
-		column.opts = append(column.opts, div.AlignItems(mainAxisAlignment))
+		column.opts = append(column.opts, div.JustifyContent(mainAxisAlignment))
 	}
 }
 

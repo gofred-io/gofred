@@ -26,9 +26,9 @@ func ID(id string) Option {
 	}
 }
 
-func MaxWidth(maxWidth int) Option {
+func MaxWidth(opts ...breakpoint.BreakpointOptions[int]) Option {
 	return func(image *image) {
-		image.opts = append(image.opts, basicimage.MaxWidth(maxWidth))
+		image.opts = append(image.opts, basicimage.MaxWidth(opts...))
 	}
 }
 

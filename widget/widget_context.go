@@ -73,6 +73,10 @@ func (c *WidgetContext) GetElementByID(id string) *Widget {
 	return &w
 }
 
+func (c *WidgetContext) GoBack() {
+	js.Global().Get("window").Get("history").Call("back")
+}
+
 func (c *WidgetContext) Navigate(path string) {
 	js.Global().Get("window").Get("history").Call("pushState", nil, "", path)
 }
@@ -107,4 +111,8 @@ func (c *WidgetContext) OnResize(callback func()) {
 		}
 		return nil
 	}))
+}
+
+func (c *WidgetContext) PushState(state any, title string, url string) {
+	js.Global().Get("window").Get("history").Call("pushState", state, title, url)
 }

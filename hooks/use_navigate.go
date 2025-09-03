@@ -59,3 +59,7 @@ func (n *Navigate) RemoveListener(listener listenable.Listener[string]) {
 		return l == listener
 	})
 }
+
+func (n *Navigate) Path() string {
+	return n.current
+}

@@ -81,9 +81,9 @@ func Margin(opts ...breakpoint.BreakpointOptions[spacing.Spacing]) Option {
 	}
 }
 
-func MaxWidth(maxWidth int) Option {
+func MaxWidth(opts ...breakpoint.BreakpointOptions[int]) Option {
 	return func(container *container) {
-		container.opts = append(container.opts, div.MaxWidth(maxWidth))
+		container.opts = append(container.opts, div.MaxWidth(opts...))
 	}
 }
 

@@ -10,6 +10,7 @@ type BaseWidget struct {
 	ColumnCount *breakpoint.BreakpointValue[int]
 	Height      *breakpoint.BreakpointValue[int]
 	Margin      *breakpoint.BreakpointValue[spacing.Spacing]
+	MaxWidth    *breakpoint.BreakpointValue[int]
 	Padding     *breakpoint.BreakpointValue[spacing.Spacing]
 	Visible     *breakpoint.BreakpointValue[bool]
 	Width       *breakpoint.BreakpointValue[int]
@@ -22,6 +23,7 @@ func newBaseWidget(widget Widget) BaseWidget {
 		ColumnCount: &breakpoint.BreakpointValue[int]{},
 		Height:      &breakpoint.BreakpointValue[int]{},
 		Margin:      &breakpoint.BreakpointValue[spacing.Spacing]{},
+		MaxWidth:    &breakpoint.BreakpointValue[int]{},
 		Padding:     &breakpoint.BreakpointValue[spacing.Spacing]{},
 		Visible:     &breakpoint.BreakpointValue[bool]{},
 		Width:       &breakpoint.BreakpointValue[int]{},

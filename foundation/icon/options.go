@@ -32,9 +32,9 @@ func ID(id string) Option {
 	}
 }
 
-func MaxWidth(maxWidth int) Option {
+func MaxWidth(opts ...breakpoint.BreakpointOptions[int]) Option {
 	return func(icon *icon) {
-		icon.opts = append(icon.opts, svg.MaxWidth(maxWidth))
+		icon.opts = append(icon.opts, svg.MaxWidth(opts...))
 	}
 }
 

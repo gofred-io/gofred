@@ -39,9 +39,9 @@ func ID(id string) Option {
 	}
 }
 
-func MaxWidth(maxWidth int) Option {
+func MaxWidth(opts ...breakpoint.BreakpointOptions[int]) Option {
 	return func(iconButton *iconButton) {
-		iconButton.opts = append(iconButton.opts, button.MaxWidth(maxWidth))
+		iconButton.opts = append(iconButton.opts, button.MaxWidth(opts...))
 	}
 }
 

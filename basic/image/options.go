@@ -25,9 +25,9 @@ func ID(id string) Option {
 	}
 }
 
-func MaxWidth(maxWidth int) Option {
+func MaxWidth(opts ...breakpoint.BreakpointOptions[int]) Option {
 	return func() options.Option {
-		return options.MaxWidth(maxWidth)
+		return options.MaxWidth(opts...)
 	}
 }
 

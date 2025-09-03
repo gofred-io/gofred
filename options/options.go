@@ -88,7 +88,7 @@ func ColumnCount(columnCount ...breakpoint.BreakpointOptions[int]) Option {
 		}
 
 		listenBreakpointOption(widget.ColumnCount, func(columnCount int) {
-			widget.UpdateStyleProperty("grid-template-columns", fmt.Sprintf("repeat(%d, auto)", columnCount))
+			widget.UpdateStyleProperty("grid-template-columns", fmt.Sprintf("repeat(%d, 1fr)", columnCount))
 		})
 	}
 }
@@ -201,9 +201,15 @@ func Margin(options ...breakpoint.BreakpointOptions[spacing.Spacing]) Option {
 	}
 }
 
-func MaxWidth(maxWidth int) Option {
+func MaxWidth(options ...breakpoint.BreakpointOptions[int]) Option {
 	return func(widget widget.BaseWidget) {
-		widget.UpdateStyleProperty("max-width", fmt.Sprintf("%dpx", maxWidth))
+		for _, option := range options {
+			option(widget.MaxWidth)
+		}
+
+		listenBreakpointOption(widget.MaxWidth, func(maxWidth int) {
+			widget.UpdateStyleProperty("max-width", fmt.Sprintf("%dpx", maxWidth))
+		})
 	}
 }
 
