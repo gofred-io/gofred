@@ -13,6 +13,12 @@ func Class(class string) Option {
 	}
 }
 
+func Flex(flex int) Option {
+	return func(link *link) {
+		link.opts = append(link.opts, anchor.Flex(flex))
+	}
+}
+
 func FontColor(color string) Option {
 	return func(link *link) {
 		link.opts = append(link.opts, anchor.FontColor(color))

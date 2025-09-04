@@ -10,6 +10,12 @@ func Class(class string) Option {
 	}
 }
 
+func Flex(flex int) Option {
+	return func() options.Option {
+		return options.Flex(flex)
+	}
+}
+
 func FontColor(color string) Option {
 	return func() options.Option {
 		return options.FontColor(color)

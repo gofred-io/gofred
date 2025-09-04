@@ -14,6 +14,12 @@ func Class(class string) Option {
 	}
 }
 
+func ID(id string) Option {
+	return func(drawer *Drawer) {
+		drawer.SetID(id)
+	}
+}
+
 func Transition(transition float64) Option {
 	return func(drawer *Drawer) {
 		drawer.transition = transition
