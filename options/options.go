@@ -213,17 +213,23 @@ func MaxWidth(options ...breakpoint.BreakpointOptions[int]) Option {
 	}
 }
 
+func NewTab(newTab bool) Option {
+	return func(widget widget.BaseWidget) {
+		if newTab {
+			widget.SetAttribute("target", "_blank")
+		}
+	}
+}
+
 func OnClick(handler OnClickHandler) Option {
 	return func(widget widget.BaseWidget) {
 		widget.SetOnClick(handler)
 	}
 }
 
-func NewTab(newTab bool) Option {
+func Overflow(overflow OverflowType) Option {
 	return func(widget widget.BaseWidget) {
-		if newTab {
-			widget.SetAttribute("target", "_blank")
-		}
+		widget.UpdateStyleProperty("overflow", string(overflow))
 	}
 }
 

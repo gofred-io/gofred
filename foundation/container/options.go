@@ -87,6 +87,12 @@ func MaxWidth(opts ...breakpoint.BreakpointOptions[int]) Option {
 	}
 }
 
+func Overflow(overflow options.OverflowType) Option {
+	return func(container *container) {
+		container.opts = append(container.opts, div.Overflow(overflow))
+	}
+}
+
 func Padding(opts ...breakpoint.BreakpointOptions[spacing.Spacing]) Option {
 	return func(container *container) {
 		container.opts = append(container.opts, div.Padding(opts...))

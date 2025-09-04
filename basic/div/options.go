@@ -182,15 +182,21 @@ func MaxWidth(opts ...breakpoint.BreakpointOptions[int]) Option {
 	}
 }
 
+func NewTab(newTab bool) Option {
+	return func() options.Option {
+		return options.NewTab(newTab)
+	}
+}
+
 func OnClick(handler options.OnClickHandler) Option {
 	return func() options.Option {
 		return options.OnClick(handler)
 	}
 }
 
-func NewTab(newTab bool) Option {
+func Overflow(overflow options.OverflowType) Option {
 	return func() options.Option {
-		return options.NewTab(newTab)
+		return options.Overflow(overflow)
 	}
 }
 

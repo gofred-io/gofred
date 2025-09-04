@@ -6,6 +6,7 @@ type BorderStyleType string
 type DisplayType string
 type FlexDirectionType string
 type FlexWrapType string
+type OverflowType string
 type TextAlignType string
 type UserSelectType string
 
@@ -46,6 +47,13 @@ const (
 	FlexWrapTypeNowrap      FlexWrapType = "nowrap"
 	FlexWrapTypeWrap        FlexWrapType = "wrap"
 	FlexWrapTypeWrapReverse FlexWrapType = "wrap-reverse"
+)
+
+const (
+	OverflowTypeVisible OverflowType = "visible"
+	OverflowTypeHidden  OverflowType = "hidden"
+	OverflowTypeScroll  OverflowType = "scroll"
+	OverflowTypeAuto    OverflowType = "auto"
 )
 
 const (
