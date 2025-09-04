@@ -1,1 +1,21 @@
-server/main.wasm
+# Binaries
+*.wasm
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Build and cache
+dist/
+bin/
+build/
+.cache/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editors
+.idea/
+.vscode/
