@@ -59,19 +59,17 @@ Create your own `main.go` and use gofred widgets to build UI. For example:
 package main
 
 import (
-    "github.com/gofred-io/gofred/foundation/container"
+	"github.com/gofred-io/gofred/application"
     "github.com/gofred-io/gofred/foundation/text"
 )
 
 func main() {
     // See this repository's `main.go` for a complete runnable example
-    _ = container.New().Child(
-        text.New("Hello, gofred!")
-    )
+    application.Run(text.New("Hello, gofred!"))
 }
 ```
 
-Explore the `basic/` and `foundation/` packages for available widgets and options.
+Explore the `foundation/` packages for available widgets and options.
 
 ---
 
@@ -82,7 +80,6 @@ Explore the `basic/` and `foundation/` packages for available widgets and option
 - `hooks/` – React-like hooks for navigation, breakpoint, and state management.
 - `widget/` – Core widget abstractions and lifecycle.
 - `server/` – Minimal static server and HTML bootstrap for wasm.
-- `application/` – Example app runner wiring.
 
 ---
 
@@ -90,8 +87,6 @@ Explore the `basic/` and `foundation/` packages for available widgets and option
 
 - Build wasm: `make build`
 - Run dev server: `make serve`
-- Format: `go fmt ./...`
-- Vet: `go vet ./...`
 
 The CI workflow runs basic build and vet steps.
 

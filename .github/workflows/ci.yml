@@ -22,7 +22,7 @@ jobs:
         run: go mod download
 
       - name: Vet
-        run: go vet ./...
+        run: GOARCH=wasm GOOS=js go vet ./...
 
       - name: Format check
         run: |
@@ -34,6 +34,6 @@ jobs:
         env:
           GOOS: js
           GOARCH: wasm
-        run: go build -o server/main.wasm main.go
+        run: GOARCH=wasm GOOS=js go build -o server/main.wasm main.go
 
 
