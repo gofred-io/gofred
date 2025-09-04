@@ -1,10 +1,27 @@
 ### gofred
 
+[![CI](https://img.shields.io/github/actions/workflow/status/gofred-io/gofred/ci.yml?label=CI)](https://github.com/gofred-io/gofred/actions)
+[![Go Reference](https://pkg.go.dev/badge/github.com/gofred-io/gofred.svg)](https://pkg.go.dev/github.com/gofred-io/gofred)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 Build responsive web applications in Go with WebAssembly.
 
 gofred lets you write UI in pure Go and run it in the browser via WebAssembly, with a small set of primitives for layout, components, routing, and events.
 
 ---
+
+#### Table of contents
+- Features
+- Requirements
+- Install
+- Quick start
+- Minimal example
+- Project structure
+- Development
+- Browser support
+- Website
+- Contributing
+- License
 
 #### Features
 - **WASM-first**: Compile Go to WebAssembly and run directly in the browser.

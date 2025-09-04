@@ -37,5 +37,5 @@ func GetFromWidth(width int) BreakPoint {
 		}
 	}
 
-	return xs
+	return xxl
 }
