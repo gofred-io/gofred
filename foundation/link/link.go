@@ -12,9 +12,13 @@ type link struct {
 func New(child widget.BaseWidget, opts ...Option) widget.BaseWidget {
 	link := &link{}
 
-	opts = append(
-		opts,
+	defaultOpts := []Option{
 		Class("gf-link"),
+	}
+
+	opts = append(
+		defaultOpts,
+		opts...,
 	)
 
 	for _, option := range opts {

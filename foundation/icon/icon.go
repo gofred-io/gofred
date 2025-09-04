@@ -14,9 +14,13 @@ type icon struct {
 func New(data icondata.IconData, opts ...Option) widget.BaseWidget {
 	i := &icon{}
 
-	opts = append(
-		opts,
+	defaultOpts := []Option{
 		Class("gf-icon"),
+	}
+
+	opts = append(
+		defaultOpts,
+		opts...,
 	)
 
 	for _, option := range opts {

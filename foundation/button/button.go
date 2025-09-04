@@ -14,9 +14,13 @@ func New(child widget.BaseWidget, opts ...Option) widget.BaseWidget {
 		b = &button{}
 	)
 
-	opts = append(
-		opts,
+	defaultOpts := []Option{
 		Class("gf-button"),
+	}
+
+	opts = append(
+		defaultOpts,
+		opts...,
 	)
 
 	for _, option := range opts {

@@ -12,9 +12,13 @@ type image struct {
 func New(src string, opts ...Option) widget.BaseWidget {
 	image := &image{}
 
-	opts = append(
-		opts,
+	defaultOpts := []Option{
 		Class("gf-image"),
+	}
+
+	opts = append(
+		defaultOpts,
+		opts...,
 	)
 
 	for _, option := range opts {
