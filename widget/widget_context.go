@@ -82,11 +82,11 @@ func (c *WidgetContext) Navigate(path string) {
 }
 
 func (c *WidgetContext) OnNavigate(callback func(path string)) {
-	js.Global().Get("navigation").Call("addEventListener", "navigate", js.FuncOf(func(this js.Value, args []js.Value) any {
+	js.Global().Get("window").Call("addEventListener", "popstate", js.FuncOf(func(this js.Value, args []js.Value) any {
 		if callback != nil {
 			utils.SafeGo(func() {
 				arg := args[0]
-				destinationUrl, err := url.Parse(arg.Get("destination").Get("url").String())
+				destinationUrl, err := url.Parse(arg.Get("target").Get("location").Get("href").String())
 				if err != nil {
 					fmt.Println("error parsing destination url", err)
 					return
