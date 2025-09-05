@@ -4,19 +4,19 @@ import (
 	"github.com/gofred-io/gofred/widget"
 )
 
-type Image struct {
-	widget.BaseWidget
+type image struct {
+	*widget.BaseWidget
 }
 
-func New(src string, opts ...Option) widget.BaseWidget {
-	image := &Image{
+func New(src string, opts ...Option) *image {
+	image := &image{
 		BaseWidget: widget.New("img"),
 	}
 
 	for _, option := range opts {
-		option()(image.BaseWidget)
+		option()(image)
 	}
 
 	image.SetAttribute("src", src)
-	return image.BaseWidget
+	return image
 }

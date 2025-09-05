@@ -8,11 +8,14 @@ import (
 )
 
 type icon struct {
+	*widget.BaseWidget
 	opts []svg.Option
 }
 
-func New(data icondata.IconData, opts ...Option) widget.BaseWidget {
-	i := &icon{}
+func New(data icondata.IconData, opts ...Option) *icon {
+	i := &icon{
+		BaseWidget: &widget.BaseWidget{},
+	}
 
 	defaultOpts := []Option{
 		Class("gf-icon"),
@@ -27,12 +30,15 @@ func New(data icondata.IconData, opts ...Option) widget.BaseWidget {
 		option(i)
 	}
 
-	return svg.New(
-		[]widget.BaseWidget{
-			path.New(
-				string(data),
-			),
-		},
-		i.opts...,
+	i.Extend(
+		svg.New(
+			[]widget.Widget{
+				path.New(
+					string(data),
+				),
+			},
+			i.opts...,
+		),
 	)
+	return i
 }

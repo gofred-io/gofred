@@ -7,12 +7,15 @@ import (
 )
 
 type container struct {
+	*widget.BaseWidget
 	opts []div.Option
 }
 
-func New(child widget.BaseWidget, opts ...Option) widget.BaseWidget {
+func New(child widget.Widget, opts ...Option) *container {
 	var (
-		c = &container{}
+		c = &container{
+			BaseWidget: &widget.BaseWidget{},
+		}
 	)
 
 	opts = append(
@@ -24,8 +27,11 @@ func New(child widget.BaseWidget, opts ...Option) widget.BaseWidget {
 		option(c)
 	}
 
-	return div.New(
-		[]widget.BaseWidget{child},
-		c.opts...,
+	c.Extend(
+		div.New(
+			[]widget.Widget{child},
+			c.opts...,
+		),
 	)
+	return c
 }

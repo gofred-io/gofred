@@ -6,11 +6,14 @@ import (
 )
 
 type spacer struct {
+	*widget.BaseWidget
 	opts []div.Option
 }
 
-func New(opts ...Option) widget.BaseWidget {
-	s := &spacer{}
+func New(opts ...Option) *spacer {
+	s := &spacer{
+		BaseWidget: &widget.BaseWidget{},
+	}
 
 	if len(opts) == 0 {
 		opts = append(opts, flex(1))
@@ -20,8 +23,11 @@ func New(opts ...Option) widget.BaseWidget {
 		option(s)
 	}
 
-	return div.New(
-		[]widget.BaseWidget{},
-		s.opts...,
+	s.Extend(
+		div.New(
+			[]widget.Widget{},
+			s.opts...,
+		),
 	)
+	return s
 }

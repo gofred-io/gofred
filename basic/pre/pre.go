@@ -5,18 +5,18 @@ import (
 )
 
 type pre struct {
-	widget.BaseWidget
+	*widget.BaseWidget
 }
 
-func New(child widget.BaseWidget, opts ...Option) widget.BaseWidget {
+func New(child widget.Widget, opts ...Option) *pre {
 	pre := &pre{
 		BaseWidget: widget.New("pre"),
 	}
 
 	for _, option := range opts {
-		option()(pre.BaseWidget)
+		option()(pre)
 	}
 
-	pre.AppendChild(child.Widget)
-	return pre.BaseWidget
+	pre.AppendChild(child)
+	return pre
 }

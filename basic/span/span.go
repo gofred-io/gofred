@@ -5,18 +5,21 @@ import (
 )
 
 type span struct {
-	widget.BaseWidget
+	*widget.BaseWidget
 }
 
-func New(child widget.BaseWidget, options ...Option) widget.BaseWidget {
+func New(child widget.Widget, options ...Option) *span {
 	span := &span{
 		BaseWidget: widget.New("span"),
 	}
 
 	for _, option := range options {
-		option()(span.BaseWidget)
+		option()(span)
 	}
 
-	span.AppendChild(child.Widget)
-	return span.BaseWidget
+	if child != nil {
+		span.AppendChild(child)
+	}
+
+	return span
 }

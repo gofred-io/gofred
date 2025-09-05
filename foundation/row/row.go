@@ -7,11 +7,14 @@ import (
 )
 
 type row struct {
+	*widget.BaseWidget
 	opts []div.Option
 }
 
-func New(children []widget.BaseWidget, opts ...Option) widget.BaseWidget {
-	r := &row{}
+func New(children []widget.Widget, opts ...Option) *row {
+	r := &row{
+		BaseWidget: &widget.BaseWidget{},
+	}
 
 	opts = append(
 		opts,
@@ -23,8 +26,12 @@ func New(children []widget.BaseWidget, opts ...Option) widget.BaseWidget {
 		option(r)
 	}
 
-	return div.New(
-		children,
-		r.opts...,
+	r.Extend(
+		div.New(
+			children,
+			r.opts...,
+		),
 	)
+
+	return r
 }

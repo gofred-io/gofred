@@ -8,12 +8,15 @@ import (
 )
 
 type iconButton struct {
+	*widget.BaseWidget
 	opts     []button.Option
 	iconOpts []icon.Option
 }
 
-func New(iconData icondata.IconData, opts ...Option) widget.BaseWidget {
-	iconButton := &iconButton{}
+func New(iconData icondata.IconData, opts ...Option) *iconButton {
+	iconButton := &iconButton{
+		BaseWidget: &widget.BaseWidget{},
+	}
 
 	defaultOpts := []Option{
 		Class("gf-icon-button"),
@@ -26,5 +29,9 @@ func New(iconData icondata.IconData, opts ...Option) widget.BaseWidget {
 	}
 
 	iconElement := icon.New(iconData, iconButton.iconOpts...)
-	return button.New(iconElement, iconButton.opts...)
+	iconButton.Extend(
+		button.New(iconElement, iconButton.opts...),
+	)
+
+	return iconButton
 }

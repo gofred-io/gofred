@@ -25,7 +25,7 @@ func main() {
 	widget.Context().AppendChild(
 		container.New(
 			row.New(
-				[]widget.BaseWidget{
+				[]widget.Widget{
 					icon.New(
 						icondata.Menu,
 					),
@@ -33,7 +33,7 @@ func main() {
 						text.New(
 							"Count",
 						),
-						button.OnClick(func(widget widget.BaseWidget, e widget.Event) {
+						button.OnClick(func(widget widget.Widget, e widget.Event) {
 							setCounter(counter.Value() + 1)
 						}),
 					),
@@ -50,8 +50,8 @@ func main() {
 	select {}
 }
 
-func counterWidget() widget.BaseWidget {
-	return listenable.Builder(counter, func() widget.BaseWidget {
+func counterWidget() widget.Widget {
+	return listenable.Builder(counter, func() widget.Widget {
 		return text.New(
 			fmt.Sprintf("%d", counter.Value()),
 			text.FontSize(16),

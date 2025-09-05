@@ -6,11 +6,14 @@ import (
 )
 
 type text struct {
+	*widget.BaseWidget
 	opts []span.Option
 }
 
-func New(innerText string, opts ...Option) widget.BaseWidget {
-	text := &text{}
+func New(innerText string, opts ...Option) *text {
+	text := &text{
+		BaseWidget: &widget.BaseWidget{},
+	}
 
 	opts = append(opts, setText(innerText))
 
@@ -18,5 +21,9 @@ func New(innerText string, opts ...Option) widget.BaseWidget {
 		option(text)
 	}
 
-	return span.New(widget.Nil, text.opts...)
+	text.Extend(
+		span.New(nil, text.opts...),
+	)
+
+	return text
 }

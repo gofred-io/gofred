@@ -5,18 +5,18 @@ import (
 )
 
 type code struct {
-	widget.BaseWidget
+	*widget.BaseWidget
 }
 
-func New(innerCode string, opts ...Option) widget.BaseWidget {
+func New(innerCode string, opts ...Option) *code {
 	code := &code{
 		BaseWidget: widget.New("code"),
 	}
 
 	for _, option := range opts {
-		option()(code.BaseWidget)
+		option()(code)
 	}
 
 	code.Set("innerText", innerCode)
-	return code.BaseWidget
+	return code
 }

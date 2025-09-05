@@ -6,11 +6,14 @@ import (
 )
 
 type link struct {
+	*widget.BaseWidget
 	opts []anchor.Option
 }
 
-func New(child widget.BaseWidget, opts ...Option) widget.BaseWidget {
-	link := &link{}
+func New(child widget.Widget, opts ...Option) *link {
+	link := &link{
+		BaseWidget: &widget.BaseWidget{},
+	}
 
 	defaultOpts := []Option{
 		Class("gf-link"),
@@ -25,5 +28,8 @@ func New(child widget.BaseWidget, opts ...Option) widget.BaseWidget {
 		option(link)
 	}
 
-	return anchor.New(child, link.opts...)
+	link.Extend(
+		anchor.New(child, link.opts...),
+	)
+	return link
 }

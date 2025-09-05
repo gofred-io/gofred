@@ -4,21 +4,20 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/gofred-io/gofred/foundation/container"
 	"github.com/gofred-io/gofred/hooks"
 	"github.com/gofred-io/gofred/listenable"
 	"github.com/gofred-io/gofred/widget"
 )
 
-type Router struct {
-	widget.BaseWidget
+type router struct {
+	*widget.BaseWidget
 	routePatterns   map[string]*regexp.Regexp
 	routes          map[string]RouteBuilder
 	notFoundBuilder RouteBuilder
 }
 
-func New(opts ...Options) widget.BaseWidget {
-	router := &Router{
+func New(opts ...Options) *router {
+	router := &router{
 		BaseWidget:    widget.New("div"),
 		routePatterns: make(map[string]*regexp.Regexp),
 		routes:        make(map[string]RouteBuilder),
@@ -29,15 +28,15 @@ func New(opts ...Options) widget.BaseWidget {
 	}
 	router.createListeners()
 
-	return router.BaseWidget
+	return router
 }
 
-func (r *Router) createListeners() {
+func (r *router) createListeners() {
 	navigate := hooks.UseNavigate()
 	callback := func(path string) {
 		var (
 			ok           bool
-			newWidget    widget.BaseWidget
+			newWidget    widget.Widget
 			routeBuilder RouteBuilder
 			params       RouteParams
 		)
@@ -55,12 +54,10 @@ func (r *Router) createListeners() {
 			newWidget = routeBuilder(params)
 		} else if r.notFoundBuilder != nil {
 			newWidget = r.notFoundBuilder(params)
-		} else {
-			newWidget = container.New(widget.Nil)
 		}
 
-		r.Widget.ReplaceWith(newWidget.Widget)
-		r.Widget = newWidget.Widget
+		r.JSWidget.ReplaceWith(newWidget)
+		r.JSWidget = newWidget.GetBaseWidget().JSWidget
 	}
 
 	listener := listenable.NewListener(callback)
@@ -70,7 +67,7 @@ func (r *Router) createListeners() {
 	callback(currentPath)
 }
 
-func (r *Router) parsePath(path string) (RouteBuilder, RouteParams) {
+func (r *router) parsePath(path string) (RouteBuilder, RouteParams) {
 	for route, pattern := range r.routePatterns {
 		matches := pattern.FindStringSubmatch(path)
 		if matches == nil {

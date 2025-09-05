@@ -6,12 +6,15 @@ import (
 )
 
 type button struct {
+	*widget.BaseWidget
 	opts []basicbutton.Option
 }
 
-func New(child widget.BaseWidget, opts ...Option) widget.BaseWidget {
+func New(child widget.Widget, opts ...Option) *button {
 	var (
-		b = &button{}
+		b = &button{
+			BaseWidget: &widget.BaseWidget{},
+		}
 	)
 
 	defaultOpts := []Option{
@@ -27,8 +30,12 @@ func New(child widget.BaseWidget, opts ...Option) widget.BaseWidget {
 		option(b)
 	}
 
-	return basicbutton.New(
-		child,
-		b.opts...,
+	b.Extend(
+		basicbutton.New(
+			child,
+			b.opts...,
+		),
 	)
+
+	return b
 }

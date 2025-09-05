@@ -23,14 +23,14 @@ func ID(id string) Option {
 func Transition(transition float64) Option {
 	return func(drawer *Drawer) {
 		drawer.transition = transition
-		drawer.menu.UpdateStyleProperty("transition", fmt.Sprintf("all %.1fs", transition))
+		drawer.menu.GetBaseWidget().UpdateStyleProperty("transition", fmt.Sprintf("all %.1fs", transition))
 	}
 }
 
 func Width(opts ...breakpoint.BreakpointOptions[int]) Option {
 	return func(drawer *Drawer) {
 		for _, opt := range opts {
-			opt(drawer.menu.Width)
+			opt(drawer.menu.GetBaseWidget().Width)
 		}
 	}
 }
@@ -38,7 +38,7 @@ func Width(opts ...breakpoint.BreakpointOptions[int]) Option {
 func WidthP(opts ...breakpoint.BreakpointOptions[float64]) Option {
 	return func(drawer *Drawer) {
 		for _, opt := range opts {
-			opt(drawer.menu.WidthP)
+			opt(drawer.menu.GetBaseWidget().WidthP)
 		}
 	}
 }

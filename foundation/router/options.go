@@ -8,8 +8,8 @@ import (
 	"github.com/gofred-io/gofred/widget"
 )
 
-type RouteBuilder func(params RouteParams) widget.BaseWidget
-type Options func(router *Router)
+type RouteBuilder func(params RouteParams) widget.Widget
+type Options func(router *router)
 
 func getRoutePattern(path string) *regexp.Regexp {
 	if !strings.Contains(path, ":") {
@@ -36,7 +36,7 @@ func getRoutePattern(path string) *regexp.Regexp {
 }
 
 func Route(path string, routeBuilder RouteBuilder) Options {
-	return func(router *Router) {
+	return func(router *router) {
 		if !strings.HasSuffix(path, "/") {
 			path = path + "/"
 		}
@@ -47,7 +47,7 @@ func Route(path string, routeBuilder RouteBuilder) Options {
 }
 
 func NotFound(routeBuilder RouteBuilder) Options {
-	return func(router *Router) {
+	return func(router *router) {
 		router.notFoundBuilder = routeBuilder
 	}
 }

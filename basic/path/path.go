@@ -4,12 +4,12 @@ import (
 	"github.com/gofred-io/gofred/widget"
 )
 
-type Path struct {
-	widget.BaseWidget
+type path struct {
+	*widget.BaseWidget
 }
 
-func New(data string, opts ...Option) widget.BaseWidget {
-	path := &Path{
+func New(data string, opts ...Option) *path {
+	path := &path{
 		BaseWidget: widget.NewNS("http://www.w3.org/2000/svg", "path"),
 	}
 
@@ -19,8 +19,8 @@ func New(data string, opts ...Option) widget.BaseWidget {
 	)
 
 	for _, option := range opts {
-		option()(path.BaseWidget)
+		option()(path)
 	}
 
-	return path.BaseWidget
+	return path
 }

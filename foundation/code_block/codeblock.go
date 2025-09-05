@@ -13,17 +13,17 @@ import (
 	"github.com/gofred-io/gofred/widget"
 )
 
-func New(code string) widget.BaseWidget {
+func New(code string) widget.Widget {
 	return container.New(
 		column.New(
-			[]widget.BaseWidget{
+			[]widget.Widget{
 				row.New(
-					[]widget.BaseWidget{
+					[]widget.Widget{
 						spacer.New(),
 						iconbutton.New(
 							icondata.ContentCopy,
 							iconbutton.Class("gf-code-block-copy-button"),
-							iconbutton.OnClick(func(this widget.BaseWidget, e widget.Event) {
+							iconbutton.OnClick(func(this widget.Widget, e widget.Event) {
 								utils.CopyToClipboard(code)
 							}),
 						),

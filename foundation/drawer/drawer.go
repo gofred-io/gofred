@@ -10,14 +10,14 @@ import (
 )
 
 type Drawer struct {
-	widget.BaseWidget
-	barrier    widget.BaseWidget
-	menu       widget.BaseWidget
+	*widget.BaseWidget
+	barrier    widget.Widget
+	menu       widget.Widget
 	opts       []div.Option
 	transition float64
 }
 
-func New(child widget.BaseWidget, opts ...Option) *Drawer {
+func New(child widget.Widget, opts ...Option) *Drawer {
 	d := &Drawer{
 		BaseWidget: widget.New("div"),
 		menu:       div.New(nil, div.Class("gf-drawer-menu")),
@@ -31,40 +31,40 @@ func New(child widget.BaseWidget, opts ...Option) *Drawer {
 		option(d)
 	}
 
-	d.barrier.SetOnClick(func(this widget.BaseWidget, e widget.Event) {
+	d.barrier.GetBaseWidget().SetOnClick(func(this widget.Widget, e widget.Event) {
 		d.Hide()
 	})
 
-	d.menu.SetOnClick(func(this widget.BaseWidget, e widget.Event) {
+	d.menu.GetBaseWidget().SetOnClick(func(this widget.Widget, e widget.Event) {
 		e.StopPropagation()
 	})
 
-	d.menu.UpdateStyleProperty("width", "0")
-	d.menu.AppendChild(child.Widget)
+	d.menu.GetBaseWidget().UpdateStyleProperty("width", "0")
+	d.menu.GetBaseWidget().AppendChild(child)
 
-	d.Widget.AppendChild(d.menu.Widget)
-	d.Widget.AppendChild(d.barrier.Widget)
+	d.JSWidget.AppendChild(d.menu)
+	d.JSWidget.AppendChild(d.barrier)
 
-	widget.Context().Root.AppendChild(d.Widget)
+	widget.Context().Root.AppendChild(d)
 	return d
 }
 
 func (d *Drawer) Show() {
 	breakpoint := breakpoint.GetCurrent()
-	d.barrier.UpdateStyleProperty("width", "100%")
+	d.barrier.GetBaseWidget().UpdateStyleProperty("width", "100%")
 
-	if d.menu.Width != nil {
-		width := d.menu.Width.Get(breakpoint)
-		d.menu.UpdateStyleProperty("width", fmt.Sprintf("%dpx", width))
-	} else if d.menu.WidthP != nil {
-		widthP := d.menu.WidthP.Get(breakpoint)
-		d.menu.UpdateStyleProperty("width", fmt.Sprintf("%f%%", widthP*100))
+	if d.menu.GetBaseWidget().Width != nil {
+		width := d.menu.GetBaseWidget().Width.Get(breakpoint)
+		d.menu.GetBaseWidget().UpdateStyleProperty("width", fmt.Sprintf("%dpx", width))
+	} else if d.menu.GetBaseWidget().WidthP != nil {
+		widthP := d.menu.GetBaseWidget().WidthP.Get(breakpoint)
+		d.menu.GetBaseWidget().UpdateStyleProperty("width", fmt.Sprintf("%f%%", widthP*100))
 	}
 }
 
 func (d *Drawer) Hide() {
-	d.menu.UpdateStyleProperty("width", "0")
+	d.menu.GetBaseWidget().UpdateStyleProperty("width", "0")
 	time.AfterFunc(time.Duration(d.transition)*time.Second, func() {
-		d.barrier.UpdateStyleProperty("width", "0")
+		d.barrier.GetBaseWidget().UpdateStyleProperty("width", "0")
 	})
 }

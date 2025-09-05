@@ -7,11 +7,14 @@ import (
 )
 
 type center struct {
+	*widget.BaseWidget
 	opts []div.Option
 }
 
-func New(child widget.BaseWidget, opts ...Option) widget.BaseWidget {
-	c := &center{}
+func New(child widget.Widget, opts ...Option) *center {
+	c := &center{
+		BaseWidget: &widget.BaseWidget{},
+	}
 
 	opts = append(
 		opts,
@@ -25,8 +28,12 @@ func New(child widget.BaseWidget, opts ...Option) widget.BaseWidget {
 		option(c)
 	}
 
-	return div.New(
-		[]widget.BaseWidget{child},
-		c.opts...,
+	c.Extend(
+		div.New(
+			[]widget.Widget{child},
+			c.opts...,
+		),
 	)
+
+	return c
 }

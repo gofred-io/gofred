@@ -11,7 +11,7 @@ import (
 type WidgetContext struct {
 	Current js.Value
 	Doc     js.Value
-	Root    Widget
+	Root    JSWidget
 }
 
 var (
@@ -25,7 +25,7 @@ func NewContext() *WidgetContext {
 	return &WidgetContext{
 		Current: root,
 		Doc:     doc,
-		Root:    Widget(root),
+		Root:    JSWidget(root),
 	}
 }
 
@@ -36,8 +36,8 @@ func Context() *WidgetContext {
 	return context
 }
 
-func (c *WidgetContext) AppendChild(child BaseWidget) {
-	c.Current.Call("appendChild", js.Value(child.Widget))
+func (c *WidgetContext) AppendChild(child Widget) {
+	c.Root.Call("appendChild", js.Value(*child.GetBaseWidget().JSWidget))
 }
 
 func (c *WidgetContext) ClientHeight() int {
@@ -48,28 +48,31 @@ func (c *WidgetContext) ClientWidth() int {
 	return c.Doc.Get("documentElement").Get("clientWidth").Int()
 }
 
-func (c *WidgetContext) CreateElement(tag string) Widget {
-	return Widget(c.Doc.Call("createElement", tag))
+func (c *WidgetContext) CreateElement(tag string) *JSWidget {
+	w := JSWidget(c.Doc.Call("createElement", tag))
+	return &w
 }
 
-func (c *WidgetContext) CreateElementWithOptions(tag string, options map[string]any) Widget {
-	return Widget(c.Doc.Call("createElement", tag, options))
+func (c *WidgetContext) CreateElementWithOptions(tag string, options map[string]any) *JSWidget {
+	w := JSWidget(c.Doc.Call("createElement", tag, options))
+	return &w
 }
 
-func (c *WidgetContext) CreateElementNS(namespace string, tag string) Widget {
-	return Widget(c.Doc.Call("createElementNS", namespace, tag))
+func (c *WidgetContext) CreateElementNS(namespace string, tag string) *JSWidget {
+	w := JSWidget(c.Doc.Call("createElementNS", namespace, tag))
+	return &w
 }
 
 func (c *WidgetContext) CurrentPath() string {
 	return js.Global().Get("window").Get("location").Get("pathname").String()
 }
 
-func (c *WidgetContext) GetElementByID(id string) *Widget {
+func (c *WidgetContext) GetElementByID(id string) *JSWidget {
 	element := c.Doc.Call("getElementById", id)
 	if element.IsNull() {
 		return nil
 	}
-	w := Widget(element)
+	w := JSWidget(element)
 	return &w
 }
 

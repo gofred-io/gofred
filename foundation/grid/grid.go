@@ -7,11 +7,14 @@ import (
 )
 
 type grid struct {
+	*widget.BaseWidget
 	opts []div.Option
 }
 
-func New(children []widget.BaseWidget, opts ...Option) widget.BaseWidget {
-	g := &grid{}
+func New(children []widget.Widget, opts ...Option) *grid {
+	g := &grid{
+		BaseWidget: &widget.BaseWidget{},
+	}
 
 	opts = append(
 		opts,
@@ -22,8 +25,11 @@ func New(children []widget.BaseWidget, opts ...Option) widget.BaseWidget {
 		option(g)
 	}
 
-	return div.New(
-		children,
-		g.opts...,
+	g.Extend(
+		div.New(
+			children,
+			g.opts...,
+		),
 	)
+	return g
 }

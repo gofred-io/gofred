@@ -6,11 +6,14 @@ import (
 )
 
 type image struct {
+	*widget.BaseWidget
 	opts []basicimage.Option
 }
 
-func New(src string, opts ...Option) widget.BaseWidget {
-	image := &image{}
+func New(src string, opts ...Option) *image {
+	image := &image{
+		BaseWidget: &widget.BaseWidget{},
+	}
 
 	defaultOpts := []Option{
 		Class("gf-image"),
@@ -25,5 +28,8 @@ func New(src string, opts ...Option) widget.BaseWidget {
 		option(image)
 	}
 
-	return basicimage.New(src, image.opts...)
+	image.Extend(
+		basicimage.New(src, image.opts...),
+	)
+	return image
 }

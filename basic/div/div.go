@@ -5,21 +5,21 @@ import (
 )
 
 type div struct {
-	widget.BaseWidget
+	*widget.BaseWidget
 }
 
-func New(children []widget.BaseWidget, opts ...Option) widget.BaseWidget {
+func New(children []widget.Widget, opts ...Option) *div {
 	div := &div{
 		BaseWidget: widget.New("div"),
 	}
 
 	for _, option := range opts {
-		option()(div.BaseWidget)
+		option()(div)
 	}
 
 	for _, child := range children {
-		div.AppendChild(child.Widget)
+		div.AppendChild(child)
 	}
 
-	return div.BaseWidget
+	return div
 }
