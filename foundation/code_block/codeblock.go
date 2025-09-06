@@ -9,6 +9,7 @@ import (
 	iconbutton "github.com/gofred-io/gofred/foundation/icon_button"
 	"github.com/gofred-io/gofred/foundation/row"
 	"github.com/gofred-io/gofred/foundation/spacer"
+	"github.com/gofred-io/gofred/options"
 	"github.com/gofred-io/gofred/utils"
 	"github.com/gofred-io/gofred/widget"
 )
@@ -41,6 +42,7 @@ func New(code string) widget.BaseWidget {
 				),
 			},
 			column.Flex(1),
+			column.Overflow(options.OverflowTypeHidden),
 		),
 		container.Class("gf-code-block"),
 	)

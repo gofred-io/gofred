@@ -60,3 +60,9 @@ func MainAxisSize(mainAxisSize options.AxisSizeType) Option {
 		column.opts = append(column.opts, div.AlignSelf(mainAxisSize))
 	}
 }
+
+func Overflow(overflow options.OverflowType) Option {
+	return func(column *column) {
+		column.opts = append(column.opts, div.Overflow(overflow))
+	}
+}
