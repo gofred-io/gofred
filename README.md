@@ -44,33 +44,40 @@ gofred lets you write UI in pure Go and run it in the browser via WebAssembly, w
 go get github.com/gofred-io/gofred
 ```
 
-This repository is intended to be used as a library. The included `server/` and `main.go` demonstrate a minimal runnable example.
+This repository is intended to be used as a library. For development and running applications, use the [gofred-cli](https://github.com/gofred-io/gofred-cli) tool.
 
 ---
 
-#### Quick start (example app in this repo)
+#### Quick start
 
-1) Build the WebAssembly binary:
+Use the [gofred-cli](https://github.com/gofred-io/gofred-cli) tool to create and run applications:
 
-```bash
-make build
-```
-
-This produces `server/main.wasm`.
-
-2) Start the dev server:
+1) Install gofred-cli:
 
 ```bash
-make serve
+curl -fsSL https://raw.githubusercontent.com/gofred-io/gofred-cli/refs/heads/master/install.sh | bash
 ```
 
-Then open the printed local URL (defaults to `http://localhost:8080`). The `server/index.html` bootstraps `wasm_exec.js` and loads `main.wasm`.
+2) Create a new application:
+
+```bash
+gofred app create my-app --package my-app
+```
+
+3) Run the application:
+
+```bash
+cd my-app
+gofred app run
+```
+
+This will start a development server with hot reload capabilities.
 
 ---
 
 #### Minimal example
 
-Create your own `main.go` and use gofred widgets to build UI. For example:
+When you create a new application with gofred-cli, it generates a `main.go` file like this:
 
 ```go
 package main
@@ -81,8 +88,8 @@ import (
 )
 
 func main() {
-    // See this repository's `main.go` for a complete runnable example
-    application.Run(text.New("Hello, gofred!"))
+    app := text.New("Hello, world")
+    application.Run(app)
 }
 ```
 
@@ -96,14 +103,17 @@ Explore the `foundation/` packages for available widgets and options.
 - `foundation/` – Higher-level components (layout, text, buttons, router, etc.).
 - `hooks/` – React-like hooks for navigation, breakpoint, and state management.
 - `widget/` – Core widget abstractions and lifecycle.
-- `server/` – Minimal static server and HTML bootstrap for wasm.
+
+For development tooling and server setup, see [gofred-cli](https://github.com/gofred-io/gofred-cli).
 
 ---
 
 #### Development
 
-- Build wasm: `make build`
-- Run dev server: `make serve`
+For development, use the [gofred-cli](https://github.com/gofred-io/gofred-cli) tool:
+
+- Create app: `gofred app create my-app --package my-app`
+- Run dev server: `gofred app run` (with hot reload)
 
 The CI workflow runs basic build and vet steps.
 
