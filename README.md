@@ -8,6 +8,8 @@ Build responsive web applications in Go with WebAssembly.
 
 gofred lets you write UI in pure Go and run it in the browser via WebAssembly, with a small set of primitives for layout, components, routing, and events.
 
+> **🚀 Getting Started?** Use the [gofred-cli](https://github.com/gofred-io/gofred-cli) to quickly create and run gofred applications with hot reload development server.
+
 ---
 
 #### Table of contents
@@ -19,6 +21,7 @@ gofred lets you write UI in pure Go and run it in the browser via WebAssembly, w
 - Project structure
 - Development
 - Browser support
+- CLI Tool
 - Website
 - Contributing
 - License
@@ -28,7 +31,7 @@ gofred lets you write UI in pure Go and run it in the browser via WebAssembly, w
 - **Composable widgets**: `container`, `row`, `column`, `text`, `image`, `button`, and more.
 - **Routing and navigation**: Lightweight router and navigation helpers.
 - **Responsive layout**: Breakpoints and spacing utilities.
-- **Batteries included**: Dev server for local development.
+- **Type-safe**: Pure Go code with compile-time type checking.
 
 ---
 
@@ -44,27 +47,27 @@ gofred lets you write UI in pure Go and run it in the browser via WebAssembly, w
 go get github.com/gofred-io/gofred
 ```
 
-This repository is intended to be used as a library. The included `server/` and `main.go` demonstrate a minimal runnable example.
+This repository is intended to be used as a library. For a complete development experience with hot reload and development server, use the [gofred-cli](https://github.com/gofred-io/gofred-cli) tool.
 
 ---
 
-#### Quick start (example app in this repo)
+#### Quick start
 
-1) Build the WebAssembly binary:
-
-```bash
-make build
-```
-
-This produces `server/main.wasm`.
-
-2) Start the dev server:
+The easiest way to get started with gofred is using the [gofred-cli](https://github.com/gofred-io/gofred-cli):
 
 ```bash
-make serve
+# Install gofred-cli
+curl -fsSL https://raw.githubusercontent.com/gofred-io/gofred-cli/main/install.sh | bash
+
+# Create a new application
+gofred app create my-app
+
+# Navigate to your app and run it
+cd my-app
+gofred app run
 ```
 
-Then open the printed local URL (defaults to `http://localhost:8080`). The `server/index.html` bootstraps `wasm_exec.js` and loads `main.wasm`.
+This will create a complete gofred application with hot reload development server.
 
 ---
 
@@ -96,22 +99,50 @@ Explore the `foundation/` packages for available widgets and options.
 - `foundation/` – Higher-level components (layout, text, buttons, router, etc.).
 - `hooks/` – React-like hooks for navigation, breakpoint, and state management.
 - `widget/` – Core widget abstractions and lifecycle.
-- `server/` – Minimal static server and HTML bootstrap for wasm.
 
 ---
 
 #### Development
 
+For library development:
+
 - Build wasm: `make build`
-- Run dev server: `make serve`
+- Run tests: `go test ./...`
+- Run linter: `golangci-lint run`
 
 The CI workflow runs basic build and vet steps.
+
+For application development, use the [gofred-cli](https://github.com/gofred-io/gofred-cli) which provides hot reload and development server.
 
 ---
 
 #### Browser support
 
 Any modern browser with WebAssembly support. If you need older browser support, consider a fallback or a progressive enhancement approach.
+
+---
+
+#### CLI Tool
+
+For the best development experience, use the [gofred-cli](https://github.com/gofred-io/gofred-cli) which provides:
+
+- **Quick project setup**: Create new gofred applications with a single command
+- **Hot reload**: Automatic recompilation and browser refresh on file changes
+- **Development server**: Built-in server with WebSocket support
+- **Cross-platform**: Support for Windows, macOS, and Linux
+- **VS Code integration**: Automatic workspace configuration
+
+Install and get started:
+
+```bash
+# Install gofred-cli
+curl -fsSL https://raw.githubusercontent.com/gofred-io/gofred-cli/main/install.sh | bash
+
+# Create and run your first app
+gofred app create my-app
+cd my-app
+gofred app run
+```
 
 ---
 
