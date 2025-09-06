@@ -1,26 +1,18 @@
 package path
 
 import (
-	"github.com/gofred-io/gofred/widget"
+	. "github.com/gofred-io/gofred/widget"
 )
 
-type path struct {
-	*widget.BaseWidget
+type BPath struct {
+	*BaseWidget
 }
 
-func New(data string, opts ...Option) *path {
-	path := &path{
-		BaseWidget: widget.NewNS("http://www.w3.org/2000/svg", "path"),
+func Path(data string) *BPath {
+	path := &BPath{
+		BaseWidget: NewNS("http://www.w3.org/2000/svg", "path"),
 	}
 
-	opts = append(
-		opts,
-		d(data),
-	)
-
-	for _, option := range opts {
-		option()(path)
-	}
-
+	path.d(data)
 	return path
 }

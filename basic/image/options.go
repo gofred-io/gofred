@@ -2,49 +2,40 @@ package image
 
 import (
 	"github.com/gofred-io/gofred/breakpoint"
-	"github.com/gofred-io/gofred/options"
+	. "github.com/gofred-io/gofred/options"
 )
 
-type Option options.OptionWrapper
-
-func Class(class string) Option {
-	return func() options.Option {
-		return options.Class(class)
-	}
+func (i *BImage) Class(class string) *BImage {
+	Class(class)(i)
+	return i
 }
 
-func Height(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func() options.Option {
-		return options.Height(opts...)
-	}
+func (i *BImage) Height(opts ...breakpoint.BreakpointOptions[int]) *BImage {
+	Height(opts...)(i)
+	return i
 }
 
-func ID(id string) Option {
-	return func() options.Option {
-		return options.ID(id)
-	}
+func (i *BImage) ID(id string) *BImage {
+	ID(id)(i)
+	return i
 }
 
-func MaxWidth(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func() options.Option {
-		return options.MaxWidth(opts...)
-	}
+func (i *BImage) MaxWidth(opts ...breakpoint.BreakpointOptions[int]) *BImage {
+	MaxWidth(opts...)(i)
+	return i
 }
 
-func UserSelect(userSelect options.UserSelectType) Option {
-	return func() options.Option {
-		return options.UserSelect(userSelect)
-	}
+func (i *BImage) UserSelect(userSelect UserSelectType) *BImage {
+	UserSelect(userSelect)(i)
+	return i
 }
 
-func Width(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func() options.Option {
-		return options.Width(opts...)
-	}
+func (i *BImage) Width(opts ...breakpoint.BreakpointOptions[int]) *BImage {
+	Width(opts...)(i)
+	return i
 }
 
-func WidthP(opts ...breakpoint.BreakpointOptions[float64]) Option {
-	return func() options.Option {
-		return options.WidthP(opts...)
-	}
+func (i *BImage) WidthP(opts ...breakpoint.BreakpointOptions[float64]) *BImage {
+	WidthP(opts...)(i)
+	return i
 }

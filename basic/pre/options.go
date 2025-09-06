@@ -1,19 +1,15 @@
 package pre
 
 import (
-	"github.com/gofred-io/gofred/options"
+	. "github.com/gofred-io/gofred/options"
 )
 
-type Option options.OptionWrapper
-
-func Class(class string) Option {
-	return func() options.Option {
-		return options.Class(class)
-	}
+func (p *BPre) Class(class string) *BPre {
+	Class(class)(p)
+	return p
 }
 
-func ID(id string) Option {
-	return func() options.Option {
-		return options.ID(id)
-	}
+func (p *BPre) ID(id string) *BPre {
+	ID(id)(p)
+	return p
 }

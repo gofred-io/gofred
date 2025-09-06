@@ -6,6 +6,10 @@ import (
 	"github.com/gofred-io/gofred/utils"
 )
 
+var (
+	Nil = JSWidget(js.Value{})
+)
+
 type JSWidget js.Value
 
 func (w *JSWidget) AddClass(class string) {
@@ -56,7 +60,16 @@ func (w *JSWidget) RemoveClass(class string) {
 	w.Get("classList").Call("remove", class)
 }
 
+func (w *JSWidget) RemoveStyleProperty(property string) {
+	w.Get("style").Set(property, "")
+}
+
 func (w *JSWidget) ReplaceWith(widget Widget) {
+	if widget == nil || widget.GetBaseWidget().JSWidget.IsNull() {
+		w.Call("replaceWith", js.Value(Nil))
+		return
+	}
+
 	w.Call("replaceWith", js.Value(*widget.GetBaseWidget().JSWidget))
 }
 

@@ -1,68 +1,55 @@
 package text
 
 import (
-	"github.com/gofred-io/gofred/basic/span"
-	"github.com/gofred-io/gofred/options"
+	. "github.com/gofred-io/gofred/options"
 )
 
-type Option func(text *text)
-
-func setText(_text string) Option {
-	return func(text *text) {
-		text.opts = append(text.opts, span.SetText(_text))
-	}
+func (text *FText) setText(_text string) *FText {
+	text.BSpan.SetText(_text)
+	return text
 }
 
-func Align(textAlign options.TextAlignType) Option {
-	return func(text *text) {
-		text.opts = append(text.opts, span.TextAlign(textAlign))
-	}
+func (text *FText) Align(textAlign TextAlignType) *FText {
+	text.BSpan.TextAlign(textAlign)
+	return text
 }
 
-func Class(class string) Option {
-	return func(text *text) {
-		text.opts = append(text.opts, span.Class(class))
-	}
+func (text *FText) Class(class string) *FText {
+	text.BSpan.Class(class)
+	return text
 }
 
-func FontColor(color string) Option {
-	return func(text *text) {
-		text.opts = append(text.opts, span.FontColor(color))
-	}
+func (text *FText) FontColor(color string) *FText {
+	text.BSpan.FontColor(color)
+	return text
 }
 
-func FontFamily(fontFamily string) Option {
-	return func(text *text) {
-		text.opts = append(text.opts, span.FontFamily(fontFamily))
-	}
+func (text *FText) FontFamily(fontFamily string) *FText {
+	text.BSpan.FontFamily(fontFamily)
+	return text
 }
 
-func FontSize(fontSize int) Option {
-	return func(text *text) {
-		text.opts = append(text.opts, span.FontSize(fontSize))
-	}
+func (text *FText) FontSize(fontSize int) *FText {
+	text.BSpan.FontSize(fontSize)
+	return text
 }
 
-func FontWeight(fontWeight string) Option {
-	return func(text *text) {
-		text.opts = append(text.opts, span.FontWeight(fontWeight))
-	}
+func (text *FText) FontWeight(fontWeight string) *FText {
+	text.BSpan.FontWeight(fontWeight)
+	return text
 }
 
-func ID(id string) Option {
-	return func(text *text) {
-		text.opts = append(text.opts, span.ID(id))
-	}
+func (text *FText) ID(id string) *FText {
+	text.BSpan.ID(id)
+	return text
 }
 
-func LineHeight(lineHeight float64) Option {
-	return func(text *text) {
-		text.opts = append(text.opts, span.LineHeight(lineHeight))
-	}
+func (text *FText) LineHeight(lineHeight float64) *FText {
+	text.BSpan.LineHeight(lineHeight)
+	return text
 }
 
-func UserSelect(userSelect options.UserSelectType) Option {
-	return func(text *text) {
-		text.opts = append(text.opts, span.UserSelect(userSelect))
-	}
+func (text *FText) UserSelect(userSelect UserSelectType) *FText {
+	text.BSpan.UserSelect(userSelect)
+	return text
 }

@@ -1,80 +1,65 @@
 package link
 
 import (
-	"github.com/gofred-io/gofred/basic/anchor"
-	"github.com/gofred-io/gofred/options"
+	. "github.com/gofred-io/gofred/options"
 )
 
-type Option func(link *link)
-
-func Class(class string) Option {
-	return func(link *link) {
-		link.opts = append(link.opts, anchor.Class(class))
-	}
+func (link *FLink) Class(class string) *FLink {
+	link.BAnchor.Class(class)
+	return link
 }
 
-func Flex(flex int) Option {
-	return func(link *link) {
-		link.opts = append(link.opts, anchor.Flex(flex))
-	}
+func (link *FLink) Flex(flex int) *FLink {
+	link.BAnchor.Flex(flex)
+	return link
 }
 
-func FontColor(color string) Option {
-	return func(link *link) {
-		link.opts = append(link.opts, anchor.FontColor(color))
-	}
+func (link *FLink) FontColor(color string) *FLink {
+	link.BAnchor.FontColor(color)
+	return link
 }
 
-func FontFamily(fontFamily string) Option {
-	return func(link *link) {
-		link.opts = append(link.opts, anchor.FontFamily(fontFamily))
-	}
+func (link *FLink) FontFamily(fontFamily string) *FLink {
+	link.BAnchor.FontFamily(fontFamily)
+	return link
 }
 
-func FontSize(fontSize int) Option {
-	return func(link *link) {
-		link.opts = append(link.opts, anchor.FontSize(fontSize))
-	}
+func (link *FLink) FontSize(fontSize int) *FLink {
+	link.BAnchor.FontSize(fontSize)
+	return link
 }
 
-func FontWeight(fontWeight string) Option {
-	return func(link *link) {
-		link.opts = append(link.opts, anchor.FontWeight(fontWeight))
-	}
+func (link *FLink) FontWeight(fontWeight string) *FLink {
+	link.BAnchor.FontWeight(fontWeight)
+	return link
 }
 
-func Href(href string) Option {
-	return func(link *link) {
-		link.opts = append(link.opts, anchor.Href(href))
-	}
+func (link *FLink) Href(href string) *FLink {
+	link.BAnchor.Href(href)
+	return link
 }
 
-func ID(id string) Option {
-	return func(link *link) {
-		link.opts = append(link.opts, anchor.ID(id))
-	}
+func (link *FLink) ID(id string) *FLink {
+	link.BAnchor.ID(id)
+	return link
 }
 
-func LineHeight(lineHeight float64) Option {
-	return func(link *link) {
-		link.opts = append(link.opts, anchor.LineHeight(lineHeight))
-	}
+func (link *FLink) LineHeight(lineHeight float64) *FLink {
+	link.BAnchor.LineHeight(lineHeight)
+	return link
 }
 
-func OnClick(handler options.OnClickHandler) Option {
-	return func(link *link) {
-		link.opts = append(link.opts, anchor.OnClick(handler))
-	}
+func (link *FLink) OnClick(handler OnClickHandler) *FLink {
+	link.BAnchor.OnClick(handler)
+	return link
 }
 
-func NewTab(newTab bool) Option {
-	return func(link *link) {
-		link.opts = append(link.opts, anchor.NewTab(newTab))
-	}
+func (link *FLink) NewTab(newTab bool) *FLink {
+	link.BAnchor.NewTab(newTab)
+	return link
 }
 
-func Tooltip(tooltip string) Option {
-	return func(link *link) {
-		link.opts = append(link.opts, anchor.Tooltip(tooltip))
-	}
+func (link *FLink) Tooltip(tooltip string) *FLink {
+	link.BAnchor.Tooltip(tooltip)
+	return link
 }

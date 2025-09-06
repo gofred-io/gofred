@@ -1,33 +1,18 @@
 package spacer
 
 import (
-	"github.com/gofred-io/gofred/basic/div"
-	"github.com/gofred-io/gofred/widget"
+	. "github.com/gofred-io/gofred/basic/div"
 )
 
-type spacer struct {
-	*widget.BaseWidget
-	opts []div.Option
+type FSpacer struct {
+	*BDiv
 }
 
-func New(opts ...Option) *spacer {
-	s := &spacer{
-		BaseWidget: &widget.BaseWidget{},
+func Spacer() *FSpacer {
+	s := &FSpacer{
+		BDiv: Div(nil),
 	}
 
-	if len(opts) == 0 {
-		opts = append(opts, flex(1))
-	}
-
-	for _, option := range opts {
-		option(s)
-	}
-
-	s.Extend(
-		div.New(
-			[]widget.Widget{},
-			s.opts...,
-		),
-	)
+	s.flex(1)
 	return s
 }

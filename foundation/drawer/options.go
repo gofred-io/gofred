@@ -3,42 +3,31 @@ package drawer
 import (
 	"fmt"
 
-	"github.com/gofred-io/gofred/breakpoint"
+	. "github.com/gofred-io/gofred/breakpoint"
 )
 
-type Option func(drawer *Drawer)
-
-func Class(class string) Option {
-	return func(drawer *Drawer) {
-		drawer.AddClass(class)
-	}
+func (drawer *FDrawer) Class(class string) *FDrawer {
+	drawer.AddClass(class)
+	return drawer
 }
 
-func ID(id string) Option {
-	return func(drawer *Drawer) {
-		drawer.SetID(id)
-	}
+func (drawer *FDrawer) ID(id string) *FDrawer {
+	drawer.SetID(id)
+	return drawer
 }
 
-func Transition(transition float64) Option {
-	return func(drawer *Drawer) {
-		drawer.transition = transition
-		drawer.menu.GetBaseWidget().UpdateStyleProperty("transition", fmt.Sprintf("all %.1fs", transition))
-	}
+func (drawer *FDrawer) Transition(transition float64) *FDrawer {
+	drawer.transition = transition
+	drawer.menu.GetBaseWidget().UpdateStyleProperty("transition", fmt.Sprintf("all %.1fs", transition))
+	return drawer
 }
 
-func Width(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func(drawer *Drawer) {
-		for _, opt := range opts {
-			opt(drawer.menu.GetBaseWidget().Width)
-		}
-	}
+func (drawer *FDrawer) Width(opts ...BreakpointOptions[int]) *FDrawer {
+	drawer.menu.Width(opts...)
+	return drawer
 }
 
-func WidthP(opts ...breakpoint.BreakpointOptions[float64]) Option {
-	return func(drawer *Drawer) {
-		for _, opt := range opts {
-			opt(drawer.menu.GetBaseWidget().WidthP)
-		}
-	}
+func (drawer *FDrawer) WidthP(opts ...BreakpointOptions[float64]) *FDrawer {
+	drawer.menu.WidthP(opts...)
+	return drawer
 }

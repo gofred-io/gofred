@@ -1,62 +1,50 @@
 package column
 
 import (
-	"github.com/gofred-io/gofred/basic/div"
-	"github.com/gofred-io/gofred/options"
+	. "github.com/gofred-io/gofred/options"
 )
 
-type Option func(center *column)
-
-func display(display options.DisplayType) Option {
-	return func(column *column) {
-		column.opts = append(column.opts, div.Display(display))
-	}
+func (column *FColumn) display(display DisplayType) *FColumn {
+	column.BDiv.Display(display)
+	return column
 }
 
-func flexDirection(flexDirection options.FlexDirectionType) Option {
-	return func(column *column) {
-		column.opts = append(column.opts, div.FlexDirection(flexDirection))
-	}
+func (column *FColumn) flexDirection(flexDirection FlexDirectionType) *FColumn {
+	column.BDiv.FlexDirection(flexDirection)
+	return column
 }
 
-func Class(class string) Option {
-	return func(column *column) {
-		column.opts = append(column.opts, div.Class(class))
-	}
+func (column *FColumn) Class(class string) *FColumn {
+	column.BDiv.Class(class)
+	return column
 }
 
-func ID(id string) Option {
-	return func(column *column) {
-		column.opts = append(column.opts, div.ID(id))
-	}
+func (column *FColumn) ID(id string) *FColumn {
+	column.BDiv.ID(id)
+	return column
 }
 
-func CrossAxisAlignment(crossAxisAlignment options.AxisAlignmentType) Option {
-	return func(column *column) {
-		column.opts = append(column.opts, div.AlignItems(crossAxisAlignment))
-	}
+func (column *FColumn) CrossAxisAlignment(crossAxisAlignment AxisAlignmentType) *FColumn {
+	column.BDiv.AlignItems(crossAxisAlignment)
+	return column
 }
 
-func Flex(flex int) Option {
-	return func(column *column) {
-		column.opts = append(column.opts, div.Flex(flex))
-	}
+func (column *FColumn) Flex(flex int) *FColumn {
+	column.BDiv.Flex(flex)
+	return column
 }
 
-func Gap(gap int) Option {
-	return func(column *column) {
-		column.opts = append(column.opts, div.RowGap(gap))
-	}
+func (column *FColumn) Gap(gap int) *FColumn {
+	column.BDiv.RowGap(gap)
+	return column
 }
 
-func MainAxisAlignment(mainAxisAlignment options.AxisAlignmentType) Option {
-	return func(column *column) {
-		column.opts = append(column.opts, div.JustifyContent(mainAxisAlignment))
-	}
+func (column *FColumn) MainAxisAlignment(mainAxisAlignment AxisAlignmentType) *FColumn {
+	column.BDiv.JustifyContent(mainAxisAlignment)
+	return column
 }
 
-func MainAxisSize(mainAxisSize options.AxisSizeType) Option {
-	return func(column *column) {
-		column.opts = append(column.opts, div.AlignSelf(mainAxisSize))
-	}
+func (column *FColumn) MainAxisSize(mainAxisSize AxisSizeType) *FColumn {
+	column.BDiv.AlignSelf(mainAxisSize)
+	return column
 }

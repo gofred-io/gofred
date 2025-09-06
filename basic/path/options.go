@@ -1,31 +1,25 @@
 package path
 
 import (
-	"github.com/gofred-io/gofred/options"
+	. "github.com/gofred-io/gofred/options"
 )
 
-type Option options.OptionWrapper
-
-func d(data string) Option {
-	return func() options.Option {
-		return options.D(data)
-	}
+func (p *BPath) d(data string) *BPath {
+	D(data)(p)
+	return p
 }
 
-func Class(class string) Option {
-	return func() options.Option {
-		return options.Class(class)
-	}
+func (p *BPath) Class(class string) *BPath {
+	Class(class)(p)
+	return p
 }
 
-func Fill(fill string) Option {
-	return func() options.Option {
-		return options.Fill(fill)
-	}
+func (p *BPath) Fill(fill string) *BPath {
+	Fill(fill)(p)
+	return p
 }
 
-func ID(id string) Option {
-	return func() options.Option {
-		return options.ID(id)
-	}
+func (p *BPath) ID(id string) *BPath {
+	ID(id)(p)
+	return p
 }

@@ -1,43 +1,35 @@
 package code
 
 import (
-	"github.com/gofred-io/gofred/options"
+	. "github.com/gofred-io/gofred/options"
 )
 
-type Option options.OptionWrapper
-
-func Class(class string) Option {
-	return func() options.Option {
-		return options.Class(class)
-	}
+func (c *BCode) Class(class string) *BCode {
+	Class(class)(c)
+	return c
 }
 
-func FontColor(color string) Option {
-	return func() options.Option {
-		return options.FontColor(color)
-	}
+func (c *BCode) FontColor(color string) *BCode {
+	FontColor(color)(c)
+	return c
 }
 
-func FontFamily(fontFamily string) Option {
-	return func() options.Option {
-		return options.FontFamily(fontFamily)
-	}
+func (c *BCode) FontFamily(fontFamily string) *BCode {
+	FontFamily(fontFamily)(c)
+	return c
 }
 
-func FontSize(fontSize int) Option {
-	return func() options.Option {
-		return options.FontSize(fontSize)
-	}
+func (c *BCode) FontSize(fontSize int) *BCode {
+	FontSize(fontSize)(c)
+	return c
 }
 
-func FontWeight(fontWeight string) Option {
-	return func() options.Option {
-		return options.FontWeight(fontWeight)
-	}
+func (c *BCode) FontWeight(fontWeight string) *BCode {
+	FontWeight(fontWeight)(c)
+	return c
 }
 
-func ID(id string) Option {
-	return func() options.Option {
-		return options.ID(id)
-	}
+func (c *BCode) ID(id string) *BCode {
+	ID(id)(c)
+	return c
 }

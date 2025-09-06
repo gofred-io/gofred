@@ -1,44 +1,35 @@
 package center
 
 import (
-	"github.com/gofred-io/gofred/basic/div"
-	"github.com/gofred-io/gofred/options"
+	. "github.com/gofred-io/gofred/options"
 )
 
-type Option func(center *center)
-
-func alignItems(alignItems options.AxisAlignmentType) Option {
-	return func(center *center) {
-		center.opts = append(center.opts, div.AlignItems(alignItems))
-	}
+func (c *FCenter) alignItems(alignItems AxisAlignmentType) *FCenter {
+	c.BDiv.AlignItems(alignItems)
+	return c
 }
 
-func display(display options.DisplayType) Option {
-	return func(center *center) {
-		center.opts = append(center.opts, div.Display(display))
-	}
+func (c *FCenter) display(display DisplayType) *FCenter {
+	c.BDiv.Display(display)
+	return c
 }
 
-func flex(flex int) Option {
-	return func(center *center) {
-		center.opts = append(center.opts, div.Flex(flex))
-	}
+func (c *FCenter) flex(flex int) *FCenter {
+	c.BDiv.Flex(flex)
+	return c
 }
 
-func justifyContent(justifyContent options.AxisAlignmentType) Option {
-	return func(center *center) {
-		center.opts = append(center.opts, div.JustifyContent(justifyContent))
-	}
+func (c *FCenter) justifyContent(justifyContent AxisAlignmentType) *FCenter {
+	c.BDiv.JustifyContent(justifyContent)
+	return c
 }
 
-func Class(class string) Option {
-	return func(center *center) {
-		center.opts = append(center.opts, div.Class(class))
-	}
+func (c *FCenter) Class(class string) *FCenter {
+	c.BDiv.Class(class)
+	return c
 }
 
-func ID(id string) Option {
-	return func(center *center) {
-		center.opts = append(center.opts, div.ID(id))
-	}
+func (c *FCenter) ID(id string) *FCenter {
+	c.BDiv.ID(id)
+	return c
 }

@@ -7,27 +7,27 @@ import (
 
 type BaseWidget struct {
 	*JSWidget
-	ColumnCount *breakpoint.BreakpointValue[int]
-	Height      *breakpoint.BreakpointValue[int]
-	Margin      *breakpoint.BreakpointValue[spacing.Spacing]
-	MaxWidth    *breakpoint.BreakpointValue[int]
-	Padding     *breakpoint.BreakpointValue[spacing.Spacing]
-	Visible     *breakpoint.BreakpointValue[bool]
-	Width       *breakpoint.BreakpointValue[int]
-	WidthP      *breakpoint.BreakpointValue[float64]
+	BVColumnCount *breakpoint.BreakpointValue[int]
+	BVHeight      *breakpoint.BreakpointValue[int]
+	BVMargin      *breakpoint.BreakpointValue[spacing.Spacing]
+	BVMaxWidth    *breakpoint.BreakpointValue[int]
+	BVPadding     *breakpoint.BreakpointValue[spacing.Spacing]
+	BVVisible     *breakpoint.BreakpointValue[bool]
+	BVWidth       *breakpoint.BreakpointValue[int]
+	BVWidthP      *breakpoint.BreakpointValue[float64]
 }
 
 func newBaseWidget(widget *JSWidget) *BaseWidget {
 	return &BaseWidget{
-		JSWidget:    widget,
-		ColumnCount: &breakpoint.BreakpointValue[int]{},
-		Height:      &breakpoint.BreakpointValue[int]{},
-		Margin:      &breakpoint.BreakpointValue[spacing.Spacing]{},
-		MaxWidth:    &breakpoint.BreakpointValue[int]{},
-		Padding:     &breakpoint.BreakpointValue[spacing.Spacing]{},
-		Visible:     &breakpoint.BreakpointValue[bool]{},
-		Width:       &breakpoint.BreakpointValue[int]{},
-		WidthP:      &breakpoint.BreakpointValue[float64]{},
+		JSWidget:      widget,
+		BVColumnCount: &breakpoint.BreakpointValue[int]{},
+		BVHeight:      &breakpoint.BreakpointValue[int]{},
+		BVMargin:      &breakpoint.BreakpointValue[spacing.Spacing]{},
+		BVMaxWidth:    &breakpoint.BreakpointValue[int]{},
+		BVPadding:     &breakpoint.BreakpointValue[spacing.Spacing]{},
+		BVVisible:     &breakpoint.BreakpointValue[bool]{},
+		BVWidth:       &breakpoint.BreakpointValue[int]{},
+		BVWidthP:      &breakpoint.BreakpointValue[float64]{},
 	}
 }
 

@@ -1,37 +1,24 @@
 package container
 
 import (
-	"github.com/gofred-io/gofred/basic/div"
-	"github.com/gofred-io/gofred/options"
-	"github.com/gofred-io/gofred/widget"
+	. "github.com/gofred-io/gofred/basic/div"
+	. "github.com/gofred-io/gofred/options"
+	. "github.com/gofred-io/gofred/widget"
 )
 
-type container struct {
-	*widget.BaseWidget
-	opts []div.Option
+type FContainer struct {
+	*BDiv
 }
 
-func New(child widget.Widget, opts ...Option) *container {
+func Container(child Widget) *FContainer {
 	var (
-		c = &container{
-			BaseWidget: &widget.BaseWidget{},
+		c = &FContainer{
+			BDiv: Div(
+				[]Widget{child},
+			),
 		}
 	)
 
-	opts = append(
-		opts,
-		display(options.DisplayTypeFlex),
-	)
-
-	for _, option := range opts {
-		option(c)
-	}
-
-	c.Extend(
-		div.New(
-			[]widget.Widget{child},
-			c.opts...,
-		),
-	)
+	c.display(DisplayTypeFlex)
 	return c
 }

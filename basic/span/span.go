@@ -1,20 +1,16 @@
 package span
 
 import (
-	"github.com/gofred-io/gofred/widget"
+	. "github.com/gofred-io/gofred/widget"
 )
 
-type span struct {
-	*widget.BaseWidget
+type BSpan struct {
+	*BaseWidget
 }
 
-func New(child widget.Widget, options ...Option) *span {
-	span := &span{
-		BaseWidget: widget.New("span"),
-	}
-
-	for _, option := range options {
-		option()(span)
+func Span(child Widget) *BSpan {
+	span := &BSpan{
+		BaseWidget: New("span"),
 	}
 
 	if child != nil {

@@ -1,20 +1,16 @@
 package image
 
 import (
-	"github.com/gofred-io/gofred/widget"
+	. "github.com/gofred-io/gofred/widget"
 )
 
-type image struct {
-	*widget.BaseWidget
+type BImage struct {
+	*BaseWidget
 }
 
-func New(src string, opts ...Option) *image {
-	image := &image{
-		BaseWidget: widget.New("img"),
-	}
-
-	for _, option := range opts {
-		option()(image)
+func Image(src string) *BImage {
+	image := &BImage{
+		BaseWidget: New("img"),
 	}
 
 	image.SetAttribute("src", src)

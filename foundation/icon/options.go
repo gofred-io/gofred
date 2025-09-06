@@ -1,57 +1,46 @@
 package icon
 
 import (
-	"github.com/gofred-io/gofred/basic/svg"
-	"github.com/gofred-io/gofred/breakpoint"
-	"github.com/gofred-io/gofred/options"
+	. "github.com/gofred-io/gofred/breakpoint"
+	. "github.com/gofred-io/gofred/options"
 )
 
-type Option func(icon *icon)
-
-func Class(class string) Option {
-	return func(icon *icon) {
-		icon.opts = append(icon.opts, svg.Class(class))
-	}
+func (icon *FIcon) Class(class string) *FIcon {
+	icon.BSvg.Class(class)
+	return icon
 }
 
-func Fill(fill string) Option {
-	return func(icon *icon) {
-		icon.opts = append(icon.opts, svg.Fill(fill))
-	}
+func (icon *FIcon) Fill(fill string) *FIcon {
+	icon.BSvg.Fill(fill)
+	return icon
 }
 
-func Height(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func(icon *icon) {
-		icon.opts = append(icon.opts, svg.Height(opts...))
-	}
+func (icon *FIcon) Height(opts ...BreakpointOptions[int]) *FIcon {
+	icon.BSvg.Height(opts...)
+	return icon
 }
 
-func ID(id string) Option {
-	return func(icon *icon) {
-		icon.opts = append(icon.opts, svg.ID(id))
-	}
+func (icon *FIcon) ID(id string) *FIcon {
+	icon.BSvg.ID(id)
+	return icon
 }
 
-func MaxWidth(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func(icon *icon) {
-		icon.opts = append(icon.opts, svg.MaxWidth(opts...))
-	}
+func (icon *FIcon) MaxWidth(opts ...BreakpointOptions[int]) *FIcon {
+	icon.BSvg.MaxWidth(opts...)
+	return icon
 }
 
-func UserSelect(userSelect options.UserSelectType) Option {
-	return func(icon *icon) {
-		icon.opts = append(icon.opts, svg.UserSelect(userSelect))
-	}
+func (icon *FIcon) UserSelect(userSelect UserSelectType) *FIcon {
+	icon.BSvg.UserSelect(userSelect)
+	return icon
 }
 
-func Width(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func(icon *icon) {
-		icon.opts = append(icon.opts, svg.Width(opts...))
-	}
+func (icon *FIcon) Width(opts ...BreakpointOptions[int]) *FIcon {
+	icon.BSvg.Width(opts...)
+	return icon
 }
 
-func WidthP(opts ...breakpoint.BreakpointOptions[float64]) Option {
-	return func(icon *icon) {
-		icon.opts = append(icon.opts, svg.WidthP(opts...))
-	}
+func (icon *FIcon) WidthP(opts ...BreakpointOptions[float64]) *FIcon {
+	icon.BSvg.WidthP(opts...)
+	return icon
 }

@@ -1,74 +1,61 @@
 package button
 
 import (
-	"github.com/gofred-io/gofred/breakpoint"
-	"github.com/gofred-io/gofred/options"
+	. "github.com/gofred-io/gofred/breakpoint"
+	. "github.com/gofred-io/gofred/options"
 )
 
-type Option options.OptionWrapper
-
-func BackgroundColor(backgroundColor string) Option {
-	return func() options.Option {
-		return options.BackgroundColor(backgroundColor)
-	}
+func (b *BButton) BackgroundColor(backgroundColor string) *BButton {
+	BackgroundColor(backgroundColor)(b)
+	return b
 }
 
-func BorderRadius(borderRadius int) Option {
-	return func() options.Option {
-		return options.BorderRadius(borderRadius)
-	}
+func (b *BButton) BorderRadius(borderRadius int) *BButton {
+	BorderRadius(borderRadius)(b)
+	return b
 }
 
-func Class(class string) Option {
-	return func() options.Option {
-		return options.Class(class)
-	}
+func (b *BButton) Class(class string) *BButton {
+	Class(class)(b)
+	return b
 }
 
-func Height(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func() options.Option {
-		return options.Height(opts...)
-	}
+func (b *BButton) Height(opts ...BreakpointOptions[int]) *BButton {
+	Height(opts...)(b)
+	return b
 }
 
-func ID(id string) Option {
-	return func() options.Option {
-		return options.ID(id)
-	}
+func (b *BButton) ID(id string) *BButton {
+	ID(id)(b)
+	return b
 }
 
-func MaxWidth(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func() options.Option {
-		return options.MaxWidth(opts...)
-	}
+func (b *BButton) MaxWidth(opts ...BreakpointOptions[int]) *BButton {
+	MaxWidth(opts...)(b)
+	return b
 }
 
-func OnClick(handler options.OnClickHandler) Option {
-	return func() options.Option {
-		return options.OnClick(handler)
-	}
+func (b *BButton) OnClick(handler OnClickHandler) *BButton {
+	OnClick(handler)(b)
+	return b
 }
 
-func Tooltip(tooltip string) Option {
-	return func() options.Option {
-		return options.Tooltip(tooltip)
-	}
+func (b *BButton) Tooltip(tooltip string) *BButton {
+	Tooltip(tooltip)(b)
+	return b
 }
 
-func Visible(opts ...breakpoint.BreakpointOptions[bool]) Option {
-	return func() options.Option {
-		return options.Visible(opts...)
-	}
+func (b *BButton) Visible(opts ...BreakpointOptions[bool]) *BButton {
+	Visible(opts...)(b)
+	return b
 }
 
-func Width(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func() options.Option {
-		return options.Width(opts...)
-	}
+func (b *BButton) Width(opts ...BreakpointOptions[int]) *BButton {
+	Width(opts...)(b)
+	return b
 }
 
-func WidthP(opts ...breakpoint.BreakpointOptions[float64]) Option {
-	return func() options.Option {
-		return options.WidthP(opts...)
-	}
+func (b *BButton) WidthP(opts ...BreakpointOptions[float64]) *BButton {
+	WidthP(opts...)(b)
+	return b
 }

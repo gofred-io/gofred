@@ -1,118 +1,97 @@
 package container
 
 import (
-	"github.com/gofred-io/gofred/basic/div"
-	"github.com/gofred-io/gofred/breakpoint"
-	"github.com/gofred-io/gofred/options"
-	"github.com/gofred-io/gofred/options/spacing"
+	. "github.com/gofred-io/gofred/breakpoint"
+	. "github.com/gofred-io/gofred/options"
+	. "github.com/gofred-io/gofred/options/spacing"
 )
 
-type Option func(container *container)
-
-func display(display options.DisplayType) Option {
-	return func(container *container) {
-		container.opts = append(container.opts, div.Display(display))
-	}
+func (container *FContainer) display(display DisplayType) *FContainer {
+	container.BDiv.Display(display)
+	return container
 }
 
-func BackgroundColor(color string) Option {
-	return func(container *container) {
-		container.opts = append(container.opts, div.BackgroundColor(color))
-	}
+func (container *FContainer) BackgroundColor(color string) *FContainer {
+	container.BDiv.BackgroundColor(color)
+	return container
 }
 
-func BorderColor(color string) Option {
-	return func(container *container) {
-		container.opts = append(container.opts, div.BorderColor(color))
-	}
+func (container *FContainer) BorderColor(color string) *FContainer {
+	container.BDiv.BorderColor(color)
+	return container
 }
 
-func BorderStyle(style options.BorderStyleType) Option {
-	return func(container *container) {
-		container.opts = append(container.opts, div.BorderStyle(style))
-	}
+func (container *FContainer) BorderStyle(style BorderStyleType) *FContainer {
+	container.BDiv.BorderStyle(style)
+	return container
 }
 
-func BorderWidth(top int, right int, bottom int, left int) Option {
-	return func(container *container) {
-		container.opts = append(container.opts, div.BorderWidth(top, right, bottom, left))
-	}
+func (container *FContainer) BorderWidth(top int, right int, bottom int, left int) *FContainer {
+	container.BDiv.BorderWidth(top, right, bottom, left)
+	return container
 }
 
-func BorderRadius(borderRadius int) Option {
-	return func(container *container) {
-		container.opts = append(container.opts, div.BorderRadius(borderRadius))
-	}
+func (container *FContainer) BorderRadius(borderRadius int) *FContainer {
+	container.BDiv.BorderRadius(borderRadius)
+	return container
 }
 
-func BoxShadow(shadow string) Option {
-	return func(container *container) {
-		container.opts = append(container.opts, div.BoxShadow(shadow))
-	}
+func (container *FContainer) BoxShadow(shadow string) *FContainer {
+	container.BDiv.BoxShadow(shadow)
+	return container
 }
 
-func Class(class string) Option {
-	return func(container *container) {
-		container.opts = append(container.opts, div.Class(class))
-	}
+func (container *FContainer) Class(class string) *FContainer {
+	container.BDiv.Class(class)
+	return container
 }
 
-func Flex(flex int) Option {
-	return func(container *container) {
-		container.opts = append(container.opts, div.Flex(flex))
-	}
+func (container *FContainer) Flex(flex int) *FContainer {
+	container.BDiv.Flex(flex)
+	return container
 }
 
-func Height(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func(container *container) {
-		container.opts = append(container.opts, div.Height(opts...))
-	}
+func (container *FContainer) Height(opts ...BreakpointOptions[int]) *FContainer {
+	container.BDiv.Height(opts...)
+	return container
 }
 
-func ID(id string) Option {
-	return func(container *container) {
-		container.opts = append(container.opts, div.ID(id))
-	}
+func (container *FContainer) ID(id string) *FContainer {
+	container.BDiv.ID(id)
+	return container
 }
 
-func Margin(opts ...breakpoint.BreakpointOptions[spacing.Spacing]) Option {
-	return func(container *container) {
-		container.opts = append(container.opts, div.Margin(opts...))
-	}
+func (container *FContainer) Margin(opts ...BreakpointOptions[Spacing]) *FContainer {
+	container.BDiv.Margin(opts...)
+	return container
 }
 
-func MaxWidth(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func(container *container) {
-		container.opts = append(container.opts, div.MaxWidth(opts...))
-	}
+func (container *FContainer) MaxWidth(opts ...BreakpointOptions[int]) *FContainer {
+	container.BDiv.MaxWidth(opts...)
+	return container
 }
 
-func Overflow(overflow options.OverflowType) Option {
-	return func(container *container) {
-		container.opts = append(container.opts, div.Overflow(overflow))
-	}
+func (container *FContainer) Overflow(overflow OverflowType) *FContainer {
+	container.BDiv.Overflow(overflow)
+	return container
 }
 
-func Padding(opts ...breakpoint.BreakpointOptions[spacing.Spacing]) Option {
-	return func(container *container) {
-		container.opts = append(container.opts, div.Padding(opts...))
-	}
+func (container *FContainer) Padding(opts ...BreakpointOptions[Spacing]) *FContainer {
+	container.BDiv.Padding(opts...)
+	return container
 }
 
-func Visible(opts ...breakpoint.BreakpointOptions[bool]) Option {
-	return func(container *container) {
-		container.opts = append(container.opts, div.Visible(opts...))
-	}
+func (container *FContainer) Visible(opts ...BreakpointOptions[bool]) *FContainer {
+	container.BDiv.Visible(opts...)
+	return container
 }
 
-func Width(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func(container *container) {
-		container.opts = append(container.opts, div.Width(opts...))
-	}
+func (container *FContainer) Width(opts ...BreakpointOptions[int]) *FContainer {
+	container.BDiv.Width(opts...)
+	return container
 }
 
-func WidthP(opts ...breakpoint.BreakpointOptions[float64]) Option {
-	return func(container *container) {
-		container.opts = append(container.opts, div.WidthP(opts...))
-	}
+func (container *FContainer) WidthP(opts ...BreakpointOptions[float64]) *FContainer {
+	container.BDiv.WidthP(opts...)
+	return container
 }

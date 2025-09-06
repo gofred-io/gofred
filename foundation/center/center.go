@@ -1,39 +1,26 @@
 package center
 
 import (
-	"github.com/gofred-io/gofred/basic/div"
-	"github.com/gofred-io/gofred/options"
-	"github.com/gofred-io/gofred/widget"
+	. "github.com/gofred-io/gofred/basic/div"
+	. "github.com/gofred-io/gofred/options"
+	. "github.com/gofred-io/gofred/widget"
 )
 
-type center struct {
-	*widget.BaseWidget
-	opts []div.Option
+type FCenter struct {
+	*BDiv
 }
 
-func New(child widget.Widget, opts ...Option) *center {
-	c := &center{
-		BaseWidget: &widget.BaseWidget{},
-	}
-
-	opts = append(
-		opts,
-		display(options.DisplayTypeFlex),
-		flex(1),
-		alignItems(options.AxisAlignmentTypeCenter),
-		justifyContent(options.AxisAlignmentTypeCenter),
-	)
-
-	for _, option := range opts {
-		option(c)
-	}
-
-	c.Extend(
-		div.New(
-			[]widget.Widget{child},
-			c.opts...,
+func Center(child Widget) *FCenter {
+	c := &FCenter{
+		BDiv: Div(
+			[]Widget{child},
 		),
-	)
+	}
+
+	c.display(DisplayTypeFlex)
+	c.flex(1)
+	c.alignItems(AxisAlignmentTypeCenter)
+	c.justifyContent(AxisAlignmentTypeCenter)
 
 	return c
 }

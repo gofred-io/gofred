@@ -2,40 +2,22 @@ package button
 
 import (
 	basicbutton "github.com/gofred-io/gofred/basic/button"
-	"github.com/gofred-io/gofred/widget"
+	. "github.com/gofred-io/gofred/widget"
 )
 
-type button struct {
-	*widget.BaseWidget
-	opts []basicbutton.Option
+type FButton struct {
+	*basicbutton.BButton
 }
 
-func New(child widget.Widget, opts ...Option) *button {
+func Button(child Widget) *FButton {
 	var (
-		b = &button{
-			BaseWidget: &widget.BaseWidget{},
+		b = &FButton{
+			BButton: basicbutton.Button(
+				child,
+			),
 		}
 	)
 
-	defaultOpts := []Option{
-		Class("gf-button"),
-	}
-
-	opts = append(
-		defaultOpts,
-		opts...,
-	)
-
-	for _, option := range opts {
-		option(b)
-	}
-
-	b.Extend(
-		basicbutton.New(
-			child,
-			b.opts...,
-		),
-	)
-
+	b.Class("gf-button")
 	return b
 }

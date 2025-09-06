@@ -1,20 +1,16 @@
 package svg
 
 import (
-	"github.com/gofred-io/gofred/widget"
+	. "github.com/gofred-io/gofred/widget"
 )
 
-type svg struct {
-	*widget.BaseWidget
+type BSvg struct {
+	*BaseWidget
 }
 
-func New(children []widget.Widget, opts ...Option) *svg {
-	svg := &svg{
-		BaseWidget: widget.NewNS("http://www.w3.org/2000/svg", "svg"),
-	}
-
-	for _, option := range opts {
-		option()(svg)
+func Svg(children []Widget) *BSvg {
+	svg := &BSvg{
+		BaseWidget: NewNS("http://www.w3.org/2000/svg", "svg"),
 	}
 
 	svg.SetAttribute("xmlns", "http://www.w3.org/2000/svg")

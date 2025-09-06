@@ -1,45 +1,36 @@
 package grid
 
 import (
-	"github.com/gofred-io/gofred/basic/div"
-	"github.com/gofred-io/gofred/breakpoint"
-	"github.com/gofred-io/gofred/options"
+	. "github.com/gofred-io/gofred/breakpoint"
+	. "github.com/gofred-io/gofred/options"
 )
 
-type Option func(grid *grid)
-
-func display(display options.DisplayType) Option {
-	return func(grid *grid) {
-		grid.opts = append(grid.opts, div.Display(display))
-	}
+func (grid *FGrid) display(display DisplayType) *FGrid {
+	grid.BDiv.Display(display)
+	return grid
 }
 
-func Class(class string) Option {
-	return func(grid *grid) {
-		grid.opts = append(grid.opts, div.Class(class))
-	}
+func (grid *FGrid) Class(class string) *FGrid {
+	grid.BDiv.Class(class)
+	return grid
 }
 
-func ColumnCount(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func(grid *grid) {
-		grid.opts = append(grid.opts, div.ColumnCount(opts...))
-	}
+func (grid *FGrid) ColumnCount(opts ...BreakpointOptions[int]) *FGrid {
+	grid.BDiv.ColumnCount(opts...)
+	return grid
 }
 
-func ColumnGap(columnGap int) Option {
-	return func(grid *grid) {
-		grid.opts = append(grid.opts, div.ColumnGap(columnGap))
-	}
+func (grid *FGrid) ColumnGap(columnGap int) *FGrid {
+	grid.BDiv.ColumnGap(columnGap)
+	return grid
 }
 
-func ID(id string) Option {
-	return func(grid *grid) {
-		grid.opts = append(grid.opts, div.ID(id))
-	}
+func (grid *FGrid) ID(id string) *FGrid {
+	grid.BDiv.ID(id)
+	return grid
 }
 
-func RowGap(rowGap int) Option {
-	return func(grid *grid) {
-		grid.opts = append(grid.opts, div.RowGap(rowGap))
-	}
+func (grid *FGrid) RowGap(rowGap int) *FGrid {
+	grid.BDiv.RowGap(rowGap)
+	return grid
 }

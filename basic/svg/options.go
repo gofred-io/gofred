@@ -1,56 +1,46 @@
 package svg
 
 import (
-	"github.com/gofred-io/gofred/breakpoint"
-	"github.com/gofred-io/gofred/options"
+	. "github.com/gofred-io/gofred/breakpoint"
+	. "github.com/gofred-io/gofred/options"
 )
 
-type Option options.OptionWrapper
-
-func Class(class string) Option {
-	return func() options.Option {
-		return options.Class(class)
-	}
+func (s *BSvg) Class(class string) *BSvg {
+	Class(class)(s)
+	return s
 }
 
-func Fill(fill string) Option {
-	return func() options.Option {
-		return options.Fill(fill)
-	}
+func (s *BSvg) Fill(fill string) *BSvg {
+	Fill(fill)(s)
+	return s
 }
 
-func Height(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func() options.Option {
-		return options.Height(opts...)
-	}
+func (s *BSvg) Height(opts ...BreakpointOptions[int]) *BSvg {
+	Height(opts...)(s)
+	return s
 }
 
-func ID(id string) Option {
-	return func() options.Option {
-		return options.ID(id)
-	}
+func (s *BSvg) ID(id string) *BSvg {
+	ID(id)(s)
+	return s
 }
 
-func MaxWidth(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func() options.Option {
-		return options.MaxWidth(opts...)
-	}
+func (s *BSvg) MaxWidth(opts ...BreakpointOptions[int]) *BSvg {
+	MaxWidth(opts...)(s)
+	return s
 }
 
-func UserSelect(userSelect options.UserSelectType) Option {
-	return func() options.Option {
-		return options.UserSelect(userSelect)
-	}
+func (s *BSvg) UserSelect(userSelect UserSelectType) *BSvg {
+	UserSelect(userSelect)(s)
+	return s
 }
 
-func Width(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func() options.Option {
-		return options.Width(opts...)
-	}
+func (s *BSvg) Width(opts ...BreakpointOptions[int]) *BSvg {
+	Width(opts...)(s)
+	return s
 }
 
-func WidthP(opts ...breakpoint.BreakpointOptions[float64]) Option {
-	return func() options.Option {
-		return options.WidthP(opts...)
-	}
+func (s *BSvg) WidthP(opts ...BreakpointOptions[float64]) *BSvg {
+	WidthP(opts...)(s)
+	return s
 }

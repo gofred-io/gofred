@@ -1,75 +1,61 @@
 package button
 
 import (
-	basicbutton "github.com/gofred-io/gofred/basic/button"
-	"github.com/gofred-io/gofred/breakpoint"
-	"github.com/gofred-io/gofred/options"
+	. "github.com/gofred-io/gofred/breakpoint"
+	. "github.com/gofred-io/gofred/options"
 )
 
-type Option func(button *button)
-
-func BackgroundColor(backgroundColor string) Option {
-	return func(button *button) {
-		button.opts = append(button.opts, basicbutton.BackgroundColor(backgroundColor))
-	}
+func (b *FButton) BackgroundColor(backgroundColor string) *FButton {
+	b.BButton.BackgroundColor(backgroundColor)
+	return b
 }
 
-func BorderRadius(borderRadius int) Option {
-	return func(button *button) {
-		button.opts = append(button.opts, basicbutton.BorderRadius(borderRadius))
-	}
+func (b *FButton) BorderRadius(borderRadius int) *FButton {
+	b.BButton.BorderRadius(borderRadius)
+	return b
 }
 
-func Class(class string) Option {
-	return func(button *button) {
-		button.opts = append(button.opts, basicbutton.Class(class))
-	}
+func (b *FButton) Class(class string) *FButton {
+	b.BButton.Class(class)
+	return b
 }
 
-func Height(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func(button *button) {
-		button.opts = append(button.opts, basicbutton.Height(opts...))
-	}
+func (b *FButton) Height(opts ...BreakpointOptions[int]) *FButton {
+	b.BButton.Height(opts...)
+	return b
 }
 
-func ID(id string) Option {
-	return func(button *button) {
-		button.opts = append(button.opts, basicbutton.ID(id))
-	}
+func (b *FButton) ID(id string) *FButton {
+	b.BButton.ID(id)
+	return b
 }
 
-func MaxWidth(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func(button *button) {
-		button.opts = append(button.opts, basicbutton.MaxWidth(opts...))
-	}
+func (b *FButton) MaxWidth(opts ...BreakpointOptions[int]) *FButton {
+	b.BButton.MaxWidth(opts...)
+	return b
 }
 
-func OnClick(handler options.OnClickHandler) Option {
-	return func(button *button) {
-		button.opts = append(button.opts, basicbutton.OnClick(handler))
-	}
+func (b *FButton) OnClick(handler OnClickHandler) *FButton {
+	b.BButton.OnClick(handler)
+	return b
 }
 
-func Tooltip(tooltip string) Option {
-	return func(button *button) {
-		button.opts = append(button.opts, basicbutton.Tooltip(tooltip))
-	}
+func (b *FButton) Tooltip(tooltip string) *FButton {
+	b.BButton.Tooltip(tooltip)
+	return b
 }
 
-func Visible(opts ...breakpoint.BreakpointOptions[bool]) Option {
-	return func(button *button) {
-		button.opts = append(button.opts, basicbutton.Visible(opts...))
-	}
+func (b *FButton) Visible(opts ...BreakpointOptions[bool]) *FButton {
+	b.BButton.Visible(opts...)
+	return b
 }
 
-func Width(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func(button *button) {
-		button.opts = append(button.opts, basicbutton.Width(opts...))
-	}
+func (b *FButton) Width(opts ...BreakpointOptions[int]) *FButton {
+	b.BButton.Width(opts...)
+	return b
 }
 
-func WidthP(opts ...breakpoint.BreakpointOptions[float64]) Option {
-	return func(button *button) {
-		button.opts = append(button.opts, basicbutton.WidthP(opts...))
-	}
+func (b *FButton) WidthP(opts ...BreakpointOptions[float64]) *FButton {
+	b.BButton.WidthP(opts...)
+	return b
 }

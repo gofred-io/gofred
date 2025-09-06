@@ -1,51 +1,41 @@
 package image
 
 import (
-	basicimage "github.com/gofred-io/gofred/basic/image"
-	"github.com/gofred-io/gofred/breakpoint"
-	"github.com/gofred-io/gofred/options"
+	. "github.com/gofred-io/gofred/breakpoint"
+	. "github.com/gofred-io/gofred/options"
 )
 
-type Option func(image *image)
-
-func Class(class string) Option {
-	return func(image *image) {
-		image.opts = append(image.opts, basicimage.Class(class))
-	}
+func (image *FImage) Class(class string) *FImage {
+	image.BImage.Class(class)
+	return image
 }
 
-func Height(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func(image *image) {
-		image.opts = append(image.opts, basicimage.Height(opts...))
-	}
+func (image *FImage) Height(opts ...BreakpointOptions[int]) *FImage {
+	image.BImage.Height(opts...)
+	return image
 }
 
-func ID(id string) Option {
-	return func(image *image) {
-		image.opts = append(image.opts, basicimage.ID(id))
-	}
+func (image *FImage) ID(id string) *FImage {
+	image.BImage.ID(id)
+	return image
 }
 
-func MaxWidth(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func(image *image) {
-		image.opts = append(image.opts, basicimage.MaxWidth(opts...))
-	}
+func (image *FImage) MaxWidth(opts ...BreakpointOptions[int]) *FImage {
+	image.BImage.MaxWidth(opts...)
+	return image
 }
 
-func UserSelect(userSelect options.UserSelectType) Option {
-	return func(image *image) {
-		image.opts = append(image.opts, basicimage.UserSelect(userSelect))
-	}
+func (image *FImage) UserSelect(userSelect UserSelectType) *FImage {
+	image.BImage.UserSelect(userSelect)
+	return image
 }
 
-func Width(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func(image *image) {
-		image.opts = append(image.opts, basicimage.Width(opts...))
-	}
+func (image *FImage) Width(opts ...BreakpointOptions[int]) *FImage {
+	image.BImage.Width(opts...)
+	return image
 }
 
-func WidthP(opts ...breakpoint.BreakpointOptions[float64]) Option {
-	return func(image *image) {
-		image.opts = append(image.opts, basicimage.WidthP(opts...))
-	}
+func (image *FImage) WidthP(opts ...BreakpointOptions[float64]) *FImage {
+	image.BImage.WidthP(opts...)
+	return image
 }

@@ -25,12 +25,12 @@ var (
 	BreakPoints = []BreakPoint{xs, sm, md, lg, xl, xxl}
 )
 
-func GetCurrent() BreakPoint {
+func GetCurrentBreakPoint() BreakPoint {
 	clientWidth := js.Global().Get("document").Get("documentElement").Get("clientWidth").Int()
-	return GetFromWidth(clientWidth)
+	return GetBreakPointFromWidth(clientWidth)
 }
 
-func GetFromWidth(width int) BreakPoint {
+func GetBreakPointFromWidth(width int) BreakPoint {
 	for _, breakPoint := range BreakPoints {
 		if width < breakPointWidths[breakPoint] {
 			return breakPoint - 1

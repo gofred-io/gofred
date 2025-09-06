@@ -1,62 +1,50 @@
 package row
 
 import (
-	"github.com/gofred-io/gofred/basic/div"
-	"github.com/gofred-io/gofred/options"
+	. "github.com/gofred-io/gofred/options"
 )
 
-type Option func(center *row)
-
-func display(display options.DisplayType) Option {
-	return func(row *row) {
-		row.opts = append(row.opts, div.Display(display))
-	}
+func (row *FRow) display(display DisplayType) *FRow {
+	row.BDiv.Display(display)
+	return row
 }
 
-func flexDirection(flexDirection options.FlexDirectionType) Option {
-	return func(row *row) {
-		row.opts = append(row.opts, div.FlexDirection(flexDirection))
-	}
+func (row *FRow) flexDirection(flexDirection FlexDirectionType) *FRow {
+	row.BDiv.FlexDirection(flexDirection)
+	return row
 }
 
-func Class(class string) Option {
-	return func(row *row) {
-		row.opts = append(row.opts, div.Class(class))
-	}
+func (row *FRow) Class(class string) *FRow {
+	row.BDiv.Class(class)
+	return row
 }
 
-func ID(id string) Option {
-	return func(row *row) {
-		row.opts = append(row.opts, div.ID(id))
-	}
+func (row *FRow) ID(id string) *FRow {
+	row.BDiv.ID(id)
+	return row
 }
 
-func CrossAxisAlignment(crossAxisAlignment options.AxisAlignmentType) Option {
-	return func(row *row) {
-		row.opts = append(row.opts, div.AlignItems(crossAxisAlignment))
-	}
+func (row *FRow) CrossAxisAlignment(crossAxisAlignment AxisAlignmentType) *FRow {
+	row.BDiv.AlignItems(crossAxisAlignment)
+	return row
 }
 
-func Flex(flex int) Option {
-	return func(row *row) {
-		row.opts = append(row.opts, div.Flex(flex))
-	}
+func (row *FRow) Flex(flex int) *FRow {
+	row.BDiv.Flex(flex)
+	return row
 }
 
-func Gap(gap int) Option {
-	return func(row *row) {
-		row.opts = append(row.opts, div.ColumnGap(gap))
-	}
+func (row *FRow) Gap(gap int) *FRow {
+	row.BDiv.ColumnGap(gap)
+	return row
 }
 
-func MainAxisAlignment(mainAxisAlignment options.AxisAlignmentType) Option {
-	return func(row *row) {
-		row.opts = append(row.opts, div.JustifyContent(mainAxisAlignment))
-	}
+func (row *FRow) MainAxisAlignment(mainAxisAlignment AxisAlignmentType) *FRow {
+	row.BDiv.JustifyContent(mainAxisAlignment)
+	return row
 }
 
-func MainAxisSize(mainAxisSize options.AxisSizeType) Option {
-	return func(row *row) {
-		row.opts = append(row.opts, div.AlignSelf(mainAxisSize))
-	}
+func (row *FRow) MainAxisSize(mainAxisSize AxisSizeType) *FRow {
+	row.BDiv.AlignSelf(mainAxisSize)
+	return row
 }

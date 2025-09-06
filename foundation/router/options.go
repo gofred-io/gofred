@@ -5,11 +5,28 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/gofred-io/gofred/widget"
+	. "github.com/gofred-io/gofred/widget"
 )
 
-type RouteBuilder func(params RouteParams) widget.Widget
-type Options func(router *router)
+type RouteBuilder func(params RouteParams) Widget
+type RouterOption func(router *FRouter)
+
+func Route(path string, routeBuilder RouteBuilder) RouterOption {
+	return func(router *FRouter) {
+		if !strings.HasSuffix(path, "/") {
+			path = path + "/"
+		}
+
+		router.routePatterns[path] = getRoutePattern(path)
+		router.routes[path] = routeBuilder
+	}
+}
+
+func NotFound(routeBuilder RouteBuilder) RouterOption {
+	return func(router *FRouter) {
+		router.notFoundBuilder = routeBuilder
+	}
+}
 
 func getRoutePattern(path string) *regexp.Regexp {
 	if !strings.Contains(path, ":") {
@@ -33,21 +50,4 @@ func getRoutePattern(path string) *regexp.Regexp {
 	}
 
 	return regexp.MustCompile("^" + joined + "$")
-}
-
-func Route(path string, routeBuilder RouteBuilder) Options {
-	return func(router *router) {
-		if !strings.HasSuffix(path, "/") {
-			path = path + "/"
-		}
-
-		router.routePatterns[path] = getRoutePattern(path)
-		router.routes[path] = routeBuilder
-	}
-}
-
-func NotFound(routeBuilder RouteBuilder) Options {
-	return func(router *router) {
-		router.notFoundBuilder = routeBuilder
-	}
 }

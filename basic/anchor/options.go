@@ -1,77 +1,65 @@
 package anchor
 
-import "github.com/gofred-io/gofred/options"
+import (
+	. "github.com/gofred-io/gofred/options"
+)
 
-type Option options.OptionWrapper
-
-func Class(class string) Option {
-	return func() options.Option {
-		return options.Class(class)
-	}
+func (a *BAnchor) Class(class string) *BAnchor {
+	Class(class)(a)
+	return a
 }
 
-func Flex(flex int) Option {
-	return func() options.Option {
-		return options.Flex(flex)
-	}
+func (a *BAnchor) Flex(flex int) *BAnchor {
+	Flex(flex)(a)
+	return a
 }
 
-func FontColor(color string) Option {
-	return func() options.Option {
-		return options.FontColor(color)
-	}
+func (a *BAnchor) FontColor(color string) *BAnchor {
+	FontColor(color)(a)
+	return a
 }
 
-func FontFamily(fontFamily string) Option {
-	return func() options.Option {
-		return options.FontFamily(fontFamily)
-	}
+func (a *BAnchor) FontFamily(fontFamily string) *BAnchor {
+	FontFamily(fontFamily)(a)
+	return a
 }
 
-func FontSize(fontSize int) Option {
-	return func() options.Option {
-		return options.FontSize(fontSize)
-	}
+func (a *BAnchor) FontSize(fontSize int) *BAnchor {
+	FontSize(fontSize)(a)
+	return a
 }
 
-func FontWeight(fontWeight string) Option {
-	return func() options.Option {
-		return options.FontWeight(fontWeight)
-	}
+func (a *BAnchor) FontWeight(fontWeight string) *BAnchor {
+	FontWeight(fontWeight)(a)
+	return a
 }
 
-func Href(href string) Option {
-	return func() options.Option {
-		return options.Href(href)
-	}
+func (a *BAnchor) Href(href string) *BAnchor {
+	Href(href)(a)
+	return a
 }
 
-func ID(id string) Option {
-	return func() options.Option {
-		return options.ID(id)
-	}
+func (a *BAnchor) ID(id string) *BAnchor {
+	ID(id)(a)
+	return a
 }
 
-func LineHeight(lineHeight float64) Option {
-	return func() options.Option {
-		return options.LineHeight(lineHeight)
-	}
+func (a *BAnchor) LineHeight(lineHeight float64) *BAnchor {
+	LineHeight(lineHeight)(a)
+	return a
 }
 
-func OnClick(handler options.OnClickHandler) Option {
-	return func() options.Option {
-		return options.OnClick(handler)
-	}
+func (a *BAnchor) OnClick(handler OnClickHandler) *BAnchor {
+	OnClick(handler)(a)
+	return a
 }
 
-func NewTab(newTab bool) Option {
-	return func() options.Option {
-		return options.NewTab(newTab)
-	}
+func (a *BAnchor) NewTab(newTab bool) *BAnchor {
+	NewTab(newTab)(a)
+	return a
 }
 
-func Tooltip(tooltip string) Option {
-	return func() options.Option {
-		return options.Tooltip(tooltip)
-	}
+func (a *BAnchor) Tooltip(tooltip string) *BAnchor {
+	Tooltip(tooltip)(a)
+	return a
 }

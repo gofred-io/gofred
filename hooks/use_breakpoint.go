@@ -29,7 +29,7 @@ func UseBreakpoint() *BreakpointValue {
 	breakpointValue = &BreakpointValue{
 		listeners: make([]listenable.Listener[breakpoint.BreakPoint], 0),
 		mutex:     sync.RWMutex{},
-		current:   breakpoint.GetCurrent(),
+		current:   breakpoint.GetCurrentBreakPoint(),
 	}
 
 	c := make(chan int)
@@ -46,7 +46,7 @@ func UseBreakpoint() *BreakpointValue {
 		tick := time.NewTicker(time.Millisecond * 100)
 		for range tick.C {
 			width := <-c
-			current := breakpoint.GetFromWidth(width)
+			current := breakpoint.GetBreakPointFromWidth(width)
 			if current != breakpointValue.current {
 				breakpointValue.current = current
 				breakpointValue.NotifyListeners(current)

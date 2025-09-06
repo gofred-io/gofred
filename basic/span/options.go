@@ -1,219 +1,182 @@
 package span
 
 import (
-	"github.com/gofred-io/gofred/breakpoint"
-	"github.com/gofred-io/gofred/options"
-	"github.com/gofred-io/gofred/options/spacing"
+	. "github.com/gofred-io/gofred/breakpoint"
+	. "github.com/gofred-io/gofred/options"
+	. "github.com/gofred-io/gofred/options/spacing"
 )
 
-type Option options.OptionWrapper
-
-func AlignItems(alignItems options.AxisAlignmentType) Option {
-	return func() options.Option {
-		return options.AlignItems(alignItems)
-	}
+func (s *BSpan) AlignItems(alignItems AxisAlignmentType) *BSpan {
+	AlignItems(alignItems)(s)
+	return s
 }
 
-func Alt(alt string) Option {
-	return func() options.Option {
-		return options.Alt(alt)
-	}
+func (s *BSpan) Alt(alt string) *BSpan {
+	Alt(alt)(s)
+	return s
 }
 
-func BackgroundColor(color string) Option {
-	return func() options.Option {
-		return options.BackgroundColor(color)
-	}
+func (s *BSpan) BackgroundColor(color string) *BSpan {
+	BackgroundColor(color)(s)
+	return s
 }
 
-func BorderRadius(borderRadius int) Option {
-	return func() options.Option {
-		return options.BorderRadius(borderRadius)
-	}
+func (s *BSpan) BorderRadius(borderRadius int) *BSpan {
+	BorderRadius(borderRadius)(s)
+	return s
 }
 
-func Class(class string) Option {
-	return func() options.Option {
-		return options.Class(class)
-	}
+func (s *BSpan) Class(class string) *BSpan {
+	Class(class)(s)
+	return s
 }
 
-func ColumnCount(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func() options.Option {
-		return options.ColumnCount(opts...)
-	}
+func (s *BSpan) ColumnCount(opts ...BreakpointOptions[int]) *BSpan {
+	ColumnCount(opts...)(s)
+	return s
 }
 
-func ColumnGap(columnGap int) Option {
-	return func() options.Option {
-		return options.ColumnGap(columnGap)
-	}
+func (s *BSpan) ColumnGap(columnGap int) *BSpan {
+	ColumnGap(columnGap)(s)
+	return s
 }
 
-func D(data string) Option {
-	return func() options.Option {
-		return options.D(data)
-	}
+func (s *BSpan) D(data string) *BSpan {
+	D(data)(s)
+	return s
 }
 
-func Display(display options.DisplayType) Option {
-	return func() options.Option {
-		return options.Display(display)
-	}
+func (s *BSpan) Display(display DisplayType) *BSpan {
+	Display(display)(s)
+	return s
 }
 
-func Fill(fill string) Option {
-	return func() options.Option {
-		return options.Fill(fill)
-	}
+func (s *BSpan) Fill(fill string) *BSpan {
+	Fill(fill)(s)
+	return s
 }
 
-func Flex(flex int) Option {
-	return func() options.Option {
-		return options.Flex(flex)
-	}
+func (s *BSpan) Flex(flex int) *BSpan {
+	Flex(flex)(s)
+	return s
 }
 
-func FlexDirection(flexDirection options.FlexDirectionType) Option {
-	return func() options.Option {
-		return options.FlexDirection(flexDirection)
-	}
+func (s *BSpan) FlexDirection(flexDirection FlexDirectionType) *BSpan {
+	FlexDirection(flexDirection)(s)
+	return s
 }
 
-func FlexWrap(flexWrap options.FlexWrapType) Option {
-	return func() options.Option {
-		return options.FlexWrap(flexWrap)
-	}
+func (s *BSpan) FlexWrap(flexWrap FlexWrapType) *BSpan {
+	FlexWrap(flexWrap)(s)
+	return s
 }
 
-func FontColor(color string) Option {
-	return func() options.Option {
-		return options.FontColor(color)
-	}
+func (s *BSpan) FontColor(color string) *BSpan {
+	FontColor(color)(s)
+	return s
 }
 
-func FontFamily(fontFamily string) Option {
-	return func() options.Option {
-		return options.FontFamily(fontFamily)
-	}
+func (s *BSpan) FontFamily(fontFamily string) *BSpan {
+	FontFamily(fontFamily)(s)
+	return s
 }
 
-func FontSize(fontSize int) Option {
-	return func() options.Option {
-		return options.FontSize(fontSize)
-	}
+func (s *BSpan) FontSize(fontSize int) *BSpan {
+	FontSize(fontSize)(s)
+	return s
 }
 
-func FontWeight(fontWeight string) Option {
-	return func() options.Option {
-		return options.FontWeight(fontWeight)
-	}
+func (s *BSpan) FontWeight(fontWeight string) *BSpan {
+	FontWeight(fontWeight)(s)
+	return s
 }
 
-func Height(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func() options.Option {
-		return options.Height(opts...)
-	}
+func (s *BSpan) Height(opts ...BreakpointOptions[int]) *BSpan {
+	Height(opts...)(s)
+	return s
 }
 
-func Href(href string) Option {
-	return func() options.Option {
-		return options.Href(href)
-	}
+func (s *BSpan) Href(href string) *BSpan {
+	Href(href)(s)
+	return s
 }
 
-func ID(id string) Option {
-	return func() options.Option {
-		return options.ID(id)
-	}
+func (s *BSpan) ID(id string) *BSpan {
+	ID(id)(s)
+	return s
 }
 
-func JustifyContent(justifyContent options.AxisAlignmentType) Option {
-	return func() options.Option {
-		return options.JustifyContent(justifyContent)
-	}
+func (s *BSpan) JustifyContent(justifyContent AxisAlignmentType) *BSpan {
+	JustifyContent(justifyContent)(s)
+	return s
 }
 
-func LineHeight(lineHeight float64) Option {
-	return func() options.Option {
-		return options.LineHeight(lineHeight)
-	}
+func (s *BSpan) LineHeight(lineHeight float64) *BSpan {
+	LineHeight(lineHeight)(s)
+	return s
 }
 
-func Margin(opts ...breakpoint.BreakpointOptions[spacing.Spacing]) Option {
-	return func() options.Option {
-		return options.Margin(opts...)
-	}
+func (s *BSpan) Margin(opts ...BreakpointOptions[Spacing]) *BSpan {
+	Margin(opts...)(s)
+	return s
 }
 
-func MaxWidth(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func() options.Option {
-		return options.MaxWidth(opts...)
-	}
+func (s *BSpan) MaxWidth(opts ...BreakpointOptions[int]) *BSpan {
+	MaxWidth(opts...)(s)
+	return s
 }
 
-func OnClick(handler options.OnClickHandler) Option {
-	return func() options.Option {
-		return options.OnClick(handler)
-	}
+func (s *BSpan) OnClick(handler OnClickHandler) *BSpan {
+	OnClick(handler)(s)
+	return s
 }
 
-func NewTab(newTab bool) Option {
-	return func() options.Option {
-		return options.NewTab(newTab)
-	}
+func (s *BSpan) NewTab(newTab bool) *BSpan {
+	NewTab(newTab)(s)
+	return s
 }
 
-func Padding(opts ...breakpoint.BreakpointOptions[spacing.Spacing]) Option {
-	return func() options.Option {
-		return options.Padding(opts...)
-	}
+func (s *BSpan) Padding(opts ...BreakpointOptions[Spacing]) *BSpan {
+	Padding(opts...)(s)
+	return s
 }
 
-func RowGap(rowGap int) Option {
-	return func() options.Option {
-		return options.RowGap(rowGap)
-	}
+func (s *BSpan) RowGap(rowGap int) *BSpan {
+	RowGap(rowGap)(s)
+	return s
 }
 
-func SetText(text string) Option {
-	return func() options.Option {
-		return options.SetText(text)
-	}
+func (s *BSpan) SetText(text string) *BSpan {
+	SetText(text)(s)
+	return s
 }
 
-func TextAlign(textAlign options.TextAlignType) Option {
-	return func() options.Option {
-		return options.TextAlign(textAlign)
-	}
+func (s *BSpan) TextAlign(textAlign TextAlignType) *BSpan {
+	TextAlign(textAlign)(s)
+	return s
 }
 
-func Tooltip(tooltip string) Option {
-	return func() options.Option {
-		return options.Tooltip(tooltip)
-	}
+func (s *BSpan) Tooltip(tooltip string) *BSpan {
+	Tooltip(tooltip)(s)
+	return s
 }
 
-func UserSelect(userSelect options.UserSelectType) Option {
-	return func() options.Option {
-		return options.UserSelect(userSelect)
-	}
+func (s *BSpan) UserSelect(userSelect UserSelectType) *BSpan {
+	UserSelect(userSelect)(s)
+	return s
 }
 
-func Visible(opts ...breakpoint.BreakpointOptions[bool]) Option {
-	return func() options.Option {
-		return options.Visible(opts...)
-	}
+func (s *BSpan) Visible(opts ...BreakpointOptions[bool]) *BSpan {
+	Visible(opts...)(s)
+	return s
 }
 
-func Width(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func() options.Option {
-		return options.Width(opts...)
-	}
+func (s *BSpan) Width(opts ...BreakpointOptions[int]) *BSpan {
+	Width(opts...)(s)
+	return s
 }
 
-func WidthP(opts ...breakpoint.BreakpointOptions[float64]) Option {
-	return func() options.Option {
-		return options.WidthP(opts...)
-	}
+func (s *BSpan) WidthP(opts ...BreakpointOptions[float64]) *BSpan {
+	WidthP(opts...)(s)
+	return s
 }

@@ -1,81 +1,65 @@
 package iconbutton
 
 import (
-	"github.com/gofred-io/gofred/basic/button"
-	"github.com/gofred-io/gofred/breakpoint"
-	"github.com/gofred-io/gofred/foundation/icon"
-	"github.com/gofred-io/gofred/options"
+	. "github.com/gofred-io/gofred/breakpoint"
+	. "github.com/gofred-io/gofred/options"
 )
 
-type Option func(iconButton *iconButton)
-
-func BorderRadius(borderRadius int) Option {
-	return func(iconButton *iconButton) {
-		iconButton.opts = append(iconButton.opts, button.BorderRadius(borderRadius))
-	}
+func (iconButton *FIconButton) BorderRadius(borderRadius int) *FIconButton {
+	iconButton.BButton.BorderRadius(borderRadius)
+	return iconButton
 }
 
-func Class(class string) Option {
-	return func(iconButton *iconButton) {
-		iconButton.opts = append(iconButton.opts, button.Class(class))
-	}
+func (iconButton *FIconButton) Class(class string) *FIconButton {
+	iconButton.BButton.Class(class)
+	return iconButton
 }
 
-func Fill(fill string) Option {
-	return func(iconButton *iconButton) {
-		iconButton.iconOpts = append(iconButton.iconOpts, icon.Fill(fill))
-	}
+func (iconButton *FIconButton) Fill(fill string) *FIconButton {
+	iconButton.FIcon.Fill(fill)
+	return iconButton
 }
 
-func Height(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func(iconButton *iconButton) {
-		iconButton.opts = append(iconButton.opts, button.Height(opts...))
-	}
+func (iconButton *FIconButton) Height(opts ...BreakpointOptions[int]) *FIconButton {
+	iconButton.BButton.Height(opts...)
+	return iconButton
 }
 
-func ID(id string) Option {
-	return func(iconButton *iconButton) {
-		iconButton.opts = append(iconButton.opts, button.ID(id))
-	}
+func (iconButton *FIconButton) ID(id string) *FIconButton {
+	iconButton.BButton.ID(id)
+	return iconButton
 }
 
-func MaxWidth(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func(iconButton *iconButton) {
-		iconButton.opts = append(iconButton.opts, button.MaxWidth(opts...))
-	}
+func (iconButton *FIconButton) MaxWidth(opts ...BreakpointOptions[int]) *FIconButton {
+	iconButton.BButton.MaxWidth(opts...)
+	return iconButton
 }
 
-func OnClick(handler options.OnClickHandler) Option {
-	return func(iconButton *iconButton) {
-		iconButton.opts = append(iconButton.opts, button.OnClick(handler))
-	}
+func (iconButton *FIconButton) OnClick(handler OnClickHandler) *FIconButton {
+	iconButton.BButton.OnClick(handler)
+	return iconButton
 }
 
-func Tooltip(tooltip string) Option {
-	return func(iconButton *iconButton) {
-		iconButton.opts = append(iconButton.opts, button.Tooltip(tooltip))
-	}
+func (iconButton *FIconButton) Tooltip(tooltip string) *FIconButton {
+	iconButton.BButton.Tooltip(tooltip)
+	return iconButton
 }
 
-func UserSelect(userSelect options.UserSelectType) Option {
-	return func(iconButton *iconButton) {
-		iconButton.iconOpts = append(iconButton.iconOpts, icon.UserSelect(userSelect))
-	}
+func (iconButton *FIconButton) UserSelect(userSelect UserSelectType) *FIconButton {
+	iconButton.FIcon.UserSelect(userSelect)
+	return iconButton
 }
-func Visible(opts ...breakpoint.BreakpointOptions[bool]) Option {
-	return func(iconButton *iconButton) {
-		iconButton.opts = append(iconButton.opts, button.Visible(opts...))
-	}
+func (iconButton *FIconButton) Visible(opts ...BreakpointOptions[bool]) *FIconButton {
+	iconButton.BButton.Visible(opts...)
+	return iconButton
 }
 
-func Width(opts ...breakpoint.BreakpointOptions[int]) Option {
-	return func(iconButton *iconButton) {
-		iconButton.opts = append(iconButton.opts, button.Width(opts...))
-	}
+func (iconButton *FIconButton) Width(opts ...BreakpointOptions[int]) *FIconButton {
+	iconButton.BButton.Width(opts...)
+	return iconButton
 }
 
-func WidthP(opts ...breakpoint.BreakpointOptions[float64]) Option {
-	return func(iconButton *iconButton) {
-		iconButton.opts = append(iconButton.opts, button.WidthP(opts...))
-	}
+func (iconButton *FIconButton) WidthP(opts ...BreakpointOptions[float64]) *FIconButton {
+	iconButton.BButton.WidthP(opts...)
+	return iconButton
 }

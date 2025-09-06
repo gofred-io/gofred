@@ -84,10 +84,10 @@ func FontColor(color string) Option {
 func ColumnCount(columnCount ...breakpoint.BreakpointOptions[int]) Option {
 	return func(widget widget.Widget) {
 		for _, option := range columnCount {
-			option(widget.GetBaseWidget().ColumnCount)
+			option(widget.GetBaseWidget().BVColumnCount)
 		}
 
-		listenBreakpointOption(widget.GetBaseWidget().ColumnCount, func(columnCount int) {
+		listenBreakpointOption(widget.GetBaseWidget().BVColumnCount, func(columnCount int) {
 			widget.GetBaseWidget().UpdateStyleProperty("grid-template-columns", fmt.Sprintf("repeat(%d, 1fr)", columnCount))
 		})
 	}
@@ -156,9 +156,9 @@ func FontWeight(fontWeight string) Option {
 func Height(options ...breakpoint.BreakpointOptions[int]) Option {
 	return func(widget widget.Widget) {
 		for _, option := range options {
-			option(widget.GetBaseWidget().Height)
+			option(widget.GetBaseWidget().BVHeight)
 
-			listenBreakpointOption(widget.GetBaseWidget().Height, func(height int) {
+			listenBreakpointOption(widget.GetBaseWidget().BVHeight, func(height int) {
 				widget.GetBaseWidget().UpdateStyleProperty("height", fmt.Sprintf("%dpx", height))
 			})
 		}
@@ -192,10 +192,10 @@ func LineHeight(lineHeight float64) Option {
 func Margin(options ...breakpoint.BreakpointOptions[spacing.Spacing]) Option {
 	return func(widget widget.Widget) {
 		for _, option := range options {
-			option(widget.GetBaseWidget().Margin)
+			option(widget.GetBaseWidget().BVMargin)
 		}
 
-		listenBreakpointOption(widget.GetBaseWidget().Margin, func(margin spacing.Spacing) {
+		listenBreakpointOption(widget.GetBaseWidget().BVMargin, func(margin spacing.Spacing) {
 			widget.GetBaseWidget().UpdateStyleProperty("margin", fmt.Sprintf("%dpx %dpx %dpx %dpx", margin.Top, margin.Right, margin.Bottom, margin.Left))
 		})
 	}
@@ -204,10 +204,10 @@ func Margin(options ...breakpoint.BreakpointOptions[spacing.Spacing]) Option {
 func MaxWidth(options ...breakpoint.BreakpointOptions[int]) Option {
 	return func(widget widget.Widget) {
 		for _, option := range options {
-			option(widget.GetBaseWidget().MaxWidth)
+			option(widget.GetBaseWidget().BVMaxWidth)
 		}
 
-		listenBreakpointOption(widget.GetBaseWidget().MaxWidth, func(maxWidth int) {
+		listenBreakpointOption(widget.GetBaseWidget().BVMaxWidth, func(maxWidth int) {
 			widget.GetBaseWidget().UpdateStyleProperty("max-width", fmt.Sprintf("%dpx", maxWidth))
 		})
 	}
@@ -219,6 +219,12 @@ func NewTab(newTab bool) Option {
 		if newTab {
 			widget.GetBaseWidget().SetAttribute("target", "_blank")
 		}
+	}
+}
+
+func NoFlex() Option {
+	return func(widget widget.Widget) {
+		widget.GetBaseWidget().RemoveStyleProperty("flex")
 	}
 }
 
@@ -237,10 +243,10 @@ func Overflow(overflow OverflowType) Option {
 func Padding(options ...breakpoint.BreakpointOptions[spacing.Spacing]) Option {
 	return func(widget widget.Widget) {
 		for _, option := range options {
-			option(widget.GetBaseWidget().Padding)
+			option(widget.GetBaseWidget().BVPadding)
 		}
 
-		listenBreakpointOption(widget.GetBaseWidget().Padding, func(padding spacing.Spacing) {
+		listenBreakpointOption(widget.GetBaseWidget().BVPadding, func(padding spacing.Spacing) {
 			widget.GetBaseWidget().UpdateStyleProperty("padding", fmt.Sprintf("%dpx %dpx %dpx %dpx", padding.Top, padding.Right, padding.Bottom, padding.Left))
 		})
 	}
@@ -289,10 +295,10 @@ func UserSelect(userSelect UserSelectType) Option {
 func Visible(options ...breakpoint.BreakpointOptions[bool]) Option {
 	return func(widget widget.Widget) {
 		for _, option := range options {
-			option(widget.GetBaseWidget().Visible)
+			option(widget.GetBaseWidget().BVVisible)
 		}
 
-		listenBreakpointOption(widget.GetBaseWidget().Visible, func(visible bool) {
+		listenBreakpointOption(widget.GetBaseWidget().BVVisible, func(visible bool) {
 			if visible {
 				widget.GetBaseWidget().RemoveClass("gf-hidden")
 			} else {
@@ -305,10 +311,10 @@ func Visible(options ...breakpoint.BreakpointOptions[bool]) Option {
 func Width(options ...breakpoint.BreakpointOptions[int]) Option {
 	return func(widget widget.Widget) {
 		for _, option := range options {
-			option(widget.GetBaseWidget().Width)
+			option(widget.GetBaseWidget().BVWidth)
 		}
 
-		listenBreakpointOption(widget.GetBaseWidget().Width, func(width int) {
+		listenBreakpointOption(widget.GetBaseWidget().BVWidth, func(width int) {
 			widget.GetBaseWidget().UpdateStyleProperty("width", fmt.Sprintf("%dpx", width))
 		})
 	}
@@ -317,10 +323,10 @@ func Width(options ...breakpoint.BreakpointOptions[int]) Option {
 func WidthP(options ...breakpoint.BreakpointOptions[float64]) Option {
 	return func(widget widget.Widget) {
 		for _, option := range options {
-			option(widget.GetBaseWidget().WidthP)
+			option(widget.GetBaseWidget().BVWidthP)
 		}
 
-		listenBreakpointOption(widget.GetBaseWidget().WidthP, func(width float64) {
+		listenBreakpointOption(widget.GetBaseWidget().BVWidthP, func(width float64) {
 			widget.GetBaseWidget().UpdateStyleProperty("width", fmt.Sprintf("%f%%", width*100))
 		})
 	}
@@ -340,6 +346,6 @@ func listenBreakpointOption[T any](breakpointValue *breakpoint.BreakpointValue[T
 	listener := listenable.NewListener(innerCallback)
 	breakpointHook.AddListener(listener)
 
-	currentBreakpoint := breakpoint.GetCurrent()
+	currentBreakpoint := breakpoint.GetCurrentBreakPoint()
 	innerCallback(currentBreakpoint)
 }
