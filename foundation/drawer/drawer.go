@@ -17,15 +17,17 @@ type Drawer struct {
 	transition float64
 }
 
-func New(child widget.BaseWidget, opts ...Option) *Drawer {
+func New(child widget.BaseWidget, opts ...Option) IDrawer {
 	d := &Drawer{
 		BaseWidget: widget.New("div"),
 		menu:       div.New(nil, div.Class("gf-drawer-menu")),
 		barrier:    div.New(nil, div.Class("gf-drawer-barrier"), div.Width(breakpoint.All(0))),
 	}
 
-	opts = append([]Option{Transition(0.5)}, opts...)
-	opts = append(opts, Class("gf-drawer-container"))
+	opts = append([]Option{
+		Transition(0.5),
+		Class("gf-drawer-container"),
+	}, opts...)
 
 	for _, option := range opts {
 		option(d)

@@ -7,6 +7,7 @@ type DisplayType string
 type FlexDirectionType string
 type FlexWrapType string
 type OverflowType string
+type PositionType string
 type TextAlignType string
 type UserSelectType string
 
@@ -54,6 +55,17 @@ const (
 	OverflowTypeHidden  OverflowType = "hidden"
 	OverflowTypeScroll  OverflowType = "scroll"
 	OverflowTypeAuto    OverflowType = "auto"
+)
+
+const (
+	PositionTypeTopLeft     PositionType = "top-left"
+	PositionTypeTopRight    PositionType = "top-right"
+	PositionTypeBottomLeft  PositionType = "bottom-left"
+	PositionTypeBottomRight PositionType = "bottom-right"
+	PositionTypeTop         PositionType = "top"
+	PositionTypeBottom      PositionType = "bottom"
+	PositionTypeLeft        PositionType = "left"
+	PositionTypeRight       PositionType = "right"
 )
 
 const (

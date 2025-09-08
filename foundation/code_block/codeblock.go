@@ -14,7 +14,17 @@ import (
 	"github.com/gofred-io/gofred/widget"
 )
 
-func New(code string) widget.BaseWidget {
+type CodeBlock struct {
+	onCopied func(code string)
+}
+
+func New(code string, opts ...Option) widget.BaseWidget {
+	codeBlock := &CodeBlock{}
+
+	for _, option := range opts {
+		option(codeBlock)
+	}
+
 	return container.New(
 		column.New(
 			[]widget.BaseWidget{
@@ -24,8 +34,12 @@ func New(code string) widget.BaseWidget {
 						iconbutton.New(
 							icondata.ContentCopy,
 							iconbutton.Class("gf-code-block-copy-button"),
+							iconbutton.Tooltip("Copy to clipboard"),
 							iconbutton.OnClick(func(this widget.BaseWidget, e widget.Event) {
 								utils.CopyToClipboard(code)
+								if codeBlock.onCopied != nil {
+									codeBlock.onCopied(code)
+								}
 							}),
 						),
 					},
