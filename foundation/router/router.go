@@ -4,22 +4,23 @@ import (
 	"regexp"
 	"strings"
 
+	"github.com/gofred-io/gofred/application"
 	"github.com/gofred-io/gofred/foundation/container"
 	"github.com/gofred-io/gofred/hooks"
 	"github.com/gofred-io/gofred/listenable"
-	"github.com/gofred-io/gofred/widget"
+	"github.com/gofred-io/gofred/theme/theme_data"
 )
 
 type Router struct {
-	widget.BaseWidget
+	application.BaseWidget
 	routePatterns   map[string]*regexp.Regexp
 	routes          map[string]RouteBuilder
 	notFoundBuilder RouteBuilder
 }
 
-func New(opts ...Options) widget.BaseWidget {
+func New(opts ...Option) application.BaseWidget {
 	router := &Router{
-		BaseWidget:    widget.New("div"),
+		BaseWidget:    application.New("div"),
 		routePatterns: make(map[string]*regexp.Regexp),
 		routes:        make(map[string]RouteBuilder),
 	}
@@ -27,8 +28,8 @@ func New(opts ...Options) widget.BaseWidget {
 	for _, option := range opts {
 		option(router)
 	}
-	router.createListeners()
 
+	application.AddPageLoadedListener(router.createListeners)
 	return router.BaseWidget
 }
 
@@ -37,7 +38,7 @@ func (r *Router) createListeners() {
 	callback := func(path string) {
 		var (
 			ok           bool
-			newWidget    widget.BaseWidget
+			newWidget    application.BaseWidget
 			routeBuilder RouteBuilder
 			params       RouteParams
 		)
@@ -56,17 +57,25 @@ func (r *Router) createListeners() {
 		} else if r.notFoundBuilder != nil {
 			newWidget = r.notFoundBuilder(params)
 		} else {
-			newWidget = container.New(widget.Nil)
+			newWidget = container.New(application.Nil)
 		}
 
 		r.Widget.ReplaceWith(newWidget.Widget)
 		r.Widget = newWidget.Widget
 	}
 
+	themeCallback := func(theme *theme_data.ThemeData) {
+		callback(application.Context().CurrentPath())
+	}
+
 	listener := listenable.NewListener(callback)
 	navigate.AddListener(listener)
 
-	currentPath := widget.Context().CurrentPath()
+	themeHook, _ := hooks.UseTheme()
+	themeListener := listenable.NewListener(themeCallback)
+	themeHook.AddListener(themeListener)
+
+	currentPath := application.Context().CurrentPath()
 	callback(currentPath)
 }
 

@@ -1,10 +1,10 @@
 package iconbutton
 
 import (
+	"github.com/gofred-io/gofred/application"
 	"github.com/gofred-io/gofred/basic/button"
 	"github.com/gofred-io/gofred/foundation/icon"
 	icondata "github.com/gofred-io/gofred/foundation/icon/icon_data"
-	"github.com/gofred-io/gofred/widget"
 )
 
 type iconButton struct {
@@ -12,7 +12,7 @@ type iconButton struct {
 	iconOpts []icon.Option
 }
 
-func New(iconData icondata.IconData, opts ...Option) widget.BaseWidget {
+func New(iconData icondata.IconData, opts ...Option) application.BaseWidget {
 	iconButton := &iconButton{}
 
 	defaultOpts := []Option{

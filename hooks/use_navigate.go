@@ -4,8 +4,8 @@ import (
 	"slices"
 	"sync"
 
+	"github.com/gofred-io/gofred/application"
 	"github.com/gofred-io/gofred/listenable"
-	"github.com/gofred-io/gofred/widget"
 )
 
 var (
@@ -24,10 +24,10 @@ func UseNavigate() *Navigate {
 	}
 
 	navigate = &Navigate{
-		current: widget.Context().CurrentPath(),
+		current: application.Context().CurrentPath(),
 	}
 
-	widget.Context().OnNavigate(func(path string) {
+	application.Context().OnNavigate(func(path string) {
 		navigate.current = path
 		navigate.NotifyListeners(path)
 	})

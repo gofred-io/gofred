@@ -1,16 +1,16 @@
 package svg
 
 import (
-	"github.com/gofred-io/gofred/widget"
+	"github.com/gofred-io/gofred/application"
 )
 
 type svg struct {
-	widget.BaseWidget
+	application.BaseWidget
 }
 
-func New(children []widget.BaseWidget, opts ...Option) widget.BaseWidget {
+func New(children []application.BaseWidget, opts ...Option) application.BaseWidget {
 	svg := &svg{
-		BaseWidget: widget.NewNS("http://www.w3.org/2000/svg", "svg"),
+		BaseWidget: application.NewNS("http://www.w3.org/2000/svg", "svg"),
 	}
 
 	for _, option := range opts {

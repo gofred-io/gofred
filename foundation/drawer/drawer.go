@@ -4,22 +4,22 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/gofred-io/gofred/application"
 	"github.com/gofred-io/gofred/basic/div"
 	"github.com/gofred-io/gofred/breakpoint"
-	"github.com/gofred-io/gofred/widget"
 )
 
 type Drawer struct {
-	widget.BaseWidget
-	barrier    widget.BaseWidget
-	menu       widget.BaseWidget
+	application.BaseWidget
+	barrier    application.BaseWidget
+	menu       application.BaseWidget
 	opts       []div.Option
 	transition float64
 }
 
-func New(child widget.BaseWidget, opts ...Option) IDrawer {
+func New(child application.BaseWidget, opts ...Option) IDrawer {
 	d := &Drawer{
-		BaseWidget: widget.New("div"),
+		BaseWidget: application.New("div"),
 		menu:       div.New(nil, div.Class("gf-drawer-menu")),
 		barrier:    div.New(nil, div.Class("gf-drawer-barrier"), div.Width(breakpoint.All(0))),
 	}
@@ -33,11 +33,11 @@ func New(child widget.BaseWidget, opts ...Option) IDrawer {
 		option(d)
 	}
 
-	d.barrier.SetOnClick(func(this widget.BaseWidget, e widget.Event) {
+	d.barrier.SetOnClick(func(this application.BaseWidget, e application.Event) {
 		d.Hide()
 	})
 
-	d.menu.SetOnClick(func(this widget.BaseWidget, e widget.Event) {
+	d.menu.SetOnClick(func(this application.BaseWidget, e application.Event) {
 		e.StopPropagation()
 	})
 
@@ -47,7 +47,7 @@ func New(child widget.BaseWidget, opts ...Option) IDrawer {
 	d.Widget.AppendChild(d.menu.Widget)
 	d.Widget.AppendChild(d.barrier.Widget)
 
-	widget.Context().Root.AppendChild(d.Widget)
+	application.Context().Root.AppendChild(d.Widget)
 	return d
 }
 

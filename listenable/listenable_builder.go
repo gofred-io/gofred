@@ -1,16 +1,14 @@
 package listenable
 
-import (
-	"github.com/gofred-io/gofred/widget"
-)
+import "github.com/gofred-io/gofred/application"
 
-type ListenableBuilderCallback[T any] func() widget.BaseWidget
+type ListenableBuilderCallback[T any] func() application.BaseWidget
 
 type ListenableBuilder[T any] struct {
 	listeners []Listener[T]
 }
 
-func Builder[T any](listenable Listenable[T], builder ListenableBuilderCallback[T]) widget.BaseWidget {
+func Builder[T any](listenable Listenable[T], builder ListenableBuilderCallback[T]) application.BaseWidget {
 	refWidget := builder()
 
 	listener := NewListener(func(value T) {

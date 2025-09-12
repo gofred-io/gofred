@@ -1,4 +1,4 @@
-package widget
+package application
 
 import (
 	"github.com/gofred-io/gofred/breakpoint"

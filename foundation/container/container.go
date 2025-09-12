@@ -1,23 +1,23 @@
 package container
 
 import (
+	"github.com/gofred-io/gofred/application"
 	"github.com/gofred-io/gofred/basic/div"
-	"github.com/gofred-io/gofred/options"
-	"github.com/gofred-io/gofred/widget"
+	"github.com/gofred-io/gofred/theme"
 )
 
 type container struct {
 	opts []div.Option
 }
 
-func New(child widget.BaseWidget, opts ...Option) widget.BaseWidget {
+func New(child application.BaseWidget, opts ...Option) application.BaseWidget {
 	var (
 		c = &container{}
 	)
 
 	opts = append(
 		opts,
-		display(options.DisplayTypeFlex),
+		display(theme.DisplayTypeFlex),
 	)
 
 	for _, option := range opts {
@@ -25,7 +25,7 @@ func New(child widget.BaseWidget, opts ...Option) widget.BaseWidget {
 	}
 
 	return div.New(
-		[]widget.BaseWidget{child},
+		[]application.BaseWidget{child},
 		c.opts...,
 	)
 }

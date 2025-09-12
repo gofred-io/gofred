@@ -2,18 +2,18 @@ package row
 
 import (
 	"github.com/gofred-io/gofred/basic/div"
-	"github.com/gofred-io/gofred/options"
+	"github.com/gofred-io/gofred/theme"
 )
 
 type Option func(center *row)
 
-func display(display options.DisplayType) Option {
+func display(display theme.DisplayType) Option {
 	return func(row *row) {
 		row.opts = append(row.opts, div.Display(display))
 	}
 }
 
-func flexDirection(flexDirection options.FlexDirectionType) Option {
+func flexDirection(flexDirection theme.FlexDirectionType) Option {
 	return func(row *row) {
 		row.opts = append(row.opts, div.FlexDirection(flexDirection))
 	}
@@ -31,7 +31,7 @@ func ID(id string) Option {
 	}
 }
 
-func CrossAxisAlignment(crossAxisAlignment options.AxisAlignmentType) Option {
+func CrossAxisAlignment(crossAxisAlignment theme.AxisAlignmentType) Option {
 	return func(row *row) {
 		row.opts = append(row.opts, div.AlignItems(crossAxisAlignment))
 	}
@@ -49,13 +49,13 @@ func Gap(gap int) Option {
 	}
 }
 
-func MainAxisAlignment(mainAxisAlignment options.AxisAlignmentType) Option {
+func MainAxisAlignment(mainAxisAlignment theme.AxisAlignmentType) Option {
 	return func(row *row) {
 		row.opts = append(row.opts, div.JustifyContent(mainAxisAlignment))
 	}
 }
 
-func MainAxisSize(mainAxisSize options.AxisSizeType) Option {
+func MainAxisSize(mainAxisSize theme.AxisSizeType) Option {
 	return func(row *row) {
 		row.opts = append(row.opts, div.AlignSelf(mainAxisSize))
 	}

@@ -1,15 +1,15 @@
 package spacer
 
 import (
+	"github.com/gofred-io/gofred/application"
 	"github.com/gofred-io/gofred/basic/div"
-	"github.com/gofred-io/gofred/widget"
 )
 
 type spacer struct {
 	opts []div.Option
 }
 
-func New(opts ...Option) widget.BaseWidget {
+func New(opts ...Option) application.BaseWidget {
 	s := &spacer{}
 
 	if len(opts) == 0 {
@@ -21,7 +21,7 @@ func New(opts ...Option) widget.BaseWidget {
 	}
 
 	return div.New(
-		[]widget.BaseWidget{},
+		[]application.BaseWidget{},
 		s.opts...,
 	)
 }

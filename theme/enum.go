@@ -1,4 +1,4 @@
-package options
+package theme
 
 type AxisAlignmentType string
 type AxisSizeType string

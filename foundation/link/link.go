@@ -1,15 +1,15 @@
 package link
 
 import (
+	"github.com/gofred-io/gofred/application"
 	"github.com/gofred-io/gofred/basic/anchor"
-	"github.com/gofred-io/gofred/widget"
 )
 
 type link struct {
 	opts []anchor.Option
 }
 
-func New(child widget.BaseWidget, opts ...Option) widget.BaseWidget {
+func New(child application.BaseWidget, opts ...Option) application.BaseWidget {
 	link := &link{}
 
 	defaultOpts := []Option{

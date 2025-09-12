@@ -2,7 +2,8 @@ package text
 
 import (
 	"github.com/gofred-io/gofred/basic/span"
-	"github.com/gofred-io/gofred/options"
+	"github.com/gofred-io/gofred/theme"
+	"github.com/gofred-io/gofred/theme/theme_data"
 )
 
 type Option func(text *text)
@@ -13,7 +14,7 @@ func setText(_text string) Option {
 	}
 }
 
-func Align(textAlign options.TextAlignType) Option {
+func Align(textAlign theme.TextAlignType) Option {
 	return func(text *text) {
 		text.opts = append(text.opts, span.TextAlign(textAlign))
 	}
@@ -61,7 +62,13 @@ func LineHeight(lineHeight float64) Option {
 	}
 }
 
-func UserSelect(userSelect options.UserSelectType) Option {
+func TextStyle(textStyle theme_data.TextStyle) Option {
+	return func(text *text) {
+		text.opts = append(text.opts, span.TextStyle(textStyle))
+	}
+}
+
+func UserSelect(userSelect theme.UserSelectType) Option {
 	return func(text *text) {
 		text.opts = append(text.opts, span.UserSelect(userSelect))
 	}

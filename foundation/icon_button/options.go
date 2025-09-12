@@ -5,6 +5,7 @@ import (
 	"github.com/gofred-io/gofred/breakpoint"
 	"github.com/gofred-io/gofred/foundation/icon"
 	"github.com/gofred-io/gofred/options"
+	"github.com/gofred-io/gofred/theme"
 )
 
 type Option func(iconButton *iconButton)
@@ -57,7 +58,7 @@ func Tooltip(tooltip string) Option {
 	}
 }
 
-func UserSelect(userSelect options.UserSelectType) Option {
+func UserSelect(userSelect theme.UserSelectType) Option {
 	return func(iconButton *iconButton) {
 		iconButton.iconOpts = append(iconButton.iconOpts, icon.UserSelect(userSelect))
 	}

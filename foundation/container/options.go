@@ -3,13 +3,13 @@ package container
 import (
 	"github.com/gofred-io/gofred/basic/div"
 	"github.com/gofred-io/gofred/breakpoint"
-	"github.com/gofred-io/gofred/options"
 	"github.com/gofred-io/gofred/options/spacing"
+	"github.com/gofred-io/gofred/theme"
 )
 
 type Option func(container *container)
 
-func display(display options.DisplayType) Option {
+func display(display theme.DisplayType) Option {
 	return func(container *container) {
 		container.opts = append(container.opts, div.Display(display))
 	}
@@ -27,7 +27,7 @@ func BorderColor(color string) Option {
 	}
 }
 
-func BorderStyle(style options.BorderStyleType) Option {
+func BorderStyle(style theme.BorderStyleType) Option {
 	return func(container *container) {
 		container.opts = append(container.opts, div.BorderStyle(style))
 	}
@@ -87,7 +87,7 @@ func MaxWidth(opts ...breakpoint.BreakpointOptions[int]) Option {
 	}
 }
 
-func Overflow(overflow options.OverflowType) Option {
+func Overflow(overflow theme.OverflowType) Option {
 	return func(container *container) {
 		container.opts = append(container.opts, div.Overflow(overflow))
 	}

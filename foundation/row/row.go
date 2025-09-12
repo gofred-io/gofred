@@ -1,22 +1,22 @@
 package row
 
 import (
+	"github.com/gofred-io/gofred/application"
 	"github.com/gofred-io/gofred/basic/div"
-	"github.com/gofred-io/gofred/options"
-	"github.com/gofred-io/gofred/widget"
+	"github.com/gofred-io/gofred/theme"
 )
 
 type row struct {
 	opts []div.Option
 }
 
-func New(children []widget.BaseWidget, opts ...Option) widget.BaseWidget {
+func New(children []application.BaseWidget, opts ...Option) application.BaseWidget {
 	r := &row{}
 
 	opts = append(
 		opts,
-		display(options.DisplayTypeFlex),
-		flexDirection(options.FlexDirectionTypeRow),
+		display(theme.DisplayTypeFlex),
+		flexDirection(theme.FlexDirectionTypeRow),
 	)
 
 	for _, option := range opts {

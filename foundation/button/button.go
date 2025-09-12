@@ -1,15 +1,15 @@
 package button
 
 import (
+	"github.com/gofred-io/gofred/application"
 	basicbutton "github.com/gofred-io/gofred/basic/button"
-	"github.com/gofred-io/gofred/widget"
 )
 
 type button struct {
 	opts []basicbutton.Option
 }
 
-func New(child widget.BaseWidget, opts ...Option) widget.BaseWidget {
+func New(child application.BaseWidget, opts ...Option) application.BaseWidget {
 	var (
 		b = &button{}
 	)

@@ -5,10 +5,10 @@ import (
 	"sync"
 	"time"
 
+	"github.com/gofred-io/gofred/application"
 	"github.com/gofred-io/gofred/breakpoint"
 	"github.com/gofred-io/gofred/listenable"
 	"github.com/gofred-io/gofred/utils"
-	"github.com/gofred-io/gofred/widget"
 )
 
 var (
@@ -34,8 +34,8 @@ func UseBreakpoint() *BreakpointValue {
 
 	c := make(chan int)
 
-	widget.Context().OnResize(func() {
-		width := widget.Context().ClientWidth()
+	application.Context().OnResize(func() {
+		width := application.Context().ClientWidth()
 		select {
 		case c <- width:
 		default:

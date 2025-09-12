@@ -1,16 +1,16 @@
 package div
 
 import (
-	"github.com/gofred-io/gofred/widget"
+	"github.com/gofred-io/gofred/application"
 )
 
 type div struct {
-	widget.BaseWidget
+	application.BaseWidget
 }
 
-func New(children []widget.BaseWidget, opts ...Option) widget.BaseWidget {
+func New(children []application.BaseWidget, opts ...Option) application.BaseWidget {
 	div := &div{
-		BaseWidget: widget.New("div"),
+		BaseWidget: application.New("div"),
 	}
 
 	for _, option := range opts {
