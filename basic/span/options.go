@@ -5,7 +5,7 @@ import (
 	"github.com/gofred-io/gofred/options"
 	"github.com/gofred-io/gofred/options/spacing"
 	"github.com/gofred-io/gofred/theme"
-	"github.com/gofred-io/gofred/theme/theme_data"
+	"github.com/gofred-io/gofred/theme/theme_style"
 )
 
 type Option options.OptionWrapper
@@ -160,6 +160,12 @@ func OnClick(handler options.OnClickHandler) Option {
 	}
 }
 
+func Opacity(opacity float64) Option {
+	return func() options.Option {
+		return options.Opacity(opacity)
+	}
+}
+
 func NewTab(newTab bool) Option {
 	return func() options.Option {
 		return options.NewTab(newTab)
@@ -190,7 +196,7 @@ func TextAlign(textAlign theme.TextAlignType) Option {
 	}
 }
 
-func TextStyle(textStyle theme_data.TextStyle) Option {
+func TextStyle(textStyle theme_style.TextStyle) Option {
 	return func() options.Option {
 		return options.TextStyle(textStyle)
 	}

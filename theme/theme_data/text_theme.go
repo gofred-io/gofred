@@ -1,38 +1,8 @@
 package theme_data
 
-type textTheme struct {
-	codeBlockStyle TextStyleCollection
-	textStyle      TextStyleCollection
-}
+import "github.com/gofred-io/gofred/theme/theme_style"
 
-type TextThemeOption func(textTheme *textTheme)
-
-func WithCodeBlockStyle(codeBlockStyle TextStyleCollection) TextThemeOption {
-	return func(textTheme *textTheme) {
-		textTheme.codeBlockStyle = codeBlockStyle
-	}
-}
-
-func WithTextStyle(textStyle TextStyleCollection) TextThemeOption {
-	return func(textTheme *textTheme) {
-		textTheme.textStyle = textStyle
-	}
-}
-
-func TextTheme(opts ...TextThemeOption) textTheme {
-	textTheme := textTheme{}
-
-	for _, opt := range opts {
-		opt(&textTheme)
-	}
-
-	return textTheme
-}
-
-func (t textTheme) CodeBlockStyle() TextStyleCollection {
-	return t.codeBlockStyle
-}
-
-func (t textTheme) TextStyle() TextStyleCollection {
-	return t.textStyle
+type TextTheme struct {
+	CodeBlockStyle theme_style.TextStyleCollection
+	TextStyle      theme_style.TextStyleCollection
 }

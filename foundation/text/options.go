@@ -3,7 +3,7 @@ package text
 import (
 	"github.com/gofred-io/gofred/basic/span"
 	"github.com/gofred-io/gofred/theme"
-	"github.com/gofred-io/gofred/theme/theme_data"
+	"github.com/gofred-io/gofred/theme/theme_style"
 )
 
 type Option func(text *text)
@@ -62,7 +62,13 @@ func LineHeight(lineHeight float64) Option {
 	}
 }
 
-func TextStyle(textStyle theme_data.TextStyle) Option {
+func Opacity(opacity float64) Option {
+	return func(text *text) {
+		text.opts = append(text.opts, span.Opacity(opacity))
+	}
+}
+
+func TextStyle(textStyle theme_style.TextStyle) Option {
 	return func(text *text) {
 		text.opts = append(text.opts, span.TextStyle(textStyle))
 	}

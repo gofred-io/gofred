@@ -2,6 +2,7 @@ package codeblock
 
 import (
 	"github.com/gofred-io/gofred/application"
+	"github.com/gofred-io/gofred/basic/code"
 	gfcode "github.com/gofred-io/gofred/basic/code"
 	"github.com/gofred-io/gofred/basic/pre"
 	"github.com/gofred-io/gofred/foundation/column"
@@ -10,17 +11,22 @@ import (
 	iconbutton "github.com/gofred-io/gofred/foundation/icon_button"
 	"github.com/gofred-io/gofred/foundation/row"
 	"github.com/gofred-io/gofred/foundation/spacer"
+	"github.com/gofred-io/gofred/hooks"
 	"github.com/gofred-io/gofred/theme"
+	"github.com/gofred-io/gofred/theme/theme_style"
 	"github.com/gofred-io/gofred/utils"
 )
 
 type CodeBlock struct {
+	opts     []container.Option
+	codeOpts []code.Option
 	onCopied func(code string)
 }
 
-func New(code string, opts ...Option) application.BaseWidget {
+func New(innerCode string, opts ...Option) application.BaseWidget {
 	codeBlock := &CodeBlock{}
 
+	opts = mergeWithDefaultOpts(opts)
 	for _, option := range opts {
 		option(codeBlock)
 	}
@@ -36,9 +42,9 @@ func New(code string, opts ...Option) application.BaseWidget {
 							iconbutton.Class("gf-code-block-copy-button"),
 							iconbutton.Tooltip("Copy to clipboard"),
 							iconbutton.OnClick(func(this application.BaseWidget, e application.Event) {
-								utils.CopyToClipboard(code)
+								utils.CopyToClipboard(innerCode)
 								if codeBlock.onCopied != nil {
-									codeBlock.onCopied(code)
+									codeBlock.onCopied(innerCode)
 								}
 							}),
 						),
@@ -47,10 +53,15 @@ func New(code string, opts ...Option) application.BaseWidget {
 				),
 				pre.New(
 					gfcode.New(
-						code,
-						gfcode.FontSize(14),
-						gfcode.FontColor("#F3F4F6"),
-						gfcode.FontWeight("400"),
+						innerCode,
+						append(
+							[]code.Option{
+								code.FontSize(14),
+								code.FontColor("#F3F4F6"),
+								code.FontWeight("400"),
+							},
+							codeBlock.codeOpts...,
+						)...,
 					),
 					pre.Class("gf-code-block-pre"),
 				),
@@ -58,6 +69,26 @@ func New(code string, opts ...Option) application.BaseWidget {
 			column.Flex(1),
 			column.Overflow(theme.OverflowTypeHidden),
 		),
-		container.Class("gf-code-block"),
+		codeBlock.opts...,
 	)
+}
+
+func mergeWithDefaultOpts(opts []Option) []Option {
+	return append(
+		defaultOpts(),
+		opts...,
+	)
+}
+
+func defaultOpts() []Option {
+	return []Option{
+		ContainerStyle(defaultThemeData()),
+		Class("gf-code-block"),
+	}
+}
+
+func defaultThemeData() theme_style.ContainerStyle {
+	themeHook, _ := hooks.UseTheme()
+	themeData := themeHook.ThemeData()
+	return themeData.BoxTheme.CodeBlockStyle.Primary
 }

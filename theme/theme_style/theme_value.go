@@ -1,4 +1,4 @@
-package theme_data
+package theme_style
 
 type themeValue[T any] *T
 

@@ -10,7 +10,6 @@ import (
 	"github.com/gofred-io/gofred/listenable"
 	"github.com/gofred-io/gofred/options/spacing"
 	"github.com/gofred-io/gofred/theme"
-	"github.com/gofred-io/gofred/theme/theme_data"
 )
 
 type Option func(widget application.BaseWidget)
@@ -53,9 +52,9 @@ func BorderStyle(style theme.BorderStyleType) Option {
 	}
 }
 
-func BorderWidth(top int, right int, bottom int, left int) Option {
+func BorderWidth(spacing spacing.Spacing) Option {
 	return func(widget application.BaseWidget) {
-		widget.UpdateStyleProperty("border-width", fmt.Sprintf("%dpx %dpx %dpx %dpx", top, right, bottom, left))
+		widget.UpdateStyleProperty("border-width", fmt.Sprintf("%dpx %dpx %dpx %dpx", spacing.Top, spacing.Right, spacing.Bottom, spacing.Left))
 	}
 }
 
@@ -185,6 +184,12 @@ func JustifyContent(justifyContent theme.AxisAlignmentType) Option {
 	}
 }
 
+func LetterSpacing(letterSpacing float64) Option {
+	return func(widget application.BaseWidget) {
+		widget.UpdateStyleProperty("letter-spacing", fmt.Sprintf("%f", letterSpacing))
+	}
+}
+
 func LineHeight(lineHeight float64) Option {
 	return func(widget application.BaseWidget) {
 		widget.UpdateStyleProperty("line-height", fmt.Sprintf("%f", lineHeight))
@@ -229,6 +234,12 @@ func OnClick(handler OnClickHandler) Option {
 	}
 }
 
+func Opacity(opacity float64) Option {
+	return func(widget application.BaseWidget) {
+		widget.UpdateStyleProperty("opacity", fmt.Sprintf("%f", opacity))
+	}
+}
+
 func Overflow(overflow theme.OverflowType) Option {
 	return func(widget application.BaseWidget) {
 		widget.UpdateStyleProperty("overflow", string(overflow))
@@ -262,12 +273,6 @@ func SetText(text string) Option {
 func TextAlign(textAlign theme.TextAlignType) Option {
 	return func(widget application.BaseWidget) {
 		widget.UpdateStyleProperty("text-align", string(textAlign))
-	}
-}
-
-func TextStyle(textStyle theme_data.TextStyle) Option {
-	return func(widget application.BaseWidget) {
-		textStyle.Apply(widget)
 	}
 }
 

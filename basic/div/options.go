@@ -5,6 +5,7 @@ import (
 	"github.com/gofred-io/gofred/options"
 	"github.com/gofred-io/gofred/options/spacing"
 	"github.com/gofred-io/gofred/theme"
+	"github.com/gofred-io/gofred/theme/theme_style"
 )
 
 type Option options.OptionWrapper
@@ -45,9 +46,9 @@ func BorderStyle(style theme.BorderStyleType) Option {
 	}
 }
 
-func BorderWidth(top int, right int, bottom int, left int) Option {
+func BorderWidth(spacing spacing.Spacing) Option {
 	return func() options.Option {
-		return options.BorderWidth(top, right, bottom, left)
+		return options.BorderWidth(spacing)
 	}
 }
 
@@ -78,6 +79,12 @@ func ColumnCount(opts ...breakpoint.BreakpointOptions[int]) Option {
 func ColumnGap(columnGap int) Option {
 	return func() options.Option {
 		return options.ColumnGap(columnGap)
+	}
+}
+
+func ContainerStyle(containerStyle theme_style.ContainerStyle) Option {
+	return func() options.Option {
+		return options.ContainerStyle(containerStyle)
 	}
 }
 

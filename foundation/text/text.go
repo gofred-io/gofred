@@ -4,7 +4,7 @@ import (
 	"github.com/gofred-io/gofred/application"
 	"github.com/gofred-io/gofred/basic/span"
 	"github.com/gofred-io/gofred/hooks"
-	"github.com/gofred-io/gofred/theme/theme_data"
+	"github.com/gofred-io/gofred/theme/theme_style"
 )
 
 type text struct {
@@ -37,8 +37,8 @@ func defaultOpts() []Option {
 	}
 }
 
-func defaultThemeData() theme_data.TextStyle {
+func defaultThemeData() theme_style.TextStyle {
 	themeHook, _ := hooks.UseTheme()
 	themeData := themeHook.ThemeData()
-	return themeData.TextTheme().TextStyle().Primary
+	return themeData.TextTheme.TextStyle.Primary
 }
