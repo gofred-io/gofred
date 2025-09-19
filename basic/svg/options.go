@@ -3,6 +3,7 @@ package svg
 import (
 	"github.com/gofred-io/gofred/breakpoint"
 	"github.com/gofred-io/gofred/options"
+	"github.com/gofred-io/gofred/theme"
 )
 
 type Option options.OptionWrapper
@@ -37,7 +38,7 @@ func MaxWidth(opts ...breakpoint.BreakpointOptions[int]) Option {
 	}
 }
 
-func UserSelect(userSelect options.UserSelectType) Option {
+func UserSelect(userSelect theme.UserSelectType) Option {
 	return func() options.Option {
 		return options.UserSelect(userSelect)
 	}

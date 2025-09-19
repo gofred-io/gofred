@@ -1,15 +1,15 @@
 package image
 
 import (
+	"github.com/gofred-io/gofred/application"
 	basicimage "github.com/gofred-io/gofred/basic/image"
-	"github.com/gofred-io/gofred/widget"
 )
 
 type image struct {
 	opts []basicimage.Option
 }
 
-func New(src string, opts ...Option) widget.BaseWidget {
+func New(src string, opts ...Option) application.BaseWidget {
 	image := &image{}
 
 	defaultOpts := []Option{

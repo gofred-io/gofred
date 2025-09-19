@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/gofred-io/gofred/options"
+	"github.com/gofred-io/gofred/theme"
 )
 
 type Option func(s *Snackbar)
@@ -27,7 +27,7 @@ func ID(id string) Option {
 	}
 }
 
-func Position(position options.PositionType) Option {
+func Position(position theme.PositionType) Option {
 	return func(s *Snackbar) {
 		s.position = position
 	}

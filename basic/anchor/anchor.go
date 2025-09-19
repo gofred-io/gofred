@@ -1,14 +1,16 @@
 package anchor
 
-import "github.com/gofred-io/gofred/widget"
+import (
+	"github.com/gofred-io/gofred/application"
+)
 
 type anchor struct {
-	widget.BaseWidget
+	application.BaseWidget
 }
 
-func New(child widget.BaseWidget, options ...Option) widget.BaseWidget {
+func New(child application.BaseWidget, options ...Option) application.BaseWidget {
 	anchor := &anchor{
-		BaseWidget: widget.NewWithOptions("a", map[string]any{
+		BaseWidget: application.NewWithOptions("a", map[string]any{
 			"is": "pushstate-anchor",
 		}),
 	}

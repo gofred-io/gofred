@@ -4,24 +4,30 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/gofred-io/gofred/application"
 	"github.com/gofred-io/gofred/basic/div"
 	"github.com/gofred-io/gofred/breakpoint"
-	"github.com/gofred-io/gofred/widget"
+	"github.com/gofred-io/gofred/foundation/container"
 )
 
 type Drawer struct {
-	widget.BaseWidget
-	barrier    widget.BaseWidget
-	menu       widget.BaseWidget
+	application.BaseWidget
+	barrier    application.BaseWidget
+	menu       application.BaseWidget
 	opts       []div.Option
 	transition float64
+
+	builder DrawerBuilder
 }
 
-func New(child widget.BaseWidget, opts ...Option) IDrawer {
+type DrawerBuilder func() application.BaseWidget
+
+func New(builder DrawerBuilder, opts ...Option) *Drawer {
 	d := &Drawer{
-		BaseWidget: widget.New("div"),
-		menu:       div.New(nil, div.Class("gf-drawer-menu")),
+		BaseWidget: application.New("div"),
+		menu:       container.New(application.Nil, container.Class("gf-drawer-menu")),
 		barrier:    div.New(nil, div.Class("gf-drawer-barrier"), div.Width(breakpoint.All(0))),
+		builder:    builder,
 	}
 
 	opts = append([]Option{
@@ -33,21 +39,21 @@ func New(child widget.BaseWidget, opts ...Option) IDrawer {
 		option(d)
 	}
 
-	d.barrier.SetOnClick(func(this widget.BaseWidget, e widget.Event) {
+	d.barrier.SetOnClick(func(this application.BaseWidget, e application.Event) {
 		d.Hide()
 	})
 
-	d.menu.SetOnClick(func(this widget.BaseWidget, e widget.Event) {
+	d.menu.SetOnClick(func(this application.BaseWidget, e application.Event) {
 		e.StopPropagation()
 	})
 
 	d.menu.UpdateStyleProperty("width", "0")
-	d.menu.AppendChild(child.Widget)
+	d.menu.AppendChild(d.builder().Widget)
 
 	d.Widget.AppendChild(d.menu.Widget)
 	d.Widget.AppendChild(d.barrier.Widget)
 
-	widget.Context().Root.AppendChild(d.Widget)
+	application.Context().Root.AppendChild(d.Widget)
 	return d
 }
 
@@ -69,4 +75,8 @@ func (d *Drawer) Hide() {
 	time.AfterFunc(time.Duration(d.transition)*time.Second, func() {
 		d.barrier.UpdateStyleProperty("width", "0")
 	})
+}
+
+func (d *Drawer) Refresh() {
+	d.menu.ChildAt(0).ReplaceWith(d.builder().Widget)
 }

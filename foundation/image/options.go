@@ -3,7 +3,7 @@ package image
 import (
 	basicimage "github.com/gofred-io/gofred/basic/image"
 	"github.com/gofred-io/gofred/breakpoint"
-	"github.com/gofred-io/gofred/options"
+	"github.com/gofred-io/gofred/theme"
 )
 
 type Option func(image *image)
@@ -32,7 +32,7 @@ func MaxWidth(opts ...breakpoint.BreakpointOptions[int]) Option {
 	}
 }
 
-func UserSelect(userSelect options.UserSelectType) Option {
+func UserSelect(userSelect theme.UserSelectType) Option {
 	return func(image *image) {
 		image.opts = append(image.opts, basicimage.UserSelect(userSelect))
 	}

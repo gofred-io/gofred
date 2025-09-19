@@ -1,16 +1,16 @@
 package code
 
 import (
-	"github.com/gofred-io/gofred/widget"
+	"github.com/gofred-io/gofred/application"
 )
 
 type code struct {
-	widget.BaseWidget
+	application.BaseWidget
 }
 
-func New(innerCode string, opts ...Option) widget.BaseWidget {
+func New(innerCode string, opts ...Option) application.BaseWidget {
 	code := &code{
-		BaseWidget: widget.New("code"),
+		BaseWidget: application.New("code"),
 	}
 
 	for _, option := range opts {

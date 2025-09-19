@@ -3,7 +3,7 @@ package icon
 import (
 	"github.com/gofred-io/gofred/basic/svg"
 	"github.com/gofred-io/gofred/breakpoint"
-	"github.com/gofred-io/gofred/options"
+	"github.com/gofred-io/gofred/theme"
 )
 
 type Option func(icon *icon)
@@ -38,7 +38,7 @@ func MaxWidth(opts ...breakpoint.BreakpointOptions[int]) Option {
 	}
 }
 
-func UserSelect(userSelect options.UserSelectType) Option {
+func UserSelect(userSelect theme.UserSelectType) Option {
 	return func(icon *icon) {
 		icon.opts = append(icon.opts, svg.UserSelect(userSelect))
 	}

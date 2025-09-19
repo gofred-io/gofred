@@ -3,12 +3,12 @@ package grid
 import (
 	"github.com/gofred-io/gofred/basic/div"
 	"github.com/gofred-io/gofred/breakpoint"
-	"github.com/gofred-io/gofred/options"
+	"github.com/gofred-io/gofred/theme"
 )
 
 type Option func(grid *grid)
 
-func display(display options.DisplayType) Option {
+func display(display theme.DisplayType) Option {
 	return func(grid *grid) {
 		grid.opts = append(grid.opts, div.Display(display))
 	}

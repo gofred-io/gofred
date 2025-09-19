@@ -1,7 +1,7 @@
 package snackbar
 
-import "github.com/gofred-io/gofred/widget"
+import "github.com/gofred-io/gofred/application"
 
 type ISnackbar interface {
-	Show(child widget.BaseWidget)
+	Show(child application.BaseWidget)
 }

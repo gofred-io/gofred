@@ -3,13 +3,14 @@ package container
 import (
 	"github.com/gofred-io/gofred/basic/div"
 	"github.com/gofred-io/gofred/breakpoint"
-	"github.com/gofred-io/gofred/options"
 	"github.com/gofred-io/gofred/options/spacing"
+	"github.com/gofred-io/gofred/theme"
+	"github.com/gofred-io/gofred/theme/theme_style"
 )
 
 type Option func(container *container)
 
-func display(display options.DisplayType) Option {
+func display(display theme.DisplayType) Option {
 	return func(container *container) {
 		container.opts = append(container.opts, div.Display(display))
 	}
@@ -27,15 +28,15 @@ func BorderColor(color string) Option {
 	}
 }
 
-func BorderStyle(style options.BorderStyleType) Option {
+func BorderStyle(style theme.BorderStyleType) Option {
 	return func(container *container) {
 		container.opts = append(container.opts, div.BorderStyle(style))
 	}
 }
 
-func BorderWidth(top int, right int, bottom int, left int) Option {
+func BorderWidth(spacing spacing.Spacing) Option {
 	return func(container *container) {
-		container.opts = append(container.opts, div.BorderWidth(top, right, bottom, left))
+		container.opts = append(container.opts, div.BorderWidth(spacing))
 	}
 }
 
@@ -54,6 +55,12 @@ func BoxShadow(shadow string) Option {
 func Class(class string) Option {
 	return func(container *container) {
 		container.opts = append(container.opts, div.Class(class))
+	}
+}
+
+func ContainerStyle(containerStyle theme_style.ContainerStyle) Option {
+	return func(container *container) {
+		container.opts = append(container.opts, div.ContainerStyle(containerStyle))
 	}
 }
 
@@ -87,7 +94,7 @@ func MaxWidth(opts ...breakpoint.BreakpointOptions[int]) Option {
 	}
 }
 
-func Overflow(overflow options.OverflowType) Option {
+func Overflow(overflow theme.OverflowType) Option {
 	return func(container *container) {
 		container.opts = append(container.opts, div.Overflow(overflow))
 	}

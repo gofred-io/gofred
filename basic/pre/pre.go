@@ -1,16 +1,16 @@
 package pre
 
 import (
-	"github.com/gofred-io/gofred/widget"
+	"github.com/gofred-io/gofred/application"
 )
 
 type pre struct {
-	widget.BaseWidget
+	application.BaseWidget
 }
 
-func New(child widget.BaseWidget, opts ...Option) widget.BaseWidget {
+func New(child application.BaseWidget, opts ...Option) application.BaseWidget {
 	pre := &pre{
-		BaseWidget: widget.New("pre"),
+		BaseWidget: application.New("pre"),
 	}
 
 	for _, option := range opts {

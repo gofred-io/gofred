@@ -4,85 +4,86 @@ import (
 	"fmt"
 	"strconv"
 
+	"github.com/gofred-io/gofred/application"
 	"github.com/gofred-io/gofred/breakpoint"
 	"github.com/gofred-io/gofred/hooks"
 	"github.com/gofred-io/gofred/listenable"
 	"github.com/gofred-io/gofred/options/spacing"
-	"github.com/gofred-io/gofred/widget"
+	"github.com/gofred-io/gofred/theme"
 )
 
-type Option func(widget widget.BaseWidget)
+type Option func(widget application.BaseWidget)
 type OptionWrapper func() Option
-type OnClickHandler func(this widget.BaseWidget, e widget.Event)
+type OnClickHandler func(this application.BaseWidget, e application.Event)
 
-func AlignItems(alignItems AxisAlignmentType) Option {
-	return func(widget widget.BaseWidget) {
+func AlignItems(alignItems theme.AxisAlignmentType) Option {
+	return func(widget application.BaseWidget) {
 		widget.UpdateStyleProperty("align-items", string(alignItems))
 	}
 }
 
-func AlignSelf(alignSelf AxisSizeType) Option {
-	return func(widget widget.BaseWidget) {
+func AlignSelf(alignSelf theme.AxisSizeType) Option {
+	return func(widget application.BaseWidget) {
 		widget.UpdateStyleProperty("align-self", string(alignSelf))
 	}
 }
 
 func Alt(alt string) Option {
-	return func(widget widget.BaseWidget) {
+	return func(widget application.BaseWidget) {
 		widget.SetAttribute("alt", alt)
 	}
 }
 
 func BackgroundColor(color string) Option {
-	return func(widget widget.BaseWidget) {
+	return func(widget application.BaseWidget) {
 		widget.UpdateStyleProperty("background-color", color)
 	}
 }
 
 func BorderColor(color string) Option {
-	return func(widget widget.BaseWidget) {
+	return func(widget application.BaseWidget) {
 		widget.UpdateStyleProperty("border-color", color)
 	}
 }
 
-func BorderStyle(style BorderStyleType) Option {
-	return func(widget widget.BaseWidget) {
+func BorderStyle(style theme.BorderStyleType) Option {
+	return func(widget application.BaseWidget) {
 		widget.UpdateStyleProperty("border-style", string(style))
 	}
 }
 
-func BorderWidth(top int, right int, bottom int, left int) Option {
-	return func(widget widget.BaseWidget) {
-		widget.UpdateStyleProperty("border-width", fmt.Sprintf("%dpx %dpx %dpx %dpx", top, right, bottom, left))
+func BorderWidth(spacing spacing.Spacing) Option {
+	return func(widget application.BaseWidget) {
+		widget.UpdateStyleProperty("border-width", fmt.Sprintf("%dpx %dpx %dpx %dpx", spacing.Top, spacing.Right, spacing.Bottom, spacing.Left))
 	}
 }
 
 func BorderRadius(borderRadius int) Option {
-	return func(widget widget.BaseWidget) {
+	return func(widget application.BaseWidget) {
 		widget.UpdateStyleProperty("border-radius", fmt.Sprintf("%dpx", borderRadius))
 	}
 }
 
 func BoxShadow(shadow string) Option {
-	return func(widget widget.BaseWidget) {
+	return func(widget application.BaseWidget) {
 		widget.UpdateStyleProperty("box-shadow", shadow)
 	}
 }
 
 func Class(class string) Option {
-	return func(widget widget.BaseWidget) {
+	return func(widget application.BaseWidget) {
 		widget.AddClass(class)
 	}
 }
 
 func FontColor(color string) Option {
-	return func(widget widget.BaseWidget) {
+	return func(widget application.BaseWidget) {
 		widget.UpdateStyleProperty("color", color)
 	}
 }
 
 func ColumnCount(columnCount ...breakpoint.BreakpointOptions[int]) Option {
-	return func(widget widget.BaseWidget) {
+	return func(widget application.BaseWidget) {
 		for _, option := range columnCount {
 			option(widget.ColumnCount)
 		}
@@ -94,67 +95,67 @@ func ColumnCount(columnCount ...breakpoint.BreakpointOptions[int]) Option {
 }
 
 func ColumnGap(columnGap int) Option {
-	return func(widget widget.BaseWidget) {
+	return func(widget application.BaseWidget) {
 		widget.UpdateStyleProperty("column-gap", fmt.Sprintf("%dpx", columnGap))
 	}
 }
 
 func D(data string) Option {
-	return func(widget widget.BaseWidget) {
+	return func(widget application.BaseWidget) {
 		widget.SetAttribute("d", data)
 	}
 }
 
-func Display(display DisplayType) Option {
-	return func(widget widget.BaseWidget) {
+func Display(display theme.DisplayType) Option {
+	return func(widget application.BaseWidget) {
 		widget.UpdateStyleProperty("display", string(display))
 	}
 }
 
 func Fill(fill string) Option {
-	return func(widget widget.BaseWidget) {
+	return func(widget application.BaseWidget) {
 		widget.UpdateStyleProperty("fill", fill)
 	}
 }
 
 func Flex(flex int) Option {
-	return func(widget widget.BaseWidget) {
+	return func(widget application.BaseWidget) {
 		widget.UpdateStyleProperty("flex", strconv.Itoa(flex))
 	}
 }
 
-func FlexDirection(flexDirection FlexDirectionType) Option {
-	return func(widget widget.BaseWidget) {
+func FlexDirection(flexDirection theme.FlexDirectionType) Option {
+	return func(widget application.BaseWidget) {
 		widget.UpdateStyleProperty("flex-direction", string(flexDirection))
 	}
 }
 
-func FlexWrap(flexWrap FlexWrapType) Option {
-	return func(widget widget.BaseWidget) {
+func FlexWrap(flexWrap theme.FlexWrapType) Option {
+	return func(widget application.BaseWidget) {
 		widget.UpdateStyleProperty("flex-wrap", string(flexWrap))
 	}
 }
 
 func FontFamily(fontFamily string) Option {
-	return func(widget widget.BaseWidget) {
+	return func(widget application.BaseWidget) {
 		widget.UpdateStyleProperty("font-family", fontFamily)
 	}
 }
 
 func FontSize(fontSize int) Option {
-	return func(widget widget.BaseWidget) {
+	return func(widget application.BaseWidget) {
 		widget.UpdateStyleProperty("font-size", fmt.Sprintf("%dpx", fontSize))
 	}
 }
 
 func FontWeight(fontWeight string) Option {
-	return func(widget widget.BaseWidget) {
+	return func(widget application.BaseWidget) {
 		widget.UpdateStyleProperty("font-weight", fontWeight)
 	}
 }
 
 func Height(options ...breakpoint.BreakpointOptions[int]) Option {
-	return func(widget widget.BaseWidget) {
+	return func(widget application.BaseWidget) {
 		for _, option := range options {
 			option(widget.Height)
 
@@ -166,31 +167,37 @@ func Height(options ...breakpoint.BreakpointOptions[int]) Option {
 }
 
 func Href(href string) Option {
-	return func(widget widget.BaseWidget) {
+	return func(widget application.BaseWidget) {
 		widget.SetAttribute("href", href)
 	}
 }
 
 func ID(id string) Option {
-	return func(widget widget.BaseWidget) {
+	return func(widget application.BaseWidget) {
 		widget.SetID(id)
 	}
 }
 
-func JustifyContent(justifyContent AxisAlignmentType) Option {
-	return func(widget widget.BaseWidget) {
+func JustifyContent(justifyContent theme.AxisAlignmentType) Option {
+	return func(widget application.BaseWidget) {
 		widget.UpdateStyleProperty("justify-content", string(justifyContent))
 	}
 }
 
+func LetterSpacing(letterSpacing float64) Option {
+	return func(widget application.BaseWidget) {
+		widget.UpdateStyleProperty("letter-spacing", fmt.Sprintf("%f", letterSpacing))
+	}
+}
+
 func LineHeight(lineHeight float64) Option {
-	return func(widget widget.BaseWidget) {
+	return func(widget application.BaseWidget) {
 		widget.UpdateStyleProperty("line-height", fmt.Sprintf("%f", lineHeight))
 	}
 }
 
 func Margin(options ...breakpoint.BreakpointOptions[spacing.Spacing]) Option {
-	return func(widget widget.BaseWidget) {
+	return func(widget application.BaseWidget) {
 		for _, option := range options {
 			option(widget.Margin)
 		}
@@ -202,7 +209,7 @@ func Margin(options ...breakpoint.BreakpointOptions[spacing.Spacing]) Option {
 }
 
 func MaxWidth(options ...breakpoint.BreakpointOptions[int]) Option {
-	return func(widget widget.BaseWidget) {
+	return func(widget application.BaseWidget) {
 		for _, option := range options {
 			option(widget.MaxWidth)
 		}
@@ -214,7 +221,7 @@ func MaxWidth(options ...breakpoint.BreakpointOptions[int]) Option {
 }
 
 func NewTab(newTab bool) Option {
-	return func(widget widget.BaseWidget) {
+	return func(widget application.BaseWidget) {
 		if newTab {
 			widget.SetAttribute("target", "_blank")
 		}
@@ -222,19 +229,25 @@ func NewTab(newTab bool) Option {
 }
 
 func OnClick(handler OnClickHandler) Option {
-	return func(widget widget.BaseWidget) {
+	return func(widget application.BaseWidget) {
 		widget.SetOnClick(handler)
 	}
 }
 
-func Overflow(overflow OverflowType) Option {
-	return func(widget widget.BaseWidget) {
+func Opacity(opacity float64) Option {
+	return func(widget application.BaseWidget) {
+		widget.UpdateStyleProperty("opacity", fmt.Sprintf("%f", opacity))
+	}
+}
+
+func Overflow(overflow theme.OverflowType) Option {
+	return func(widget application.BaseWidget) {
 		widget.UpdateStyleProperty("overflow", string(overflow))
 	}
 }
 
 func Padding(options ...breakpoint.BreakpointOptions[spacing.Spacing]) Option {
-	return func(widget widget.BaseWidget) {
+	return func(widget application.BaseWidget) {
 		for _, option := range options {
 			option(widget.Padding)
 		}
@@ -246,31 +259,31 @@ func Padding(options ...breakpoint.BreakpointOptions[spacing.Spacing]) Option {
 }
 
 func RowGap(rowGap int) Option {
-	return func(widget widget.BaseWidget) {
+	return func(widget application.BaseWidget) {
 		widget.UpdateStyleProperty("row-gap", fmt.Sprintf("%dpx", rowGap))
 	}
 }
 
 func SetText(text string) Option {
-	return func(widget widget.BaseWidget) {
+	return func(widget application.BaseWidget) {
 		widget.SetText(text)
 	}
 }
 
-func TextAlign(textAlign TextAlignType) Option {
-	return func(widget widget.BaseWidget) {
+func TextAlign(textAlign theme.TextAlignType) Option {
+	return func(widget application.BaseWidget) {
 		widget.UpdateStyleProperty("text-align", string(textAlign))
 	}
 }
 
 func Tooltip(tooltip string) Option {
-	return func(widget widget.BaseWidget) {
+	return func(widget application.BaseWidget) {
 		widget.SetAttribute("title", tooltip)
 	}
 }
 
 func Transition(seconds float64) Option {
-	return func(widget widget.BaseWidget) {
+	return func(widget application.BaseWidget) {
 		if seconds < 0 {
 			seconds = 0.3
 		}
@@ -279,14 +292,14 @@ func Transition(seconds float64) Option {
 	}
 }
 
-func UserSelect(userSelect UserSelectType) Option {
-	return func(widget widget.BaseWidget) {
+func UserSelect(userSelect theme.UserSelectType) Option {
+	return func(widget application.BaseWidget) {
 		widget.UpdateStyleProperty("user-select", string(userSelect))
 	}
 }
 
 func Visible(options ...breakpoint.BreakpointOptions[bool]) Option {
-	return func(widget widget.BaseWidget) {
+	return func(widget application.BaseWidget) {
 		for _, option := range options {
 			option(widget.Visible)
 		}
@@ -302,7 +315,7 @@ func Visible(options ...breakpoint.BreakpointOptions[bool]) Option {
 }
 
 func Width(options ...breakpoint.BreakpointOptions[int]) Option {
-	return func(widget widget.BaseWidget) {
+	return func(widget application.BaseWidget) {
 		for _, option := range options {
 			option(widget.Width)
 		}
@@ -314,7 +327,7 @@ func Width(options ...breakpoint.BreakpointOptions[int]) Option {
 }
 
 func WidthP(options ...breakpoint.BreakpointOptions[float64]) Option {
-	return func(widget widget.BaseWidget) {
+	return func(widget application.BaseWidget) {
 		for _, option := range options {
 			option(widget.WidthP)
 		}

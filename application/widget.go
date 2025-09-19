@@ -1,4 +1,4 @@
-package widget
+package application
 
 import (
 	"syscall/js"

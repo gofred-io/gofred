@@ -1,24 +1,24 @@
 package center
 
 import (
+	"github.com/gofred-io/gofred/application"
 	"github.com/gofred-io/gofred/basic/div"
-	"github.com/gofred-io/gofred/options"
-	"github.com/gofred-io/gofred/widget"
+	"github.com/gofred-io/gofred/theme"
 )
 
 type center struct {
 	opts []div.Option
 }
 
-func New(child widget.BaseWidget, opts ...Option) widget.BaseWidget {
+func New(child application.BaseWidget, opts ...Option) application.BaseWidget {
 	c := &center{}
 
 	opts = append(
 		opts,
-		display(options.DisplayTypeFlex),
+		display(theme.DisplayTypeFlex),
 		flex(1),
-		alignItems(options.AxisAlignmentTypeCenter),
-		justifyContent(options.AxisAlignmentTypeCenter),
+		alignItems(theme.AxisAlignmentTypeCenter),
+		justifyContent(theme.AxisAlignmentTypeCenter),
 	)
 
 	for _, option := range opts {
@@ -26,7 +26,7 @@ func New(child widget.BaseWidget, opts ...Option) widget.BaseWidget {
 	}
 
 	return div.New(
-		[]widget.BaseWidget{child},
+		[]application.BaseWidget{child},
 		c.opts...,
 	)
 }

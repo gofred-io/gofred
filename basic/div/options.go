@@ -4,17 +4,19 @@ import (
 	"github.com/gofred-io/gofred/breakpoint"
 	"github.com/gofred-io/gofred/options"
 	"github.com/gofred-io/gofred/options/spacing"
+	"github.com/gofred-io/gofred/theme"
+	"github.com/gofred-io/gofred/theme/theme_style"
 )
 
 type Option options.OptionWrapper
 
-func AlignItems(alignItems options.AxisAlignmentType) Option {
+func AlignItems(alignItems theme.AxisAlignmentType) Option {
 	return func() options.Option {
 		return options.AlignItems(alignItems)
 	}
 }
 
-func AlignSelf(alignSelf options.AxisSizeType) Option {
+func AlignSelf(alignSelf theme.AxisSizeType) Option {
 	return func() options.Option {
 		return options.AlignSelf(alignSelf)
 	}
@@ -38,15 +40,15 @@ func BorderColor(color string) Option {
 	}
 }
 
-func BorderStyle(style options.BorderStyleType) Option {
+func BorderStyle(style theme.BorderStyleType) Option {
 	return func() options.Option {
 		return options.BorderStyle(style)
 	}
 }
 
-func BorderWidth(top int, right int, bottom int, left int) Option {
+func BorderWidth(spacing spacing.Spacing) Option {
 	return func() options.Option {
-		return options.BorderWidth(top, right, bottom, left)
+		return options.BorderWidth(spacing)
 	}
 }
 
@@ -80,13 +82,19 @@ func ColumnGap(columnGap int) Option {
 	}
 }
 
+func ContainerStyle(containerStyle theme_style.ContainerStyle) Option {
+	return func() options.Option {
+		return options.ContainerStyle(containerStyle)
+	}
+}
+
 func D(data string) Option {
 	return func() options.Option {
 		return options.D(data)
 	}
 }
 
-func Display(display options.DisplayType) Option {
+func Display(display theme.DisplayType) Option {
 	return func() options.Option {
 		return options.Display(display)
 	}
@@ -104,13 +112,13 @@ func Flex(flex int) Option {
 	}
 }
 
-func FlexDirection(flexDirection options.FlexDirectionType) Option {
+func FlexDirection(flexDirection theme.FlexDirectionType) Option {
 	return func() options.Option {
 		return options.FlexDirection(flexDirection)
 	}
 }
 
-func FlexWrap(flexWrap options.FlexWrapType) Option {
+func FlexWrap(flexWrap theme.FlexWrapType) Option {
 	return func() options.Option {
 		return options.FlexWrap(flexWrap)
 	}
@@ -158,7 +166,7 @@ func ID(id string) Option {
 	}
 }
 
-func JustifyContent(justifyContent options.AxisAlignmentType) Option {
+func JustifyContent(justifyContent theme.AxisAlignmentType) Option {
 	return func() options.Option {
 		return options.JustifyContent(justifyContent)
 	}
@@ -194,7 +202,7 @@ func OnClick(handler options.OnClickHandler) Option {
 	}
 }
 
-func Overflow(overflow options.OverflowType) Option {
+func Overflow(overflow theme.OverflowType) Option {
 	return func() options.Option {
 		return options.Overflow(overflow)
 	}
@@ -224,7 +232,7 @@ func Transition(transition float64) Option {
 	}
 }
 
-func UserSelect(userSelect options.UserSelectType) Option {
+func UserSelect(userSelect theme.UserSelectType) Option {
 	return func() options.Option {
 		return options.UserSelect(userSelect)
 	}

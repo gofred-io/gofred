@@ -1,16 +1,16 @@
 package button
 
 import (
-	"github.com/gofred-io/gofred/widget"
+	"github.com/gofred-io/gofred/application"
 )
 
 type button struct {
-	widget.BaseWidget
+	application.BaseWidget
 }
 
-func New(child widget.BaseWidget, options ...Option) widget.BaseWidget {
+func New(child application.BaseWidget, options ...Option) application.BaseWidget {
 	button := &button{
-		BaseWidget: widget.New("button"),
+		BaseWidget: application.New("button"),
 	}
 
 	for _, opt := range options {

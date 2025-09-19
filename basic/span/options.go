@@ -4,11 +4,13 @@ import (
 	"github.com/gofred-io/gofred/breakpoint"
 	"github.com/gofred-io/gofred/options"
 	"github.com/gofred-io/gofred/options/spacing"
+	"github.com/gofred-io/gofred/theme"
+	"github.com/gofred-io/gofred/theme/theme_style"
 )
 
 type Option options.OptionWrapper
 
-func AlignItems(alignItems options.AxisAlignmentType) Option {
+func AlignItems(alignItems theme.AxisAlignmentType) Option {
 	return func() options.Option {
 		return options.AlignItems(alignItems)
 	}
@@ -56,7 +58,7 @@ func D(data string) Option {
 	}
 }
 
-func Display(display options.DisplayType) Option {
+func Display(display theme.DisplayType) Option {
 	return func() options.Option {
 		return options.Display(display)
 	}
@@ -74,13 +76,13 @@ func Flex(flex int) Option {
 	}
 }
 
-func FlexDirection(flexDirection options.FlexDirectionType) Option {
+func FlexDirection(flexDirection theme.FlexDirectionType) Option {
 	return func() options.Option {
 		return options.FlexDirection(flexDirection)
 	}
 }
 
-func FlexWrap(flexWrap options.FlexWrapType) Option {
+func FlexWrap(flexWrap theme.FlexWrapType) Option {
 	return func() options.Option {
 		return options.FlexWrap(flexWrap)
 	}
@@ -128,7 +130,7 @@ func ID(id string) Option {
 	}
 }
 
-func JustifyContent(justifyContent options.AxisAlignmentType) Option {
+func JustifyContent(justifyContent theme.AxisAlignmentType) Option {
 	return func() options.Option {
 		return options.JustifyContent(justifyContent)
 	}
@@ -158,6 +160,12 @@ func OnClick(handler options.OnClickHandler) Option {
 	}
 }
 
+func Opacity(opacity float64) Option {
+	return func() options.Option {
+		return options.Opacity(opacity)
+	}
+}
+
 func NewTab(newTab bool) Option {
 	return func() options.Option {
 		return options.NewTab(newTab)
@@ -182,9 +190,15 @@ func SetText(text string) Option {
 	}
 }
 
-func TextAlign(textAlign options.TextAlignType) Option {
+func TextAlign(textAlign theme.TextAlignType) Option {
 	return func() options.Option {
 		return options.TextAlign(textAlign)
+	}
+}
+
+func TextStyle(textStyle theme_style.TextStyle) Option {
+	return func() options.Option {
+		return options.TextStyle(textStyle)
 	}
 }
 
@@ -194,7 +208,7 @@ func Tooltip(tooltip string) Option {
 	}
 }
 
-func UserSelect(userSelect options.UserSelectType) Option {
+func UserSelect(userSelect theme.UserSelectType) Option {
 	return func() options.Option {
 		return options.UserSelect(userSelect)
 	}
