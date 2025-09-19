@@ -9,9 +9,10 @@ import (
 )
 
 type AppContext struct {
-	Current js.Value
-	Doc     js.Value
-	Root    Widget
+	Current  js.Value
+	Doc      js.Value
+	Root     Widget
+	Scaffold any // scaffold.Scaffold
 }
 
 var (

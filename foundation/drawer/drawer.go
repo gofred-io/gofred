@@ -7,6 +7,7 @@ import (
 	"github.com/gofred-io/gofred/application"
 	"github.com/gofred-io/gofred/basic/div"
 	"github.com/gofred-io/gofred/breakpoint"
+	"github.com/gofred-io/gofred/foundation/container"
 )
 
 type Drawer struct {
@@ -15,13 +16,18 @@ type Drawer struct {
 	menu       application.BaseWidget
 	opts       []div.Option
 	transition float64
+
+	builder DrawerBuilder
 }
 
-func New(child application.BaseWidget, opts ...Option) IDrawer {
+type DrawerBuilder func() application.BaseWidget
+
+func New(builder DrawerBuilder, opts ...Option) *Drawer {
 	d := &Drawer{
 		BaseWidget: application.New("div"),
-		menu:       div.New(nil, div.Class("gf-drawer-menu")),
+		menu:       container.New(application.Nil, container.Class("gf-drawer-menu")),
 		barrier:    div.New(nil, div.Class("gf-drawer-barrier"), div.Width(breakpoint.All(0))),
+		builder:    builder,
 	}
 
 	opts = append([]Option{
@@ -42,7 +48,7 @@ func New(child application.BaseWidget, opts ...Option) IDrawer {
 	})
 
 	d.menu.UpdateStyleProperty("width", "0")
-	d.menu.AppendChild(child.Widget)
+	d.menu.AppendChild(d.builder().Widget)
 
 	d.Widget.AppendChild(d.menu.Widget)
 	d.Widget.AppendChild(d.barrier.Widget)
@@ -69,4 +75,8 @@ func (d *Drawer) Hide() {
 	time.AfterFunc(time.Duration(d.transition)*time.Second, func() {
 		d.barrier.UpdateStyleProperty("width", "0")
 	})
+}
+
+func (d *Drawer) Refresh() {
+	d.menu.ChildAt(0).ReplaceWith(d.builder().Widget)
 }
