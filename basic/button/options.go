@@ -3,6 +3,8 @@ package button
 import (
 	"github.com/gofred-io/gofred/breakpoint"
 	"github.com/gofred-io/gofred/options"
+	"github.com/gofred-io/gofred/options/spacing"
+	"github.com/gofred-io/gofred/theme/theme_style"
 )
 
 type Option options.OptionWrapper
@@ -16,6 +18,12 @@ func BackgroundColor(backgroundColor string) Option {
 func BorderRadius(borderRadius int) Option {
 	return func() options.Option {
 		return options.BorderRadius(borderRadius)
+	}
+}
+
+func ButtonStyle(buttonStyle theme_style.ButtonStyle) Option {
+	return func() options.Option {
+		return options.ButtonStyle(buttonStyle)
 	}
 }
 
@@ -46,6 +54,12 @@ func MaxWidth(opts ...breakpoint.BreakpointOptions[int]) Option {
 func OnClick(handler options.OnClickHandler) Option {
 	return func() options.Option {
 		return options.OnClick(handler)
+	}
+}
+
+func Padding(opts ...breakpoint.BreakpointOptions[spacing.Spacing]) Option {
+	return func() options.Option {
+		return options.Padding(opts...)
 	}
 }
 

@@ -12,19 +12,11 @@ import (
 type Color color.RGBA
 
 func From(value int) Color {
-	if value > 0xFFFFFF {
-		return Color(color.RGBA{
-			R: uint8(value >> 24),
-			G: uint8(value >> 16 & 0xFF),
-			B: uint8(value >> 8 & 0xFF),
-			A: uint8(value & 0xFF),
-		})
-	}
 	return Color(color.RGBA{
-		R: uint8(value >> 16),
-		G: uint8(value >> 8 & 0xFF),
-		B: uint8(value & 0xFF),
-		A: 255,
+		R: uint8(value >> 24),
+		G: uint8(value >> 16 & 0xFF),
+		B: uint8(value >> 8 & 0xFF),
+		A: uint8(value & 0xFF),
 	})
 }
 

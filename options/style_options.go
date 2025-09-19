@@ -7,6 +7,75 @@ import (
 	"github.com/gofred-io/gofred/theme/theme_style"
 )
 
+func ButtonStyle(buttonStyle theme_style.ButtonStyle) Option {
+	return func(widget application.BaseWidget) {
+		if buttonStyle.BackgroundColor != nil {
+			color := *buttonStyle.BackgroundColor
+			BackgroundColor(color.String())(widget)
+		}
+		if buttonStyle.BorderColor != nil {
+			color := *buttonStyle.BorderColor
+			BorderColor(color.String())(widget)
+		}
+		if buttonStyle.BorderStyle != nil {
+			BorderStyle(*buttonStyle.BorderStyle)(widget)
+		}
+		if buttonStyle.BorderWidth != nil {
+			BorderWidth(*buttonStyle.BorderWidth)(widget)
+		}
+		if buttonStyle.BorderRadius != nil {
+			BorderRadius(*buttonStyle.BorderRadius)(widget)
+		}
+		if buttonStyle.BoxShadow != nil {
+			BoxShadow(*buttonStyle.BoxShadow)(widget)
+		}
+		if buttonStyle.Fill != nil {
+			color := *buttonStyle.Fill
+			Fill(color.String())(widget)
+		}
+		if buttonStyle.Flex != nil {
+			Flex(*buttonStyle.Flex)(widget)
+		}
+		if buttonStyle.FlexDirection != nil {
+			FlexDirection(*buttonStyle.FlexDirection)(widget)
+		}
+		if buttonStyle.FlexWrap != nil {
+			FlexWrap(*buttonStyle.FlexWrap)(widget)
+		}
+		if buttonStyle.Height != nil {
+			heights := []breakpoint.BreakpointOptions[int](*buttonStyle.Height)
+			Height(heights...)(widget)
+		}
+		if buttonStyle.Margin != nil {
+			margins := []breakpoint.BreakpointOptions[spacing.Spacing](*buttonStyle.Margin)
+			Margin(margins...)(widget)
+		}
+		if buttonStyle.MaxWidth != nil {
+			maxWidths := []breakpoint.BreakpointOptions[int](*buttonStyle.MaxWidth)
+			MaxWidth(maxWidths...)(widget)
+		}
+		if buttonStyle.Overflow != nil {
+			Overflow(*buttonStyle.Overflow)(widget)
+		}
+		if buttonStyle.Padding != nil {
+			padding := []breakpoint.BreakpointOptions[spacing.Spacing](*buttonStyle.Padding)
+			Padding(padding...)(widget)
+		}
+		if buttonStyle.Width != nil {
+			widths := []breakpoint.BreakpointOptions[int](*buttonStyle.Width)
+			Width(widths...)(widget)
+		}
+		if buttonStyle.WidthP != nil {
+			widthPs := []breakpoint.BreakpointOptions[float64](*buttonStyle.WidthP)
+			WidthP(widthPs...)(widget)
+		}
+		if buttonStyle.Visible != nil {
+			visibles := []breakpoint.BreakpointOptions[bool](*buttonStyle.Visible)
+			Visible(visibles...)(widget)
+		}
+	}
+}
+
 func ContainerStyle(containerStyle theme_style.ContainerStyle) Option {
 	return func(widget application.BaseWidget) {
 		if containerStyle.BackgroundColor != nil {

@@ -6,6 +6,7 @@ import (
 	"github.com/gofred-io/gofred/foundation/icon"
 	"github.com/gofred-io/gofred/options"
 	"github.com/gofred-io/gofred/theme"
+	"github.com/gofred-io/gofred/theme/theme_style"
 )
 
 type Option func(iconButton *iconButton)
@@ -13,6 +14,12 @@ type Option func(iconButton *iconButton)
 func BorderRadius(borderRadius int) Option {
 	return func(iconButton *iconButton) {
 		iconButton.opts = append(iconButton.opts, button.BorderRadius(borderRadius))
+	}
+}
+
+func ButtonStyle(buttonStyle theme_style.ButtonStyle) Option {
+	return func(iconButton *iconButton) {
+		iconButton.opts = append(iconButton.opts, button.ButtonStyle(buttonStyle))
 	}
 }
 
