@@ -45,6 +45,12 @@ func ID(id string) Option {
 	}
 }
 
+func Label(label string) Option {
+	return func() options.Option {
+		return options.Label(label)
+	}
+}
+
 func MaxWidth(opts ...breakpoint.BreakpointOptions[int]) Option {
 	return func() options.Option {
 		return options.MaxWidth(opts...)

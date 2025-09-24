@@ -178,6 +178,12 @@ func ID(id string) Option {
 	}
 }
 
+func Label(label string) Option {
+	return func(widget application.BaseWidget) {
+		widget.SetAttribute("aria-label", label)
+	}
+}
+
 func JustifyContent(justifyContent theme.AxisAlignmentType) Option {
 	return func(widget application.BaseWidget) {
 		widget.UpdateStyleProperty("justify-content", string(justifyContent))

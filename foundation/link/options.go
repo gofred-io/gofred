@@ -55,6 +55,12 @@ func ID(id string) Option {
 	}
 }
 
+func Label(label string) Option {
+	return func(link *link) {
+		link.opts = append(link.opts, anchor.Label(label))
+	}
+}
+
 func LineHeight(lineHeight float64) Option {
 	return func(link *link) {
 		link.opts = append(link.opts, anchor.LineHeight(lineHeight))

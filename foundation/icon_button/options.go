@@ -47,6 +47,12 @@ func ID(id string) Option {
 	}
 }
 
+func Label(label string) Option {
+	return func(iconButton *iconButton) {
+		iconButton.opts = append(iconButton.opts, button.Label(label))
+	}
+}
+
 func MaxWidth(opts ...breakpoint.BreakpointOptions[int]) Option {
 	return func(iconButton *iconButton) {
 		iconButton.opts = append(iconButton.opts, button.MaxWidth(opts...))

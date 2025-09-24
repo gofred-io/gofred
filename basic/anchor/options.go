@@ -52,6 +52,12 @@ func ID(id string) Option {
 	}
 }
 
+func Label(label string) Option {
+	return func() options.Option {
+		return options.Label(label)
+	}
+}
+
 func LineHeight(lineHeight float64) Option {
 	return func() options.Option {
 		return options.LineHeight(lineHeight)

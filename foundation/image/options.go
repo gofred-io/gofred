@@ -8,6 +8,12 @@ import (
 
 type Option func(image *image)
 
+func Alt(alt string) Option {
+	return func(image *image) {
+		image.opts = append(image.opts, basicimage.Alt(alt))
+	}
+}
+
 func Class(class string) Option {
 	return func(image *image) {
 		image.opts = append(image.opts, basicimage.Class(class))

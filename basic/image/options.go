@@ -8,6 +8,12 @@ import (
 
 type Option options.OptionWrapper
 
+func Alt(alt string) Option {
+	return func() options.Option {
+		return options.Alt(alt)
+	}
+}
+
 func Class(class string) Option {
 	return func() options.Option {
 		return options.Class(class)
