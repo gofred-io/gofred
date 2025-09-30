@@ -100,6 +100,12 @@ func Display(display theme.DisplayType) Option {
 	}
 }
 
+func Draggable(draggable bool) Option {
+	return func() options.Option {
+		return options.Draggable(draggable)
+	}
+}
+
 func Fill(fill string) Option {
 	return func() options.Option {
 		return options.Fill(fill)
@@ -199,6 +205,24 @@ func NewTab(newTab bool) Option {
 func OnClick(handler options.OnClickHandler) Option {
 	return func() options.Option {
 		return options.OnClick(handler)
+	}
+}
+
+func OnDragEnd(handler options.OnDragEndHandler) Option {
+	return func() options.Option {
+		return options.OnDragEnd(handler)
+	}
+}
+
+func OnDrag(handler options.OnDragHandler) Option {
+	return func() options.Option {
+		return options.OnDrag(handler)
+	}
+}
+
+func OnDragStart(handler options.OnDragStartHandler) Option {
+	return func() options.Option {
+		return options.OnDragStart(handler)
 	}
 }
 

@@ -15,6 +15,9 @@ import (
 type Option func(widget application.BaseWidget)
 type OptionWrapper func() Option
 type OnClickHandler func(this application.BaseWidget, e application.Event)
+type OnDragEndHandler func(this application.BaseWidget, e application.Event)
+type OnDragHandler func(this application.BaseWidget, e application.Event)
+type OnDragStartHandler func(this application.BaseWidget, e application.Event)
 
 func AlignItems(alignItems theme.AxisAlignmentType) Option {
 	return func(widget application.BaseWidget) {
@@ -109,6 +112,12 @@ func D(data string) Option {
 func Display(display theme.DisplayType) Option {
 	return func(widget application.BaseWidget) {
 		widget.UpdateStyleProperty("display", string(display))
+	}
+}
+
+func Draggable(draggable bool) Option {
+	return func(widget application.BaseWidget) {
+		widget.SetDraggable(draggable)
 	}
 }
 
@@ -237,6 +246,24 @@ func NewTab(newTab bool) Option {
 func OnClick(handler OnClickHandler) Option {
 	return func(widget application.BaseWidget) {
 		widget.SetOnClick(handler)
+	}
+}
+
+func OnDragEnd(handler OnDragEndHandler) Option {
+	return func(widget application.BaseWidget) {
+		widget.SetOnDragEnd(handler)
+	}
+}
+
+func OnDrag(handler OnDragHandler) Option {
+	return func(widget application.BaseWidget) {
+		widget.SetOnDrag(handler)
+	}
+}
+
+func OnDragStart(handler OnDragStartHandler) Option {
+	return func(widget application.BaseWidget) {
+		widget.SetOnDragStart(handler)
 	}
 }
 

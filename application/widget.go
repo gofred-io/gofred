@@ -80,6 +80,10 @@ func (w Widget) SetClass(class string) {
 	w.Set("className", class)
 }
 
+func (w Widget) SetDraggable(draggable bool) {
+	w.Set("draggable", draggable)
+}
+
 func (w Widget) SetID(id string) {
 	w.Set("id", id)
 }
@@ -90,6 +94,42 @@ func (w Widget) SetOnClick(onClick func(this BaseWidget, e Event)) {
 			utils.SafeGo(func() {
 				e := args[0]
 				onClick(BaseWidget{Widget: Widget(this)}, Event(e))
+			})
+		}
+		return nil
+	}))
+}
+
+func (w Widget) SetOnDragEnd(onDragEnd func(this BaseWidget, e Event)) {
+	w.Set("ondragend", js.FuncOf(func(this js.Value, args []js.Value) any {
+		if onDragEnd != nil {
+			utils.SafeGo(func() {
+				e := args[0]
+				onDragEnd(BaseWidget{Widget: Widget(this)}, Event(e))
+			})
+		}
+		return nil
+	}))
+}
+
+func (w Widget) SetOnDrag(onDrag func(this BaseWidget, e Event)) {
+	w.Set("ondrag", js.FuncOf(func(this js.Value, args []js.Value) any {
+		if onDrag != nil {
+			utils.SafeGo(func() {
+				e := args[0]
+				onDrag(BaseWidget{Widget: Widget(this)}, Event(e))
+			})
+		}
+		return nil
+	}))
+}
+
+func (w Widget) SetOnDragStart(onDragStart func(this BaseWidget, e Event)) {
+	w.Set("ondragstart", js.FuncOf(func(this js.Value, args []js.Value) any {
+		if onDragStart != nil {
+			utils.SafeGo(func() {
+				e := args[0]
+				onDragStart(BaseWidget{Widget: Widget(this)}, Event(e))
 			})
 		}
 		return nil
