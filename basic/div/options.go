@@ -58,6 +58,12 @@ func BorderRadius(borderRadius int) Option {
 	}
 }
 
+func Bottom(bottom int) Option {
+	return func() options.Option {
+		return options.Bottom(bottom)
+	}
+}
+
 func BoxShadow(shadow string) Option {
 	return func() options.Option {
 		return options.BoxShadow(shadow)
@@ -178,6 +184,12 @@ func JustifyContent(justifyContent theme.AxisAlignmentType) Option {
 	}
 }
 
+func Left(left int) Option {
+	return func() options.Option {
+		return options.Left(left)
+	}
+}
+
 func LineHeight(lineHeight float64) Option {
 	return func() options.Option {
 		return options.LineHeight(lineHeight)
@@ -238,6 +250,18 @@ func Padding(opts ...breakpoint.BreakpointOptions[spacing.Spacing]) Option {
 	}
 }
 
+func Position(position theme.PositionStyleType) Option {
+	return func() options.Option {
+		return options.Position(position)
+	}
+}
+
+func Right(right int) Option {
+	return func() options.Option {
+		return options.Right(right)
+	}
+}
+
 func RowGap(rowGap int) Option {
 	return func() options.Option {
 		return options.RowGap(rowGap)
@@ -247,6 +271,12 @@ func RowGap(rowGap int) Option {
 func Tooltip(tooltip string) Option {
 	return func() options.Option {
 		return options.Tooltip(tooltip)
+	}
+}
+
+func Top(top int) Option {
+	return func() options.Option {
+		return options.Top(top)
 	}
 }
 

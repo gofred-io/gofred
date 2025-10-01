@@ -67,6 +67,12 @@ func BorderRadius(borderRadius int) Option {
 	}
 }
 
+func Bottom(bottom int) Option {
+	return func(widget application.BaseWidget) {
+		widget.UpdateStyleProperty("bottom", fmt.Sprintf("%dpx", bottom))
+	}
+}
+
 func BoxShadow(shadow string) Option {
 	return func(widget application.BaseWidget) {
 		widget.UpdateStyleProperty("box-shadow", shadow)
@@ -199,6 +205,12 @@ func JustifyContent(justifyContent theme.AxisAlignmentType) Option {
 	}
 }
 
+func Left(left int) Option {
+	return func(widget application.BaseWidget) {
+		widget.UpdateStyleProperty("left", fmt.Sprintf("%dpx", left))
+	}
+}
+
 func LetterSpacing(letterSpacing float64) Option {
 	return func(widget application.BaseWidget) {
 		widget.UpdateStyleProperty("letter-spacing", fmt.Sprintf("%f", letterSpacing))
@@ -291,6 +303,18 @@ func Padding(options ...breakpoint.BreakpointOptions[spacing.Spacing]) Option {
 	}
 }
 
+func Position(position theme.PositionStyleType) Option {
+	return func(widget application.BaseWidget) {
+		widget.UpdateStyleProperty("position", string(position))
+	}
+}
+
+func Right(right int) Option {
+	return func(widget application.BaseWidget) {
+		widget.UpdateStyleProperty("right", fmt.Sprintf("%dpx", right))
+	}
+}
+
 func RowGap(rowGap int) Option {
 	return func(widget application.BaseWidget) {
 		widget.UpdateStyleProperty("row-gap", fmt.Sprintf("%dpx", rowGap))
@@ -312,6 +336,12 @@ func TextAlign(textAlign theme.TextAlignType) Option {
 func Tooltip(tooltip string) Option {
 	return func(widget application.BaseWidget) {
 		widget.SetAttribute("title", tooltip)
+	}
+}
+
+func Top(top int) Option {
+	return func(widget application.BaseWidget) {
+		widget.UpdateStyleProperty("top", fmt.Sprintf("%dpx", top))
 	}
 }
 

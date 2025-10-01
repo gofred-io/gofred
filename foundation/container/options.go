@@ -46,6 +46,12 @@ func BorderRadius(borderRadius int) Option {
 	}
 }
 
+func Bottom(bottom int) Option {
+	return func(container *container) {
+		container.opts = append(container.opts, div.Bottom(bottom))
+	}
+}
+
 func BoxShadow(shadow string) Option {
 	return func(container *container) {
 		container.opts = append(container.opts, div.BoxShadow(shadow))
@@ -82,6 +88,12 @@ func ID(id string) Option {
 	}
 }
 
+func Left(left int) Option {
+	return func(container *container) {
+		container.opts = append(container.opts, div.Left(left))
+	}
+}
+
 func Margin(opts ...breakpoint.BreakpointOptions[spacing.Spacing]) Option {
 	return func(container *container) {
 		container.opts = append(container.opts, div.Margin(opts...))
@@ -103,6 +115,24 @@ func Overflow(overflow theme.OverflowType) Option {
 func Padding(opts ...breakpoint.BreakpointOptions[spacing.Spacing]) Option {
 	return func(container *container) {
 		container.opts = append(container.opts, div.Padding(opts...))
+	}
+}
+
+func Position(position theme.PositionStyleType) Option {
+	return func(container *container) {
+		container.opts = append(container.opts, div.Position(position))
+	}
+}
+
+func Right(right int) Option {
+	return func(container *container) {
+		container.opts = append(container.opts, div.Right(right))
+	}
+}
+
+func Top(top int) Option {
+	return func(container *container) {
+		container.opts = append(container.opts, div.Top(top))
 	}
 }
 

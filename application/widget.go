@@ -32,6 +32,10 @@ func (w Widget) ChildAt(index int) Widget {
 	return Widget(js.Value(w).Get("children").Index(index))
 }
 
+func (w Widget) ClientRect() ClientRect {
+	return ClientRect(js.Value(w).Call("getBoundingClientRect"))
+}
+
 func (w Widget) Equal(other BaseWidget) bool {
 	return js.Value(w).Equal(js.Value(other.Widget))
 }

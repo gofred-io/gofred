@@ -8,6 +8,7 @@ type FlexDirectionType string
 type FlexWrapType string
 type OverflowType string
 type PositionType string
+type PositionStyleType string
 type TextAlignType string
 type UserSelectType string
 
@@ -66,6 +67,13 @@ const (
 	PositionTypeBottom      PositionType = "bottom"
 	PositionTypeLeft        PositionType = "left"
 	PositionTypeRight       PositionType = "right"
+)
+
+const (
+	PositionStyleTypeFixed    PositionStyleType = "fixed"
+	PositionStyleTypeAbsolute PositionStyleType = "absolute"
+	PositionStyleTypeRelative PositionStyleType = "relative"
+	PositionStyleTypeSticky   PositionStyleType = "sticky"
 )
 
 const (
